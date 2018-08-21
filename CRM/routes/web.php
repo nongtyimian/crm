@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home',"IndexController@index");
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/',"IndexController@index");
 Route::get('/test',"IndexController@test");
 //角色列表
 Route::any('/role_list',"RoleController@role-list");
