@@ -1,5 +1,3 @@
-@extends('index.layout')
-@section("content")
 <!DOCTYPE html>
 <html>
 
@@ -145,4 +143,3 @@
 </body>
 
 </html>
-@endsection
