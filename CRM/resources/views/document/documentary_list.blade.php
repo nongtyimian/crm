@@ -92,11 +92,12 @@
             </tr>
         </thead>
         <tbody>
+		@foreach($res as $v)
           <tr>
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>2017009171822298053</td>
+            <td>{{$v->dym_id}}</td>
             <td>老王:18925139194</td>
             <td>7829.10</td>
             <td>7854.10</td>
@@ -115,16 +116,12 @@
               </a>
             </td>
           </tr>
+		  @endforeach
         </tbody>
       </table>
       <div class="page">
         <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
-          <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
+		{{$res}}
         </div>
       </div>
 
