@@ -67,21 +67,22 @@ class AdminController extends Controller
         session(['account' => $session]);
 
         return[ 'msg'=> '登录成功' , 'code' => '1' ];
-//        echo 121231321;exit;
-//
-//
-//
-////        $where = [
-////            'crm_admin' => $data['account'],
-////            'pwd' => md5( md5( $data['pwsds'] ).md5( $data['salt'] ) ) ,
-////        ];
-//////        $pwd_get = $res = DB::table('crm_admin') -> where( $where ) -> first();
-////        var_dump($pwd_get);exit;
-//
-//
-//        var_dump($crm_admin_get);exit;
-//
-//    	print_r($data);exit;
+    }
+
+
+    //退出   温静
+    public function logout( Request $request ){
+
+
+
+        $request->session()->put('account');
+
+        $null = session('account');
+
+        if( empty( $null ) ){
+            return redirect('/login');
+
+        }
     }
 
 }
