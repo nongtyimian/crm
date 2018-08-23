@@ -155,19 +155,19 @@
                         </a>
                     </li >
 					<li>
-                        <a href="order-list.html">
+                        <a href="/documentary_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>跟单记录</cite>
                         </a>
                     </li>
 					<li>
-                        <a href="order-list.html">
+                        <a href="/order_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单记录</cite>
                         </a>
                     </li >
 					<li>
-                        <a href="order-list.html">
+                        <a href="/contract_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>合同记录</cite>
                         </a>
@@ -179,7 +179,7 @@
                         </a>
                     </li >
 					<li>
-                        <a href="order-list.html">
+                        <a href="/share_user">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>客户共享</cite>
                         </a>
@@ -251,7 +251,7 @@
                         </a>
                     </li >
 					<li>
-                        <a href="city.html">
+                        <a href="/admin_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>员工管理</cite>
                         </a>
