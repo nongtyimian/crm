@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>登录</title>
+	<title>crm4管理系统登录</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -19,13 +19,14 @@
 <body class="login-bg">
     
     <div class="login layui-anim layui-anim-up">
-        <div class="message">x-admin2.0-管理登录</div>
+        <div class="message">crm4管理系统登录</div>
         <div id="darkbannerwrap"></div>
         
-        <form method="post" class="layui-form" >
-            <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+        <form class="layui-form" >
+            @csrf
+            <input name="account" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
-            <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <input name="pwsds" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
             <hr class="hr15">
             <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
             <hr class="hr20" >
@@ -42,10 +43,36 @@
               //监听提交
               form.on('submit(login)', function(data){
                 // alert(888)
-                layer.msg(JSON.stringify(data.field),function(){
-                    location.href='index.html'
-                });
-                return false;
+                  $.ajax({
+                      type: 'post',
+                      dataType: "json",
+                      data: data.field,
+                      url: "/login_do",
+                      success: function (datas) {
+                          console.log(data);
+                          if (datas.code == 1) {
+//                              layer.msg(datas.msg, {icon: datas.code, time: 1500}, function () {
+//
+//                                  location.href = "/login";
+//                              });
+                          } else {
+                              layer.msg(datas.msg, {icon: datas.code});
+                          }
+                      }
+
+                  })
+                  return false;
+
+
+
+
+
+
+//
+//                layer.msg(JSON.stringify(data.field),function(){
+//                    location.href='index.html'
+//                });
+//                return false;
               });
             });
         })
