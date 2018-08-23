@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     public function user_add(){
-        $users=DB::table('csm_user')->get();
-        $data = json_decode($users,true);
-        return view("index/user_add",['data'=>$data]);
+        $users=DB::table('csm_user')->paginate(3);
+        return view("index/user_add",['data'=>$users]);
     }
     public function user_add_do(){
         $users=DB::table('area')->where(['parent_id'=>1])->get();
@@ -77,5 +76,4 @@ class UserController extends Controller
         $users=DB::table('area')->where(['parent_id'=>$id])->get();
         echo $users;
     }
-
 }
