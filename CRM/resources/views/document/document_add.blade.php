@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/index/css/font.css">
     <link rel="stylesheet" href="/index/css/xadmin.css">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/index/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/index/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/index/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -28,7 +28,7 @@
                   <span class="x-red">*</span>客户
               </label>
               <div class="layui-input-inline">
-                  <select id="shipping" name="shipping" class="valid">
+                  <select id="user" name="user" class="valid">
 				  @foreach($user as $k=>$v)
                     <option value="{{$v['user_id']}}">{{$v['user_name']}}</option>
                   @endforeach  
@@ -38,7 +38,7 @@
                   <span class="x-red">*</span>跟单类型
               </label>
               <div class="layui-input-inline">
-                  <select id="shipping" name="shipping" class="valid">
+                  <select id="type" name="type" class="valid">
 				  @foreach($type as $k=>$v)
                     <option value="{{$v['t_name']}}">{{$v['t_name']}}</option>
                   @endforeach  
@@ -52,17 +52,17 @@
                   <span class="x-red">*</span>联系进度
               </label>
               <div class="layui-input-inline">
-                  <select id="shipping" name="shipping" class="valid">
+                  <select id="pgs" name="pgs" class="valid">
                       @foreach($pgs as $k=>$v)
                       <option value="{{$v['p_name']}}">{{$v['p_name']}}</option>
                       @endforeach
                   </select>
               </div>
               <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>联系进度
+                  <span class="x-red">*</span>提前时间
               </label>
               <div class="layui-input-inline">
-                  <select id="shipping" name="shipping" class="valid">
+                  <select id="time" name="time" class="valid">
                       @foreach($time as $k=>$v)
                       <option value="{{$v['r_name']}}">{{$v['r_name']}}</option>
                       @endforeach
@@ -89,7 +89,7 @@
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <button  class="layui-btn" lay-filter="add" lay-submit="">
+              <button  class="layui-btn" lay-filter="add" lay-submit="" id="add">
                   增加
               </button>
           </div>
@@ -129,17 +129,7 @@
 
 
           //监听提交
-          form.on('submit(add)', function(data){
-            console.log(data);
-            //发异步，把数据提交给php
-            layer.alert("增加成功", {icon: 6},function () {
-                // 获得frame索引
-                var index = parent.layer.getFrameIndex(window.name);
-                //关闭当前frame
-                parent.layer.close(index);
-            });
-            return false;
-          });
+         
           
           
         });
@@ -153,3 +143,16 @@
   </body>
 
 </html>
+<script>
+	$("#add").on("click",function(){
+		var user=$("#user").val();
+		var type=$("#type").val();
+		var pgs=$("#pgs").val();
+		var time=$("#time").val();
+		var date1=$("#date1").val();
+		var desc=$("#desc").val();
+		$.get("/documentary_add_do",{user:user,type:type,pgs:pgs,time:time,date1:date1,desc,desc},function(data){
+			alert(data);
+		});
+	})
+</script>
