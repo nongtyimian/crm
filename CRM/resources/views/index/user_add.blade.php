@@ -44,7 +44,7 @@
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="x_admin_show('添加用户','/user_add_do')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        {{--<span class="x-right" style="line-height:40px">共有数据：88 条</span>--}}
     </xblock>
     <table class="layui-table">
         <thead>
@@ -72,26 +72,27 @@
             <th>操作</th>
         </thead>
         <tbody>
-        <?php foreach($data as $k=>$v){?>
+
+        @foreach($data as $v)
         <tr>
             <td>
                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td><?php echo $v['user_id']?></td>
-            <td><?php echo $v['user_name']?></td>
-            <td><?php echo $v['tel']?></td>
-            <td><?php echo $v['area']?></td>
-            <td><?php echo $v['part']?></td>
-            <td><?php echo $v['xian']?></td>
-            <td><?php echo $v['addr']?></td>
-            <td><?php echo $v['back_tel']?></td>
-            <td><?php echo $v['ip']?></td>
-            <td><?php echo $v['type']?></td>
-            <td><?php echo $v['lv']?></td>
-            <td><?php echo $v['source']?></td>
-            <td><?php echo $v['o_tel']?></td>
-            <td><?php echo $v['project']?></td>
-            <td><?php echo $v['remark']?></td>
+            <td>{{$v->user_id}}</td>
+            <td>{{$v->user_name}}</td>
+            <td>{{$v->tel}}</td>
+            <td>{{$v->area}}</td>
+            <td>{{$v->part}}</td>
+            <td>{{$v->xian}}</td>
+            <td>{{$v->addr}}</td>
+            <td>{{$v->back_tel}}</td>
+            <td>{{$v->ip}}</td>
+            <td>{{$v->type}}</td>
+            <td>{{$v->lv}}</td>
+            <td>{{$v->source}}</td>
+            <td>{{$v->o_tel}}</td>
+            <td>{{$v->project}}</td>
+            <td>{{$v->remark}}</td>
             <td class="td-status">
                 <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
             <td class="td-manage">
@@ -106,17 +107,18 @@
                 </a>
             </td>
         </tr>
-        <?php }?>
+@endforeach
         </tbody>
     </table>
     <div class="page">
         <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
+            {{--<a class="prev" href="">&lt;&lt;</a>--}}
+            {{--<a class="num" href="">1</a>--}}
+            {{--<span class="current">2</span>--}}
             {{--<a class="num" href="">3</a>--}}
             {{--<a class="num" href="">489</a>--}}
-            <a class="next" href="">&gt;&gt;</a>
+            {{--<a class="next" href="">&gt;&gt;</a>--}}
+            {{$data}}
         </div>
     </div>
 </div>

@@ -203,7 +203,7 @@
                 success:function(result){
                     if(result.code == 1){
                         layer.msg(result.font,{icon:result.code});
-                        location.href="/user_add";
+                        top.location="/user_add";
                     }
                 }
             });
