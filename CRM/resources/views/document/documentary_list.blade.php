@@ -1,5 +1,3 @@
-@extends('index.layout')
-@section("content")
 <!DOCTYPE html>
 <html>
   
@@ -13,6 +11,8 @@
     <link rel="stylesheet" href="/index/css/font.css">
     <link rel="stylesheet" href="/index/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	 <script src="/index/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/index/js/xadmin.js"></script>
     
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -69,8 +69,8 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','/documentary_add')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        <button class="layui-btn" onclick="x_admin_show('添加跟单记录','/documentary_add')"><i class="layui-icon"></i>添加</button>
+        <span class="x-right" style="line-height:40px">共有数据：{{$count}} 条</span>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -196,4 +196,3 @@
   </body>
 
 </html>
-@endsection
