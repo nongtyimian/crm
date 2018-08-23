@@ -98,15 +98,15 @@
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
             <td>{{$v->dym_id}}</td>
-            <td>老王:18925139194</td>
-            <td>7829.10</td>
-            <td>7854.10</td>
-            <td>待确认</td>
-            <td>未支付</td>
-            <td>未发货</td>
-            <td>其他方式</td>
-            <td>申通物流</td>
-            <td>2017-08-17 18:22</td>
+            <td>{{$v->user_name}}</td>
+            <td>{{$v->part}}</td>
+            <td>{{$v->area}}</td>
+            <td>{{$v->type}}</td>
+            <td>{{$v->pgs}}</td>
+            <td>{{$v->ntime}}</td>
+            <td>{{$v->content}}</td>
+            <td>{{$v->admin_name}}</td>
+            <td>{{$v->ctime}}</td>
             <td class="td-manage">
               <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
                 <i class="layui-icon">&#xe63c;</i>
