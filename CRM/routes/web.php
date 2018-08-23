@@ -16,6 +16,10 @@ Route::get('/layout', function () {
 });
 Route::get('/',"IndexController@index");
 Route::get('/test',"IndexController@test");
+
+
+
+
 //角色列表
 Route::any('/role_list',"RoleController@role-list");
 //角色添加页面
@@ -28,8 +32,30 @@ Route::any('/role_modify',"RoleController@role_modify");
 Route::any('/role_modify_do',"RoleController@role_modify_do");
 //角色删除
 Route::any('/role_delete',"RoleController@role_delete");
+
+
+
 //设置权限
 Route::any('/limit_delete',"RoleController@limit_delete");
+
+
+//部门添加epartmentController
+//部门添加执行
+//部门展d示
+//部门修改页面
+//部门修改执行
+//部门删除
+
+
+//管理员添加  accountController
+//管理员添加执行
+//管理员展示
+//管理员修改
+//管理员修改执行
+//管理员删除
+
+
+
 
 //权限列表
 Route::any('/limit_list',"LimitController@limit_list");
