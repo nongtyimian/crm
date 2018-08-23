@@ -39,20 +39,33 @@ Route::any('/role_delete',"RoleController@role_delete");
 Route::any('/limit_delete',"RoleController@limit_delete");
 
 
-//部门添加epartmentController
+//departmentController   温静
+//部门添加de
+Route::any('/department',"DepartmentController@department");
 //部门添加执行
+Route::any('/department_add',"DepartmentController@department_add");
 //部门展d示
+Route::any('/department_list',"DepartmentController@department_list");
 //部门修改页面
+Route::any('/department_update',"DepartmentController@department_update");
 //部门修改执行
+Route::any('/department_update_add',"DepartmentController@department_update_add");
 //部门删除
+Route::any('/department_delect',"DepartmentController@department_delect");
 
 
-//管理员添加  accountController
+//管理员添加  accountController   温静
+Route::any('/account',"AccountController@account");
 //管理员添加执行
+Route::any('/account_add',"AccountController@account_add");
 //管理员展示
+Route::any('/account_list',"AccountController@account_list");
 //管理员修改
+Route::any('/account_update',"AccountController@account_update");
 //管理员修改执行
+Route::any('/account_update_add',"AccountController@account_update_add");
 //管理员删除
+Route::any('/account_delect',"AccountController@account_delect");
 
 
 
