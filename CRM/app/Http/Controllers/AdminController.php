@@ -48,30 +48,40 @@ class AdminController extends Controller
         if( empty( $crm_admin_get ) ){
             return[ 'msg'=> '账号或密码错误1' , 'code' => '2' ];
         }
-        print_r($data->salt);exit;
-        if( empty( $data->salt ) ){
+//        print_r($crm_admin_get->salt);exit;
+        if( empty( $crm_admin_get->salt ) ){
             return[ 'msg'=> '账号或密码错误2' , 'code' => '2' ];
         }
-        $pwd = md5( md5( $data['pwsds'] ).md5( $data['salt'] ) );
+        $pwd = md5( md5( $data['pwsds'] ).md5( $crm_admin_get->salt  ) );
 
-        if( $pwd != $crm_admin_get['pwd']){
+        if( $pwd != $crm_admin_get->pwd){
 
             return[ 'msg'=> '账号或密码错误3' , 'code' => '2' ];
         }
 
+        //session
 
+        $session = [
+            'admin_name'=>$data['account']
+        ];
+        session(['account' => $session]);
 
-//        $where = [
-//            'crm_admin' => $data['account'],
-//            'pwd' => md5( md5( $data['pwsds'] ).md5( $data['salt'] ) ) ,
-//        ];
-////        $pwd_get = $res = DB::table('crm_admin') -> where( $where ) -> first();
-//        var_dump($pwd_get);exit;
-
-
-        var_dump($crm_admin_get);exit;
-
-    	print_r($data);exit;
+        return[ 'msg'=> '登录成功' , 'code' => '1' ];
+//        echo 121231321;exit;
+//
+//
+//
+////        $where = [
+////            'crm_admin' => $data['account'],
+////            'pwd' => md5( md5( $data['pwsds'] ).md5( $data['salt'] ) ) ,
+////        ];
+//////        $pwd_get = $res = DB::table('crm_admin') -> where( $where ) -> first();
+////        var_dump($pwd_get);exit;
+//
+//
+//        var_dump($crm_admin_get);exit;
+//
+//    	print_r($data);exit;
     }
 
 }
