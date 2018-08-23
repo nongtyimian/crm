@@ -59,6 +59,8 @@ Route::any('/user_view',"UserController@user_view");
 Route::any('/user_add',"UserController@user_add");
 //执行添加客户操作
 Route::any('/user_add_do',"UserController@user_add_do");
+Route::any('/user_add_doadd',"UserController@user_add_doadd");
+Route::any('/user_add_sel',"UserController@user_add_sel");
 //编辑客户页面
 Route::any('/user_modify',"UserController@user_modify");
 //执行编辑客户操作
