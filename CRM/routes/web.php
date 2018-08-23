@@ -11,9 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/layout', function () {
+    return view('index/layout');
+});
 Route::get('/',"IndexController@index");
 Route::get('/test',"IndexController@test");
 //角色列表
