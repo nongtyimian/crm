@@ -48,30 +48,50 @@
     </xblock>
     <table class="layui-table">
         <thead>
+
         <tr>
             <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>登录名</th>
-            <th>手机</th>
-            <th>邮箱</th>
-            <th>角色</th>
-            <th>加入时间</th>
+            <th>客户姓名</th>
+            <th>联系电话</th>
+            <th>省</th>
+            <th>市</th>
+            <th>县</th>
+            <th>详细地址</th>
+            <th>备用电话</th>
+            <th>网络</th>
+            <th>客户类型</th>
+            <th>客户等级</th>
+            <th>客户来源</th>
+            <th>其他联系</th>
+            <th>主营项目</th>
+            <th>备注</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
         <tbody>
+        <?php foreach($data as $k=>$v){?>
         <tr>
             <td>
                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>1</td>
-            <td>admin</td>
-            <td>18925139194</td>
-            <td>113664000@qq.com</td>
-            <td>超级管理员</td>
-            <td>2017-01-01 11:11:42</td>
+            <td><?php echo $v['user_id']?></td>
+            <td><?php echo $v['user_name']?></td>
+            <td><?php echo $v['tel']?></td>
+            <td><?php echo $v['area']?></td>
+            <td><?php echo $v['part']?></td>
+            <td><?php echo $v['xian']?></td>
+            <td><?php echo $v['addr']?></td>
+            <td><?php echo $v['back_tel']?></td>
+            <td><?php echo $v['ip']?></td>
+            <td><?php echo $v['type']?></td>
+            <td><?php echo $v['lv']?></td>
+            <td><?php echo $v['source']?></td>
+            <td><?php echo $v['o_tel']?></td>
+            <td><?php echo $v['project']?></td>
+            <td><?php echo $v['remark']?></td>
             <td class="td-status">
                 <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
             <td class="td-manage">
@@ -86,6 +106,7 @@
                 </a>
             </td>
         </tr>
+        <?php }?>
         </tbody>
     </table>
     <div class="page">
@@ -93,12 +114,11 @@
             <a class="prev" href="">&lt;&lt;</a>
             <a class="num" href="">1</a>
             <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">489</a>
+            {{--<a class="num" href="">3</a>--}}
+            {{--<a class="num" href="">489</a>--}}
             <a class="next" href="">&gt;&gt;</a>
         </div>
     </div>
-
 </div>
 <script>
     layui.use('laydate', function(){

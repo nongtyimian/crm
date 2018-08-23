@@ -23,68 +23,139 @@
 <body>
 <div class="x-body">
     <form class="layui-form">
+        @csrf
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>登录名
+                <span class="x-red">*</span>客户姓名
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="username" name="username" required="" lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>将会成为您唯一的登入名
-            </div>
         </div>
         <div class="layui-form-item">
             <label for="phone" class="layui-form-label">
-                <span class="x-red">*</span>手机
+                <span class="x-red">*</span>联系电话
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="phone" name="phone" required="" lay-verify="phone"
                        autocomplete="off" class="layui-input">
             </div>
-            <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>将会成为您唯一的登入名
-            </div>
         </div>
         <div class="layui-form-item">
             <label for="L_email" class="layui-form-label">
-                <span class="x-red">*</span>邮箱
+                <span class="x-red">*</span>地址
             </label>
+            <label for="L_email" style="float: left;margin-top: 10px;">
+                <span>省</span>
+            </label>
+            <div class="layui-input-inline" style="margin-left: 5px;">
+                <select name="sheng" id="1" lay-filter="test">
+                    <option value="">请选择</option>
+                    <?php foreach($data as $k=>$v){?>
+                    <option value="<?php echo $v['area_id']?>"><?php echo $v['area_name']?></option>
+                    <?php }?>
+                </select>
+            </div>
+            <label for="L_email" style="float: left;margin-top: 10px;">
+                <span>市</span>
+            </label>
+            <div class="layui-input-inline" id="citys" style="margin-left: 5px;">
+                <select name="di" id="city2" class="diss" lay-filter="test2">
+                    <option value=""></option>
+                </select>
+            </div>
+            <label for="L_email" style="float: left;margin-top: 10px;">
+                <span>县</span>
+            </label>
+            <div class="layui-input-inline" style="margin-left: 5px;">
+                <select name="xian" id="city3">
+                    <option value=""></option>
+                </select>
+            </div>
             <div class="layui-input-inline">
-                <input type="text" id="L_email" name="email" required="" lay-verify="email"
-                       autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="x-red">*</span>角色</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="like1[write]" lay-skin="primary" title="超级管理员" checked="">
-                <input type="checkbox" name="like1[read]" lay-skin="primary" title="编辑人员">
-                <input type="checkbox" name="like1[write]" lay-skin="primary" title="宣传人员" checked="">
+                <input type="text" id="area" name="area" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input" placeholder="详细地址">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_pass" class="layui-form-label">
-                <span class="x-red">*</span>密码
+                <span class="x-red">*</span>备用电话
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_pass" name="pass" required="" lay-verify="pass"
+                <input type="test" id="L_pass" name="lass_phone" required="" lay-verify="pass"
                        autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-mid layui-word-aux">
-                6到16个字符
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>确认密码
+                <span class="x-red">*</span>网络
             </label>
             <div class="layui-input-inline">
-                <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
+                <input type="text" id="L_repass" name="inter" required="" lay-verify="repass"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+                <span class="x-red">*</span>客户类型
+            </label>
+            <div class="layui-input-inline">
+                <select name="type" id="">
+                    @foreach($array as $v)
+                        <option value="{{$v['t_id']}}">{{$v['t_name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+                <span class="x-red">*</span>客户等级
+            </label>
+            <div class="layui-input-inline">
+                <select name="dengji" id="">
+                    <?php foreach($arr as $k=>$v){?>
+                    <option value="<?php echo $v['l_id']?>"><?php echo $v['l_name']?></option>
+                    <?php }?>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+                <span class="x-red">*</span>客户来源
+            </label>
+            <div class="layui-input-inline">
+                <select name="laiyuan" id="">
+                    <?php foreach($date as $k=>$v){?>
+                    <option value="<?php echo $v['s_id']?>"><?php echo $v['s_name']?></option>
+                    <?php }?>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+                <span class="x-red">*</span>其他联系
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_repass" name="out_phone" required="" lay-verify="repass"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+                <span class="x-red">*</span>主营项目
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_repass" name="xaingmu" required="" lay-verify="repass"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+                <span class="x-red">*</span>备注
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="L_repass" name="remarks" required="" lay-verify="repass"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -92,7 +163,7 @@
             <label for="L_repass" class="layui-form-label">
             </label>
             <button  class="layui-btn" lay-filter="add" lay-submit="">
-                增加
+                保存
             </button>
         </div>
     </form>
@@ -102,36 +173,92 @@
         $ = layui.jquery;
         var form = layui.form
                 ,layer = layui.layer;
-
         //自定义验证规则
         form.verify({
             nikename: function(value){
-                if(value.length < 5){
-                    return '昵称至少得5个字符啊';
-                }
-            }
-            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-            ,repass: function(value){
-                if($('#L_pass').val()!=$('#L_repass').val()){
-                    return '两次密码不一致';
+                if(value.length < 2){
+                    return '昵称至少得2个字符啊';
                 }
             }
         });
-
         //监听提交
         form.on('submit(add)', function(data){
-            console.log(data);
-            //发异步，把数据提交给php
-            layer.alert("增加成功", {icon: 6},function () {
-                // 获得frame索引
-                var index = parent.layer.getFrameIndex(window.name);
-                //关闭当前frame
-                parent.layer.close(index);
+            var username = $('[name=username]').val();
+            var phone = $('[name=phone]').val();
+            var sheng = $('[name=sheng]').val();
+            var di = $('[name=di]').val();
+            var area = $('[name=area]').val();
+            var lass_phone = $('[name=lass_phone]').val();
+            var inter = $('[name=inter]').val();
+            var type = $('[name=type]').val();
+            var dengji = $('[name=dengji]').val();
+            var laiyuan = $('[name=laiyuan]').val();
+            var out_phone = $('[name=out_phone]').val();
+            var xaingmu = $('[name=xaingmu]').val();
+            var remarks = $('[name=remarks]').val();
+            $.ajax({
+                method:"post",
+                url:"/user_add_doadd",
+                data:data.field,
+                success:function(result){
+                    if(result.code == 1){
+                        layer.msg(result.font,{icon:result.code});
+                        location.href="/user_add";
+                    }
+                }
             });
-            return false;
         });
+        form.on('select(test)', function(data){
+            var id=$('#1').attr('id');
+            var parent_id=$('#1').val();
+            var o=$('#1');
+            var _token = $('input[type=hidden]').val();
+            if(id!=3){
+                if(id==1){
+                    $('#1').next().next().html("<option>请选择</option>");
+                }
+                $.post("/user_add_sel",
+                        {
+                            _token:_token,
+                            parent_id:parent_id
+                        },
+                        function(arr){
+                            var asss = eval( '('+arr+')' );
+                            var ac = '';
+                            for( i in asss){
+                                ac +="<option value='"+asss[i].area_id+"'>"+asss[i].area_name+"</option>";
+                            }
+                            $('#city2').html(ac);
+                            form.render();
+                        });
+            }
+        });
+        form.on('select(test2)', function(data){
+            var id = 2;
+            var parent_id=$('#city2').val();
+            var o=$('#city2');
+            var _token = $('input[type=hidden]').val();
+            if(id!=3){
+                if(id==1){
+                    $('#1').next().next().html("<option>请选择</option>");
+                }
+                $.post("/user_add_sel",
+                        {
+                            _token:_token,
+                            parent_id:parent_id
+                        },
+                        function(arr){
 
-
+                            var asss = eval( '('+arr+')' );
+                            var ac = '';
+                            for( i in asss){
+                                ac +="<option value='"+asss[i].area_id+"'>"+asss[i].area_name+"</option>";
+                            }
+                            $('#city3').html(ac);
+                            form.render();
+                        });
+            }
+        });
     });
 </script>
 <script>var _hmt = _hmt || []; (function() {
