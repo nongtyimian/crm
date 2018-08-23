@@ -71,7 +71,7 @@ Route::any('/documentary_list',"DocumentaryController@documentary_list");
 //新增跟单记录页面
 Route::any('/documentary_add',"DocumentaryController@documentary_add");
 //执行新增跟单记录
-Route::any('/documentary_add',"DocumentaryController@documentary_add");
+Route::any('/documentary_add_do',"DocumentaryController@documentary_add_do");
 
 //跟单类型列表
 Route::any('/dtype_list',"DtypeController@dtype_list");
