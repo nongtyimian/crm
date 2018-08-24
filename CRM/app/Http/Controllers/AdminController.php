@@ -62,8 +62,7 @@ class AdminController extends Controller
         //session
 
         $session = [
-            'admin_name'=>$data['account'],
-            'role' => $crm_admin_get->role,
+            'admin_name'=>$crm_admin_get->admin_id,
         ];
         session(['account' => $session]);
 
