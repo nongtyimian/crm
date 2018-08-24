@@ -63,7 +63,31 @@ class UserController extends Controller
             'status'=>1
         ];
         $data = DB::table('csm_user')->insert($data);
+        $where = [
+            'user_name'=>$username,
+            'tel'=>$phone,
+            'part'=>$shengs,
+            'area'=>$dis,
+            'xian'=>$areas,
+            'addr'=>$xiang,
+            'back_tel'=>$lass_phone,
+            'ip'=>$inter,
+            'type'=>$type,
+            'lv'=>$dengji,
+            'source'=>$laiyuan,
+            'o_tel'=>$out_phone,
+            'project'=>$xaingmu,
+            'remark'=>$remarks,
+            'ctime'=>time(),
+            'status'=>1
+        ];
+        $arr_ay=(array)DB::table('csm_user')->where($where)->first();
         $sess = session('account');
+        $data_two = [
+            'admin_id'=>$sess['role'],
+            'user_id'=>$arr_ay['user_id']
+        ];
+        $res = DB::table('derivation')->insert($data_two);
         if($data){
             return (['font'=>'添加成功','code'=>1]);
         }else{
