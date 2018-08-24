@@ -9,7 +9,7 @@ class DocumentaryController extends Controller
 {
     //跟单展示
 	public function documentary_list(){
-		$res = DB::table('crm_dym')->leftjoin("csm_user","csm_user.user_id","=","crm_dym.u_id")
+		$res = DB::table('crm_dym')->orderBy('crm_dym.ctime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_dym.u_id")
 								   ->leftjoin("crm_admin","crm_admin.admin_id","=","crm_dym.a_id")
 								   ->paginate(3);
 		$count=DB::table("crm_dym")->count();
@@ -18,6 +18,7 @@ class DocumentaryController extends Controller
 		return view("document/documentary_list",["res"=>$res,'count'=>$count]);
 	}
 
+	//添加页面
 	public function documentary_add(){
 		//跟单类型
 		$type=json_decode(DB::table("dym_type")->get(),true);
@@ -28,5 +29,20 @@ class DocumentaryController extends Controller
         //提前时间
 		$time=json_decode(DB::table("dym_rtime")->get(),true);
 		return view("document/document_add",["type"=>$type,"pgs"=>$pgs,'user'=>$user,'time'=>$time]);
+	}
+
+	//新增
+	public function documentary_add_do(){
+		$admin=session("account");
+		$data=$_GET;
+		$data['ntime']=strtotime($data['ntime']);
+		$time=time();
+		$data['a_id']=$admin['admin_id'];
+		$data['ctime']=$time;
+		$data['utime']=$time;
+		$res=DB::table("crm_dym")->insert($data);
+		if($res){
+			return 1;
+		}
 	}
 }
