@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/index/css/font.css">
     <link rel="stylesheet" href="/index/css/xadmin.css">
-    <script type="text/javascript" src="/index/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/index/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/index/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -89,15 +89,15 @@
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
-              <button  class="layui-btn" lay-filter="add" lay-submit="" id="add">
-                  增加
-              </button>
+              <button type="button"  class="layui-btn" lay-filter="add" lay-submit="" id="add" >增加
+             </button>     
+             
           </div>
       </form>
     </div>
     <script>
         layui.use(['form','layer', 'laydate'], function(){
-            $ = layui.js;
+            var $ = layui.js;
           var form = layui.form
           ,layer = layui.layer
           ,laydate = layui.laydate;
@@ -128,8 +128,6 @@
 
 
 
-          //监听提交
-         
           
           
         });
@@ -145,14 +143,21 @@
 </html>
 <script>
 	$("#add").on("click",function(){
-		var user=$("#user").val();
+		var u_id=$("#user").val();
 		var type=$("#type").val();
 		var pgs=$("#pgs").val();
 		var time=$("#time").val();
-		var date1=$("#date1").val();
-		var desc=$("#desc").val();
-		$.get("/documentary_add_do",{user:user,type:type,pgs:pgs,time:time,date1:date1,desc,desc},function(data){
-			alert(data);
+		var ntime=$("#date1").val();
+		var content=$("#desc").val();
+		$.get("/documentary_add_do",{u_id:u_id,type:type,pgs:pgs,rtime:time,ntime:ntime,content:content},function(data){
+			layui.use(['layer'], function(){
+				if(data==1){
+					layer.msg("添加成功",{icon:1});
+					window.parent.location.reload();
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
+				}	
+			});
 		});
 	})
 </script>
