@@ -33,7 +33,9 @@
             </label>
             <div class="layui-input-inline" id="citys" style="margin-left: 5px;">
                 <select name="di" id="city2" class="diss" lay-filter="test2">
-                    <option value=""></option>
+                    <?php foreach($data as $k=>$v){?>
+                    <option value="<?php echo $v['admin_id']?>"><?php echo $v['admin_name']?></option>
+                        <?php }?>
                 </select>
             </div>
             <label for="L_email" style="float: left;margin-top: 10px;">
@@ -41,7 +43,9 @@
             </label>
             <div class="layui-input-inline" style="margin-left: 5px;">
                 <select name="xian" id="city3">
-                    <option value=""></option>
+                    <?php foreach($arr as $k=>$v){?>
+                    <option value="<?php echo $v['user_id']?>"><?php echo $v['user_name']?></option>
+                    <?php }?>
                 </select>
             </div>
         </div>
@@ -60,90 +64,30 @@
         var form = layui.form
                 ,layer = layui.layer;
         //自定义验证规则
-        form.verify({
-            nikename: function(value){
-                if(value.length < 2){
-                    return '昵称至少得2个字符啊';
-                }
-            }
-        });
+//        form.verify({
+//            nikename: function(value){
+//                if(value.length < 2){
+//                    return '昵称至少得2个字符啊';
+//                }
+//            }
+//        });
         //监听提交
         form.on('submit(add)', function(data){
-            var username = $('[name=username]').val();
-            var phone = $('[name=phone]').val();
-            var sheng = $('[name=sheng]').val();
-            var di = $('[name=di]').val();
-            var area = $('[name=area]').val();
-            var lass_phone = $('[name=lass_phone]').val();
-            var inter = $('[name=inter]').val();
-            var type = $('[name=type]').val();
-            var dengji = $('[name=dengji]').val();
-            var laiyuan = $('[name=laiyuan]').val();
-            var out_phone = $('[name=out_phone]').val();
-            var xaingmu = $('[name=xaingmu]').val();
-            var remarks = $('[name=remarks]').val();
+            var username = $('[name=di]').val();
+            var phone = $('[name=xian]').val();
             $.ajax({
                 method:"post",
-                url:"/user_add_doadd",
+                url:"/share_add_doadd",
                 data:data.field,
                 success:function(result){
                     if(result.code == 1){
                         layer.msg(result.font,{icon:result.code});
-                        top.location="/user_add";
+                        parent.location="/share_user";
+                    }else{
+                        layer.msg(result.font,{icon:result.code});
                     }
                 }
             });
-        });
-        form.on('select(test)', function(data){
-            var id=$('#1').attr('id');
-            var parent_id=$('#1').val();
-            var o=$('#1');
-            var _token = $('input[type=hidden]').val();
-            if(id!=3){
-                if(id==1){
-                    $('#1').next().next().html("<option>请选择</option>");
-                }
-                $.post("/user_add_sel",
-                        {
-                            _token:_token,
-                            parent_id:parent_id
-                        },
-                        function(arr){
-                            var asss = eval( '('+arr+')' );
-                            var ac = '';
-                            for( i in asss){
-                                ac +="<option value='"+asss[i].area_id+"'>"+asss[i].area_name+"</option>";
-                            }
-                            $('#city2').html(ac);
-                            form.render();
-                        });
-            }
-        });
-        form.on('select(test2)', function(data){
-            var id = 2;
-            var parent_id=$('#city2').val();
-            var o=$('#city2');
-            var _token = $('input[type=hidden]').val();
-            if(id!=3){
-                if(id==1){
-                    $('#1').next().next().html("<option>请选择</option>");
-                }
-                $.post("/user_add_sel",
-                        {
-                            _token:_token,
-                            parent_id:parent_id
-                        },
-                        function(arr){
-
-                            var asss = eval( '('+arr+')' );
-                            var ac = '';
-                            for( i in asss){
-                                ac +="<option value='"+asss[i].area_id+"'>"+asss[i].area_name+"</option>";
-                            }
-                            $('#city3').html(ac);
-                            form.render();
-                        });
-            }
         });
     });
 </script>
