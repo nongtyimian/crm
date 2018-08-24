@@ -156,6 +156,7 @@
 					window.parent.location.reload();
 					var index = parent.layer.getFrameIndex(window.name);
 					parent.layer.close(index);
+					
 				}	
 			});
 		});
