@@ -28,11 +28,9 @@ class UserController extends Controller
         $sheng = $_POST['sheng'];
         $arr1=(array)DB::table('area')->where(['area_id'=>$sheng])->first();
         $shengs = $arr1['area_name'];
-
         $di = $_POST['di'];
         $arr2 =(array)DB::table('area')->where(['area_id'=>$di])->first();
         $dis = $arr2['area_name'];
-
         $area = $_POST['xian'];
         $arr3 =(array)DB::table('area')->where(['area_id'=>$area])->first();
         $areas = $arr3['area_name'];
@@ -65,6 +63,7 @@ class UserController extends Controller
             'status'=>1
         ];
         $data = DB::table('csm_user')->insert($data);
+        $sess = session('account');
         if($data){
             return (['font'=>'添加成功','code'=>1]);
         }else{
