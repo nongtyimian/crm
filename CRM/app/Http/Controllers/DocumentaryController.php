@@ -56,4 +56,6 @@ class DocumentaryController extends Controller
 		}
 		return ['msg'=>"删除成功",'code'=> 1];
 	}
+
+	
 }
