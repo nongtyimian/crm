@@ -251,13 +251,13 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="/admin_list">
+                        <a _href="/account_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>员工管理</cite>
                         </a>
                     </li >
 					<li>
-                        <a _href="city.html">
+                        <a _href="/department_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>部门管理</cite>
                         </a>
