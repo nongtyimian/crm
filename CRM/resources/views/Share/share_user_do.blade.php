@@ -25,40 +25,11 @@
     <form class="layui-form">
         @csrf
         <div class="layui-form-item">
-            <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>客户姓名
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="username" name="username" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="phone" class="layui-form-label">
-                <span class="x-red">*</span>联系电话
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="phone" name="phone" required="" lay-verify="phone"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label for="L_email" class="layui-form-label">
-                <span class="x-red">*</span>地址
+                <span class="x-red">*</span>共享
             </label>
             <label for="L_email" style="float: left;margin-top: 10px;">
-                <span>省</span>
-            </label>
-            <div class="layui-input-inline" style="margin-left: 5px;">
-                <select name="sheng" id="1" lay-filter="test">
-                    <option value="">请选择</option>
-                    <?php foreach($data as $k=>$v){?>
-                    <option value="<?php echo $v['area_id']?>"><?php echo $v['area_name']?></option>
-                    <?php }?>
-                </select>
-            </div>
-            <label for="L_email" style="float: left;margin-top: 10px;">
-                <span>市</span>
+                <span>管理员</span>
             </label>
             <div class="layui-input-inline" id="citys" style="margin-left: 5px;">
                 <select name="di" id="city2" class="diss" lay-filter="test2">
@@ -66,104 +37,19 @@
                 </select>
             </div>
             <label for="L_email" style="float: left;margin-top: 10px;">
-                <span>县</span>
+                <span>我的客户</span>
             </label>
             <div class="layui-input-inline" style="margin-left: 5px;">
                 <select name="xian" id="city3">
                     <option value=""></option>
                 </select>
             </div>
-            <div class="layui-input-inline">
-                <input type="text" id="area" name="area" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input" placeholder="详细地址">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_pass" class="layui-form-label">
-                <span class="x-red">*</span>备用电话
-            </label>
-            <div class="layui-input-inline">
-                <input type="test" id="L_pass" name="lass_phone" required="" lay-verify="pass"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>网络
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="L_repass" name="inter" required="" lay-verify="repass"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>客户类型
-            </label>
-            <div class="layui-input-inline">
-                <select name="type" id="">
-                    @foreach($array as $v)
-                        <option value="{{$v['t_id']}}">{{$v['t_name']}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>客户等级
-            </label>
-            <div class="layui-input-inline">
-                <select name="dengji" id="">
-                    <?php foreach($arr as $k=>$v){?>
-                    <option value="<?php echo $v['l_id']?>"><?php echo $v['l_name']?></option>
-                    <?php }?>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>客户来源
-            </label>
-            <div class="layui-input-inline">
-                <select name="laiyuan" id="">
-                    <?php foreach($date as $k=>$v){?>
-                    <option value="<?php echo $v['s_id']?>"><?php echo $v['s_name']?></option>
-                    <?php }?>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>其他联系
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="L_repass" name="out_phone" required="" lay-verify="repass"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>主营项目
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="L_repass" name="xaingmu" required="" lay-verify="repass"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-                <span class="x-red">*</span>备注
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="L_repass" name="remarks" required="" lay-verify="repass"
-                       autocomplete="off" class="layui-input">
-            </div>
         </div>
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
             <button  class="layui-btn" lay-filter="add" lay-submit="">
-                保存
+                确认共享
             </button>
         </div>
     </form>
