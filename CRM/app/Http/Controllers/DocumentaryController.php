@@ -11,7 +11,7 @@ class DocumentaryController extends Controller
 	public function documentary_list(){
 		$res = DB::table('crm_dym')->orderBy('crm_dym.ctime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_dym.u_id")
 								   ->leftjoin("crm_admin","crm_admin.admin_id","=","crm_dym.a_id")
-								   ->paginate(3);
+								   ->paginate(6);
 		$count=DB::table("crm_dym")->count();
 		
 		
@@ -37,12 +37,23 @@ class DocumentaryController extends Controller
 		$data=$_GET;
 		$data['ntime']=strtotime($data['ntime']);
 		$time=time();
-		$data['a_id']=$admin['admin_id'];
+		$data['a_id']=$admin['admin_name'];
 		$data['ctime']=$time;
 		$data['utime']=$time;
 		$res=DB::table("crm_dym")->insert($data);
 		if($res){
 			return 1;
 		}
+	}
+
+	//删除
+	public function documentary_del(){
+		$data=$_GET;
+		$res=DB::table("crm_dym")->where(["dym_id"=>$data['id']])->delete();
+		if(!$res){
+			  return ['msg'=>"删除失败",'code'=> 2];
+			//return $arr['code']=1;
+		}
+		return ['msg'=>"删除成功",'code'=> 1];
 	}
 }
