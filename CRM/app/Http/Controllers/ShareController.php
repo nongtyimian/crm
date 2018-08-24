@@ -12,23 +12,40 @@ class ShareController extends Controller
         $sess = session('account');
         $users = DB::table('derivation')
             ->join('csm_user', 'derivation.user_id', '=', 'csm_user.user_id')
-            ->where(['admin_id'=>$sess['role']])
+            ->where(['admin_id'=>$sess['admin_name']])
             ->paginate(3);
         $data = json_decode($users,true);
-//        print_r($users);exit;
-//        foreach($users as $k=>$v){
-//            $data[] = DB::table('csm_user')
-//                ->where(['user_id'=>$v['user_id']])
-//                ->get();
-//        }
-//        print_r($data);exit;
-//        $users=DB::table('csm_user')->paginate(3);
         return view("Share/share_user",['data'=>$users]);
     }
     public function share_user_do(){
-        $data = session('account');
-        print_r($data);exit;
-        $users = DB::table('derivation')->get();
-        return view("Share/share_user_do");
+        $sess = session('account');
+        $users = DB::table('crm_admin')->get();
+        $users = json_decode($users,true);
+        $users_two = DB::table('derivation')
+            ->join('csm_user', 'derivation.user_id', '=', 'csm_user.user_id')
+            ->where(['admin_id'=>$sess['admin_name']])
+            ->get();
+        $users_two = json_decode($users_two,true);
+        return view("Share/share_user_do",['data'=>$users,'arr'=>$users_two]);
+    }
+    public function share_add_doadd(){
+        $username = $_POST['di'];
+        $phone = $_POST['xian'];
+        $where=[
+            'admin_id'=>$username,
+            'user_id'=>$phone
+        ];
+        $data = DB::table('derivation')->where($where)->first();
+        if($data){
+            return (['font'=>'管理员已拥有该用户','code'=>2]);
+        }else{
+            $res = DB::table('derivation')->insert($where);
+            if($res){
+                return (['font'=>'共享成功','code'=>1]);
+            }else{
+                return(['font'=>'共享失败','code'=>2]);
+            }
+        }
+
     }
 }

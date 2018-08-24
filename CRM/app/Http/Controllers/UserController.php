@@ -84,7 +84,7 @@ class UserController extends Controller
         $arr_ay=(array)DB::table('csm_user')->where($where)->first();
         $sess = session('account');
         $data_two = [
-            'admin_id'=>$sess['role'],
+            'admin_id'=>$sess['admin_name'],
             'user_id'=>$arr_ay['user_id']
         ];
         $res = DB::table('derivation')->insert($data_two);
