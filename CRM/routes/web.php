@@ -160,3 +160,4 @@ Route::any('/statistics_search',"StatisticsController@statistics_search");
 Route::any('/share_user',"ShareController@share_user");
 //执行共享客户操作
 Route::any('/share_user_do',"ShareController@share_user_do");
+Route::any('/share_add_doadd',"ShareController@share_add_doadd");
