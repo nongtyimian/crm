@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	  <!DOCTYPE html>
 <html>
   
   <head>
@@ -23,68 +23,13 @@
   <body>
     <div class="x-body">
         <form class="layui-form">
-           <div class="layui-form-item">
-			  <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>客户
-              </label>
-              <div class="layui-input-inline">
-                  <select id="user" name="user" class="valid">
-				  @foreach($user as $k=>$v)
-                    <option value="{{$v['user_id']}}">{{$v['user_name']}}</option>
-                  @endforeach  
-                  </select>
-              </div>
-			  <div class="layui-btn layui-btn-radius layui-btn-normal" onclick="x_admin_show('添加跟单类型','/dtype_add')"><i class="layui-icon"></i>添加类型</div>
-              <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>跟单类型
-              </label>
-              <div class="layui-input-inline">
-                  <select id="type" name="type" class="valid">
-				  @foreach($type as $k=>$v)
-                    <option value="{{$v['t_name']}}">{{$v['t_name']}}</option>
-                  @endforeach  
-                  </select>
-              </div>
-
-          </div>
-		 
-          <div class="layui-form-item">
-              <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>联系进度
-              </label>
-              <div class="layui-input-inline">
-                  <select id="pgs" name="pgs" class="valid">
-                      @foreach($pgs as $k=>$v)
-                      <option value="{{$v['p_name']}}">{{$v['p_name']}}</option>
-                      @endforeach
-                  </select>
-              </div>
-              <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>提前时间
-              </label>
-              <div class="layui-input-inline">
-                  <select id="time" name="time" class="valid">
-                      @foreach($time as $k=>$v)
-                      <option value="{{$v['r_name']}}">{{$v['r_name']}}</option>
-                      @endforeach
-                  </select>
-              </div>
-          </div>
+          
           <div class="layui-form-item">
               <div class="layui-inline">
-                  <label class="layui-form-label">下次联系</label>
+                  <label class="layui-form-label">跟单类型</label>
                   <div class="layui-input-inline">
-                      <input type="text" name="date" id="date1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                      <input type="text"  id="type" class="layui-input">
                   </div>
-              </div>
-          </div>
-          
-          <div class="layui-form-item layui-form-text">
-              <label for="desc" class="layui-form-label">
-                  描述
-              </label>
-              <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
               </div>
           </div>
           <div class="layui-form-item">
@@ -144,13 +89,8 @@
 </html>
 <script>
 	$("#add").on("click",function(){
-		var u_id=$("#user").val();
 		var type=$("#type").val();
-		var pgs=$("#pgs").val();
-		var time=$("#time").val();
-		var ntime=$("#date1").val();
-		var content=$("#desc").val();
-		$.get("/documentary_add_do",{u_id:u_id,type:type,pgs:pgs,rtime:time,ntime:ntime,content:content},function(data){
+		$.get("/dtype_add_do",{t_name:type},function(data){
 			layui.use(['layer'], function(){
 				if(data==1){
 					layer.msg("添加成功",{icon:1});
@@ -163,3 +103,4 @@
 		});
 	})
 </script>
+
