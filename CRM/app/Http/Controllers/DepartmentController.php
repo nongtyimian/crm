@@ -39,13 +39,21 @@ class DepartmentController extends Controller
     //数据添加
     public function department_add( Request $request ){
 
-        $data = admin_aession();
-        print_r($data);exit;
         $data = $request -> post();
+//        echo 212121212;exit;
+        $admin_session = admin_aession();
         if( empty( $data['username'] ) ){
             return[ 'msg'=> '部门名称不能为空' , 'code' => '2' ];
         }
+        $insert = [
+            'd_name' => $data['username'],
+            'ctime' => time(),
+            'utime' => time(),
+            'starus' => 0,
+            'admin_id' => $admin_session->admin_id,
+        ];
+        print_r($insert);exit;
 
-        print_r($data);exit;
+//        print_r($data);exit;
     }
 }
