@@ -113,6 +113,9 @@ Route::any('/documentary_list',"DocumentaryController@documentary_list");
 Route::any('/documentary_add',"DocumentaryController@documentary_add");
 //执行新增跟单记录
 Route::any('/documentary_add_do',"DocumentaryController@documentary_add_do");
+//执行跟单删除
+Route::any('/documentary_del',"DocumentaryController@documentary_del");
+
 
 //跟单类型列表
 Route::any('/dtype_list',"DtypeController@dtype_list");
