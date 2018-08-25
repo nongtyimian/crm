@@ -161,3 +161,9 @@ Route::any('/share_user',"ShareController@share_user");
 //执行共享客户操作
 Route::any('/share_user_do',"ShareController@share_user_do");
 Route::any('/share_add_doadd',"ShareController@share_add_doadd");
+
+//查询用户
+Route::any("/sele_user","OrderController@sele_user");
+
+//查询shangpin
+Route::any("/sele_goods","OrderController@sele_goods");
