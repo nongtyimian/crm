@@ -53,7 +53,7 @@ Route::any('/department_update_add',"DepartmentController@department_update_add"
 //部门删除
 Route::any('/department_delect',"DepartmentController@department_delect");
 
-
+//员工
 //管理员添加  accountController   温静
 Route::any('/account',"AccountController@account");
 //管理员添加执行
