@@ -52,6 +52,8 @@ Route::any('/department_update',"DepartmentController@department_update");
 Route::any('/department_update_add',"DepartmentController@department_update_add");
 //部门删除
 Route::any('/department_delect',"DepartmentController@department_delect");
+//部门是否启用
+Route::any('/epartment_is',"DepartmentController@epartment_is");
 
 //员工
 //管理员添加  accountController   温静

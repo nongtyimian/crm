@@ -46,10 +46,13 @@
         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
     </xblock>
     <table class="layui-table">
+        @csrf
         <thead>
         <tr>
             <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+
+                {{--<div class="layui-unselect header layui-form-checkbox layui-form-checked" lay-skin="primary">选中的<i class="layui-icon"></i></div>--}}
             </th>
             <th>编号</th>
             <th>名称</th>
@@ -57,35 +60,48 @@
             <th>状态</th>
             <th>操作</th>
         </thead>
-        <tbody>
+        <tbody id="table">
 
-        @foreach( $crm_dep_get as $v)
+            @foreach( $crm_dep_get as $v)
 
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>{{$v->d_id}}</td>
-            <td>{{$v->d_name}}</td>
-            <td>{{$v->ctime}}</td>
-            <td class="td-status">
-                @if( $v->status === 1 )
-                <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-                @endif
-            <td class="td-manage">
-                <a onclick="member_stop(this,'10001')" href="javascript:;"  title="下载">
-                    <i class="layui-icon">&#xe601;</i>
-                </a>
-                <a title="编辑"  onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
-        @endforeach
+                <tr>
+                    <td>
+                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i
+                                    class="layui-icon">&#xe605;</i></div>
+                    </td>
+                    <td>{{$v->d_id}}</td>
+                    <td>{{$v->d_name}}</td>
+                    <td>{{$v->ctime}}</td>
+                    <td class="td-status">
 
+                        {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
+                        {{--<input type="hidden" value="{{$v->d_id}}" name="ids">--}}
+                        @if( $v->status === 0 )
+                            <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is"
+                                  onclick="student_is( {{$v->d_id}} , {{$v->status}} )">
+                                未启用
+                            </span>
+                        @endif
+                        @if( $v->status === 1 )
+                            <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is"
+                                  onclick="student_is( {{$v->d_id}} , {{$v->status}} )">
+                                已启用
+                            </span>
+                        @endif
+                    </td>
+                    <td class="td-manage">
+                        <a onclick="member_stop(this,'10001')" href="javascript:;" title="下载">
+                            <i class="layui-icon">&#xe601;</i>
+                        </a>
+                        <a title="编辑" onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
+                        <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
 
 
         </tbody>
@@ -115,7 +131,47 @@
         laydate.render({
             elem: '#end' //指定元素
         });
+
+//        $(".icL/ist").each(function(){
+//            $(this).click(function(){
+//                alert($(this).attr('id'));
+//            });
+
+//
     });
+
+
+    function student_is( ids , status ){
+        var _token = $('input[name=_token]').val();
+
+        $.ajax({
+            type: 'post',
+            dataType: "json",
+            data:{status:status,_token:_token,ids:ids},
+            url: "/epartment_is",
+            success: function (datas) {
+                //                          console.log(data);
+                if (datas.code == 1) {
+                    if( datas.is == 1 ){
+                        layer.msg("已启用", {icon: datas.code, time: 1500}, function () {
+                                $('#table').html(datas.data);
+                        });
+                    }
+                    if( datas.is == 0 ){
+                        layer.msg("已禁用", {icon: datas.code, time: 1500}, function () {
+                            $('#table').html(datas.data);
+                        });
+                    }
+
+
+                } else {
+                    layer.msg(datas.msg, {icon: datas.code});
+                }
+            }
+
+        })
+        return false;;
+    }
 
     /*用户-停用*/
     function member_stop(obj,id){
