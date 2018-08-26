@@ -14,13 +14,20 @@ class DepartmentController extends Controller
     {
         //查询所有数据
         $crm_dep_get = $res = DB::table('crm_dep') -> get();
+//        $crm_dep_get = $res = DB::table('crm_dep') -> paginate(5);
 //        print_r($crm_dep_get);exit;
         foreach( $crm_dep_get as $k => $v){
             $crm_dep_get[$k]->ctime = date( 'Y-m-d H:i:s' , $v->ctime);
         }
 //        print_r($crm_dep_get);exit;
 
-        return view( "department/department_list" , [ 'crm_dep_get' => $crm_dep_get ] );
+        //总条数
+        $crm_dep_count = $res = DB::table('crm_dep') -> count();
+        //分页
+//        $users = DB::table('crm_dep')->paginate(5);
+//        print_r($users);exit;
+
+        return view( "department/department_list" , [ 'crm_dep_get' => $crm_dep_get , 'crm_dep_count' => $crm_dep_count ] );
     }
     //部门添加   温静
     public function department( Request $request )

@@ -68,6 +68,8 @@ Route::any('/account_update',"AccountController@account_update");
 Route::any('/account_update_add',"AccountController@account_update_add");
 //管理员删除
 Route::any('/account_delect',"AccountController@account_delect");
+//管理员是否启用
+Route::any('/account_is',"AccountController@account_is");
 
 
 
