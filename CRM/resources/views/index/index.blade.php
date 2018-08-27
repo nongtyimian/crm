@@ -292,9 +292,26 @@
                             <cite>数据导入</cite>
                         </a>
                     </li >
+                    <li>
+                        <a _href="/customer_type">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>客户类型</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="/customer_level">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>客户等级</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="/customer_source">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>客户来源</cite>
+                        </a>
+                    </li >
                 </ul>
             </li>
-            
         </ul>
       </div>
     </div>
