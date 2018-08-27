@@ -23,10 +23,17 @@ function showMsg($status,$message = '',$data = array()){
     );
     exit(json_encode($result));
 }
+
+//根据session内容查询管理员信息
 function admin_aession(){
     $account = session( 'account' );
 //    print_r($account);exit;
     $crm_admin_first = $res = DB::table('crm_admin')->where('admin_id', '=', $account['admin_name'])->first();
 //    print_r($crm_admin_first);exit;
     return $crm_admin_first;
+}
+
+//执行操作时添加到操作记录表  1:添加 2：删除 3：修改 
+function ope_add($arr){
+	DB::table("crm_ope")->insert($arr);	
 }
