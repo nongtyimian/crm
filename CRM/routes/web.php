@@ -139,6 +139,7 @@ Route::any('/contract_list',"ContractController@contract_list");
 Route::any('/contract_add',"ContractController@contract_add");
 //执行创建合同操作
 Route::any('/contract_add_do',"ContractController@contract_add_do");
+Route::any('/contract_del',"ContractController@contract_del");
 
 //订单记录
 Route::any('/order_list',"OrderController@order_list");
@@ -209,6 +210,9 @@ Route::any('/customer_level',"UserController@customer_level");
 Route::any('/customer_source',"UserController@customer_source");
 Route::any('/customer_add',"UserController@customer_add");
 Route::any('/customer_add_do',"UserController@customer_add_do");
+#删除
+Route::any('/user_del',"UserController@user_del");
+
 #等级
 Route::any('/customer_level_add',"UserController@customer_level_add");
 Route::any('/customer_level_do',"UserController@customer_level_do");
