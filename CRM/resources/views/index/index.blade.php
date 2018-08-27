@@ -275,7 +275,7 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="city.html">
+                        <a _href="/ope_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>操作记录</cite>
                         </a>
