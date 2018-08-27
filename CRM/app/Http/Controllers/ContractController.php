@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
 class ContractController extends Controller
-=======
 
-class ContractController extends CommonController
->>>>>>> 9eedc88f34d907b5ae70942603476eaa3bfc64ec
 {
     public function contract_list(){
         $users=DB::table('crm_ctt')->paginate(3);
