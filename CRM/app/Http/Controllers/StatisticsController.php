@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class StatisticsController extends Controller
+
+class StatisticsController extends CommonController
 {	
 	//操作记录展示
     public function	 ope_list(){
@@ -20,4 +21,4 @@ class StatisticsController extends Controller
 
 		return view("stat/ope_list",["res"=>$res,"status"=>$status]);
 	}
-}
+

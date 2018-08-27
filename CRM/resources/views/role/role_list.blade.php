@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.0</title>
+    <title>欢迎使用crm后台管理系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="index/css/font.css">
-    <link rel="stylesheet" href="index/css/xadmin.css">
+    <link rel="stylesheet" href="/index/css/font.css">
+    <link rel="stylesheet" href="/index/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/index/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/index/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/index/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -42,63 +42,64 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('用户共享','/share_user_do')"><i class="layui-icon"></i>共享</button>
-        {{--<span class="x-right" style="line-height:40px">共有数据：88 条</span>--}}
+        <button class="layui-btn" onclick="x_admin_show('角色添加','/role_add')"><i class="layui-icon"></i>添加</button>
+        <span class="x-right" style="line-height:40px">共有数据：{{$crm_role_count}} 条</span>
     </xblock>
     <table class="layui-table">
+        @csrf
         <thead>
-
         <tr>
             <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+
+                {{--<div class="layui-unselect header layui-form-checkbox layui-form-checked" lay-skin="primary">选中的<i class="layui-icon"></i></div>--}}
             </th>
-            <th>ID</th>
-            <th>客户姓名</th>
-            <th>联系电话</th>
-            <th>省</th>
-            <th>市</th>
-            <th>县</th>
-            <th>详细地址</th>
-            <th>备用电话</th>
-            <th>网络</th>
-            <th>客户类型</th>
-            <th>客户等级</th>
-            <th>客户来源</th>
-            <th>其他联系</th>
-            <th>主营项目</th>
-            <th>备注</th>
+            <th>编号</th>
+            <th>角色名称</th>
+            <th>添加时间</th>
+            <th>添加人</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
-        <tbody>
+        <tbody id="table">
+        {{--@if( $crm_role_get->data == null )--}}
+            {{--<h2>暂无数据</h2>--}}
+        {{--@endif--}}
 
-        @foreach($data as $v)
+        @foreach( $crm_role_get as $v)
+
             <tr>
                 <td>
-                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i
+                                class="layui-icon">&#xe605;</i></div>
                 </td>
-                <td>{{$v->user_id}}</td>
-                <td>{{$v->user_name}}</td>
-                <td>{{$v->tel}}</td>
-                <td>{{$v->area}}</td>
-                <td>{{$v->part}}</td>
-                <td>{{$v->xian}}</td>
-                <td>{{$v->addr}}</td>
-                <td>{{$v->back_tel}}</td>
-                <td>{{$v->ip}}</td>
-                <td>{{$v->type}}</td>
-                <td>{{$v->lv}}</td>
-                <td>{{$v->source}}</td>
-                <td>{{$v->o_tel}}</td>
-                <td>{{$v->project}}</td>
-                <td>{{$v->remark}}</td>
+                <td>{{$v->role_id}}</td>
+                <td>{{$v->role_name}}</td>
+                <td>{{$v->time}}</td>
+                <td>{{$v->admin_name}}</td>
                 <td class="td-status">
-                    <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
+
+                    {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
+                    {{--<input type="hidden" value="{{$v->d_id}}" name="ids">--}}
+                    @if( $v->role_status === 0 )
+                        <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is"
+                              onclick="student_is( {{$v->role_id}} , {{$v->role_status}} , {{$page}} )">
+                                未启用
+                            </span>
+                    @endif
+
+                    @if( $v->role_status === 1 )
+                        <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is"
+                              onclick="student_is( {{$v->role_id}} , {{$v->role_status}} , {{$page}}  )">
+                                已启用
+                            </span>
+                    @endif
+                </td>
                 <td class="td-manage">
-                    <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
+                    <a onclick="member_stop(this,'10001')" href="javascript:;" title="下载">
                         <i class="layui-icon">&#xe601;</i>
                     </a>
-                    <a title="编辑"  onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
+                    <a title="编辑" onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
                         <i class="layui-icon">&#xe642;</i>
                     </a>
                     <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
@@ -107,13 +108,30 @@
                 </td>
             </tr>
         @endforeach
+
+
         </tbody>
     </table>
+    {{--    {{ $users->links(page) }}--}}
+
     <div class="page">
         <div>
-            {{$data}}
+
+            {{$crm_role_get}}
+{{--                        {{$crm_role_get->links('/role_list?page=$page)}}--}}
         </div>
     </div>
+    {{--<div class="page">--}}
+    {{--<div>--}}
+    {{--<a class="prev" href="">&lt;&lt;</a>--}}
+    {{--<a class="num" href="">1</a>--}}
+    {{--<span class="current">2</span>--}}
+    {{--<a class="num" href="">3</a>--}}
+    {{--<a class="num" href="">{{$crm_dep_count}}</a>--}}
+    {{--<a class="next" href="">&gt;&gt;</a>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+
 </div>
 <script>
     layui.use('laydate', function(){
@@ -128,7 +146,47 @@
         laydate.render({
             elem: '#end' //指定元素
         });
+
+//        $(".icL/ist").each(function(){
+//            $(this).click(function(){
+//                alert($(this).attr('id'));
+//            });
+
+//
     });
+
+
+    function student_is( ids , status , page ){
+        // var _token = $('input[name=_token]').val();
+
+        $.ajax({
+            type: 'get',
+            dataType: "json",
+            data:{status:status,ids:ids,page:page},
+            url: "/role_is",
+            success: function (datas) {
+                //                          console.log(data);
+                if (datas.code == 1) {
+                    if( datas.is == 1 ){
+                        layer.msg("已启用", {icon: datas.code, time: 1500}, function () {
+                            $('#table').html(datas.data);
+                        });
+                    }
+                    if( datas.is == 0 ){
+                        layer.msg("已禁用", {icon: datas.code, time: 1500}, function () {
+                            $('#table').html(datas.data);
+                        });
+                    }
+
+
+                } else {
+                    layer.msg(datas.msg, {icon: datas.code});
+                }
+            }
+
+        })
+        return false;;
+    }
 
     /*用户-停用*/
     function member_stop(obj,id){
@@ -182,8 +240,6 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();</script>
-
-
 </body>
 
 </html>

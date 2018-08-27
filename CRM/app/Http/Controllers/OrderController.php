@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class OrderController extends Controller
+class OrderController extends CommonController
 {
     public function order_list(){
 

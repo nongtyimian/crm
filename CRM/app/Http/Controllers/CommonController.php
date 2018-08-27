@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\DB;
 class CommonController extends Controller
 {
 
-//    public function __construct()
-//    {
-//        $this->middleware(function ($request, $next) {
-//            $user_data = $request->session()->get('account');
-//            if (empty($user_data)) {
-//                redirect('/login')->send();
-//            }
-//            return $next($request);
-//        });
-//    }
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $user_data = $request->session()->get('account');
+            if (empty($user_data)) {
+                redirect('/login')->send();
+            }
+            return $next($request);
+        });
+    }
 
     //公共文件 获取session
 //    function admin_session( $request,$next)

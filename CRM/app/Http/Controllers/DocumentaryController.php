@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DocumentaryController extends Controller
+class DocumentaryController extends CommonController
 {
     //跟单展示
 	public function documentary_list(){
