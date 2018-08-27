@@ -21,7 +21,7 @@ Route::get('/test',"IndexController@test");
 
 
 //角色列表
-Route::any('/role_list',"RoleController@role-list");
+Route::any('/role_list',"RoleController@role_list");
 //角色添加页面
 Route::any('/role_add',"RoleController@role_add");
 //执行添加角色操作
@@ -32,6 +32,8 @@ Route::any('/role_modify',"RoleController@role_modify");
 Route::any('/role_modify_do',"RoleController@role_modify_do");
 //角色删除
 Route::any('/role_delete',"RoleController@role_delete");
+//角色是否启用
+Route::any('/role_is',"RoleController@role_is");
 
 
 
