@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class DepartmentController extends Controller
+class DepartmentController extends CommonController
 {
 
     //部门展示   温静

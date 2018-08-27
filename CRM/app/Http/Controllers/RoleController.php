@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class RoleController extends Controller
+class RoleController extends CommonController
 {
     //角色展示   温静
     public function role_list( Request $request )
