@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DtypeController extends Controller
+class DtypeController extends CommonController
 {
     //添加类型
 	public function dtype_add(){

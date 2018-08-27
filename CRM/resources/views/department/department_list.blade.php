@@ -57,6 +57,7 @@
             <th>编号</th>
             <th>名称</th>
             <th>添加时间</th>
+            <th>添加人</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
@@ -72,6 +73,7 @@
                     <td>{{$v->d_id}}</td>
                     <td>{{$v->d_name}}</td>
                     <td>{{$v->ctime}}</td>
+                    <td>{{$v->admin_name}}</td>
                     <td class="td-status">
 
                         {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
@@ -110,14 +112,20 @@
 
     <div class="page">
         <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">{{$crm_dep_count}}</a>
-            <a class="next" href="">&gt;&gt;</a>
+
+            {{$crm_dep_get}}
         </div>
     </div>
+    {{--<div class="page">--}}
+        {{--<div>--}}
+            {{--<a class="prev" href="">&lt;&lt;</a>--}}
+            {{--<a class="num" href="">1</a>--}}
+            {{--<span class="current">2</span>--}}
+            {{--<a class="num" href="">3</a>--}}
+            {{--<a class="num" href="">{{$crm_dep_count}}</a>--}}
+            {{--<a class="next" href="">&gt;&gt;</a>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 </div>
 <script>

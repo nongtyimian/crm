@@ -42,7 +42,7 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('用户共享','/share_user_do')"><i class="layui-icon"></i>共享</button>
+        <button class="layui-btn" onclick="x_admin_show('合同记录','/contract_add')"><i class="layui-icon"></i>签订</button>
         {{--<span class="x-right" style="line-height:40px">共有数据：88 条</span>--}}
     </xblock>
     <table class="layui-table">
@@ -52,21 +52,12 @@
             <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
-            <th>ID</th>
-            <th>客户姓名</th>
-            <th>联系电话</th>
-            <th>省</th>
-            <th>市</th>
-            <th>县</th>
-            <th>详细地址</th>
-            <th>备用电话</th>
-            <th>网络</th>
-            <th>客户类型</th>
-            <th>客户等级</th>
-            <th>客户来源</th>
-            <th>其他联系</th>
-            <th>主营项目</th>
-            <th>备注</th>
+            <th>合同编号</th>
+            <th>定金</th>
+            <th>合同类型</th>
+            <th>起始时间</th>
+            <th>到期时间</th>
+            <th>业务</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
@@ -77,21 +68,13 @@
                 <td>
                     <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                 </td>
-                <td>{{$v->user_id}}</td>
-                <td>{{$v->user_name}}</td>
-                <td>{{$v->tel}}</td>
-                <td>{{$v->area}}</td>
-                <td>{{$v->part}}</td>
-                <td>{{$v->xian}}</td>
-                <td>{{$v->addr}}</td>
-                <td>{{$v->back_tel}}</td>
-                <td>{{$v->ip}}</td>
+                {{--<td>{{$v->ctt_id}}</td>--}}
+                <td>{{$v->ctt_card}}</td>
+                <td>{{$v->hsel}}</td>
                 <td>{{$v->type}}</td>
-                <td>{{$v->lv}}</td>
-                <td>{{$v->source}}</td>
-                <td>{{$v->o_tel}}</td>
-                <td>{{$v->project}}</td>
-                <td>{{$v->remark}}</td>
+                <td>{{$v->otime}}</td>
+                <td>{{$v->etime}}</td>
+                <td>{{$v->admin}}</td>
                 <td class="td-status">
                     <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
                 <td class="td-manage">

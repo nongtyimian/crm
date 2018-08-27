@@ -21,7 +21,7 @@ Route::get('/test',"IndexController@test");
 
 
 //角色列表
-Route::any('/role_list',"RoleController@role-list");
+Route::any('/role_list',"RoleController@role_list");
 //角色添加页面
 Route::any('/role_add',"RoleController@role_add");
 //执行添加角色操作
@@ -32,6 +32,8 @@ Route::any('/role_modify',"RoleController@role_modify");
 Route::any('/role_modify_do',"RoleController@role_modify_do");
 //角色删除
 Route::any('/role_delete',"RoleController@role_delete");
+//角色是否启用
+Route::any('/role_is',"RoleController@role_is");
 
 
 
@@ -52,8 +54,6 @@ Route::any('/department_update',"DepartmentController@department_update");
 Route::any('/department_update_add',"DepartmentController@department_update_add");
 //部门删除
 Route::any('/department_delect',"DepartmentController@department_delect");
-//部门是否启用
-Route::any('/epartment_is',"DepartmentController@epartment_is");
 
 //员工
 //管理员添加  accountController   温静
@@ -68,8 +68,6 @@ Route::any('/account_update',"AccountController@account_update");
 Route::any('/account_update_add',"AccountController@account_update_add");
 //管理员删除
 Route::any('/account_delect',"AccountController@account_delect");
-//管理员是否启用
-Route::any('/account_is',"AccountController@account_is");
 
 
 
@@ -166,8 +164,10 @@ Route::any('/share_user',"ShareController@share_user");
 Route::any('/share_user_do',"ShareController@share_user_do");
 Route::any('/share_add_doadd',"ShareController@share_add_doadd");
 
-//查询用户
+
+//查询用户	swz
 Route::any("/sele_user","OrderController@sele_user");
+
 
 //查询shangpin
 Route::any("/sele_goods","OrderController@sele_goods");
@@ -188,14 +188,38 @@ Route::any("/offupdo","FunctionController@updo");
 //展示产品
 Route::any("/prob_list","ProbController@zhanshi");
 
-//添加内部公文
+//添加产品
 Route::any("/probadd","ProbController@add");
 Route::any("/probadddo","ProbController@adddo");
-//删除公文
+//删除产品
 Route::any("/probdel","ProbController@del");
-//修改公文
+//修改产品
 Route::any("/probup","ProbController@up");
 Route::any("/probupdo","ProbController@updo");
+
+//查询shangpin swz
+Route::any("/sele_goods","OrderController@sele_goods");
+
+//操作记录
+Route::any('/ope_list',"StatisticsController@ope_list");
+
+//客户相关
+Route::any('/customer_type',"UserController@customer_type");
+Route::any('/customer_level',"UserController@customer_level");
+Route::any('/customer_source',"UserController@customer_source");
+Route::any('/customer_add',"UserController@customer_add");
+Route::any('/customer_add_do',"UserController@customer_add_do");
+#等级
+Route::any('/customer_level_add',"UserController@customer_level_add");
+Route::any('/customer_level_do',"UserController@customer_level_do");
+Route::any('/customer_source_add',"UserController@customer_source_add");
+Route::any('/customer_source_do',"UserController@customer_source_do");
+
+//登录日志
+Route::any('/Logon_log',"UserController@Logon_log");
+
+
+
 
 
 

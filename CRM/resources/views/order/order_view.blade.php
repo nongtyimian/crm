@@ -69,7 +69,7 @@
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="x_admin_show('添加订单','/create_order')"><i class="layui-icon"></i>添加订单</button>
-        <span class="x-right" style="line-height:40px">{{$count}}</span>
+        <span class="x-right" style="line-height:40px"></span>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -78,15 +78,13 @@
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>订单编号</th>
-            <th>收货人</th>
-            <th>客户省</th>
-            <th>客户地区</th>
-            <th>订单金额</th>
-            <th>实收金额</th>
-            <th>发货状态</th>
-            <th>业务员</th>
-            <th>配送方式</th>
-            <th>下单时间</th>
+            <th>产品名称</th>
+            <th>数量</th>
+            <th>单位</th>
+            <th>价格</th>
+            <th>折扣</th>
+            <th>金额</th>
+            <th>添加时间</th>
             <th >操作</th>
             </tr>
         </thead>
@@ -96,21 +94,19 @@
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td><a title="查看详情" href="/order_view?id={{$v->order}}">{{$v->order}}</a></td>
-            <td>{{$v->user_name}}</td>
-            <td>{{$v->sheng}}</td>
-            <td>{{$v->shi}}</td>
-            <td>{{$v->o_money}}</td>
-            <td>{{$v->t_money}}</td>
-            <td>{{$status[$v->sta]}}</td>
-            <td>{{$v->admin_name}}</td>
-            <td>{{$v->o_meth}}</td>
-            <td>{{date("Y-m-d H : i : s", + "$v->mtime")}}</td>
+            <td>{{$v->c_card}}</td>
+            <td>{{$v->c_name}}</td>
+            <td>{{$v->num}}</td>
+            <td>{{$v->unit}}</td>
+            <td>{{$v->price}}</td>
+            <td>{{$v->discount}}</td>
+            <td>{{$v->money}}</td>
+            <td>{{date("Y-m-d H : i : s", + "$v->ctime")}}</td>
             <td class="td-manage">
               <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
                 <i class="layui-icon">&#xe63c;</i>
               </a>
-              <a title="删除" onclick="member_del(this,'{{$v->o_id}}')" href="javascript:;">
+              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
@@ -168,26 +164,8 @@
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
-
-			   $.ajax({
-                      type: 'get',
-                      dataType: "json",
-                      data:{id:id},
-                      url: "/order_delete",
-                      success: function (datas) {
-//                          console.log(data);
-                          if (datas.code == 1) {
-                              
-
-                                   $(obj).parents("tr").remove();
-								   layer.msg(datas.msg,{icon:1,time:1000});
-                             
-                          } else {
-                              layer.msg(datas.msg, {icon: datas.code});
-                          }
-                      }
-
-                  })
+              $(obj).parents("tr").remove();
+              layer.msg('已删除!',{icon:1,time:1000});
           });
       }
 

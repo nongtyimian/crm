@@ -65,7 +65,16 @@ class AdminController extends Controller
             'admin_name'=>$crm_admin_get->admin_id,
         ];
         session(['account' => $session]);
-
+        $name = session('account');
+        $res =(array)DB::table('crm_admin')->where(['admin_id'=>$name['admin_name']])->first();
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $time = time();
+        $data = [
+                'name'=>$res['admin_name'],
+                'time'=>$time,
+                'ip'=>$ip,
+            ];
+        $res = DB::table('log')->insert($data);
         return[ 'msg'=> '登录成功' , 'code' => '1' ];
     }
 

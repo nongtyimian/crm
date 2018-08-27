@@ -269,13 +269,13 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="city.html">
+                        <a _href="/Logon_log">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>登陆日志</cite>
                         </a>
                     </li >
 					<li>
-                        <a _href="city.html">
+                        <a _href="/ope_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>操作记录</cite>
                         </a>
@@ -292,9 +292,26 @@
                             <cite>数据导入</cite>
                         </a>
                     </li >
+                    <li>
+                        <a _href="/customer_type">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>客户类型</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="/customer_level">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>客户等级</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="/customer_source">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>客户来源</cite>
+                        </a>
+                    </li >
                 </ul>
             </li>
-            
         </ul>
       </div>
     </div>

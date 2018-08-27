@@ -42,8 +42,7 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('用户共享','/share_user_do')"><i class="layui-icon"></i>共享</button>
-        {{--<span class="x-right" style="line-height:40px">共有数据：88 条</span>--}}
+        <button class="layui-btn" onclick="x_admin_show('类型添加','/customer_level_add')"><i class="layui-icon"></i>等级</button>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -52,46 +51,17 @@
             <th>
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
-            <th>ID</th>
-            <th>客户姓名</th>
-            <th>联系电话</th>
-            <th>省</th>
-            <th>市</th>
-            <th>县</th>
-            <th>详细地址</th>
-            <th>备用电话</th>
-            <th>网络</th>
-            <th>客户类型</th>
-            <th>客户等级</th>
-            <th>客户来源</th>
-            <th>其他联系</th>
-            <th>主营项目</th>
-            <th>备注</th>
+            <th>类型名称</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
         <tbody>
-
         @foreach($data as $v)
             <tr>
                 <td>
                     <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                 </td>
-                <td>{{$v->user_id}}</td>
-                <td>{{$v->user_name}}</td>
-                <td>{{$v->tel}}</td>
-                <td>{{$v->area}}</td>
-                <td>{{$v->part}}</td>
-                <td>{{$v->xian}}</td>
-                <td>{{$v->addr}}</td>
-                <td>{{$v->back_tel}}</td>
-                <td>{{$v->ip}}</td>
-                <td>{{$v->type}}</td>
-                <td>{{$v->lv}}</td>
-                <td>{{$v->source}}</td>
-                <td>{{$v->o_tel}}</td>
-                <td>{{$v->project}}</td>
-                <td>{{$v->remark}}</td>
+                <td>{{$v->l_name}}</td>
                 <td class="td-status">
                     <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
                 <td class="td-manage">
@@ -111,7 +81,7 @@
     </table>
     <div class="page">
         <div>
-            {{$data}}
+            {{--{{$data}}--}}
         </div>
     </div>
 </div>

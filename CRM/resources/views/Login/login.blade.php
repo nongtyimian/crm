@@ -52,7 +52,6 @@
 //                          console.log(data);
                           if (datas.code == 1) {
                               layer.msg(datas.msg, {icon: datas.code, time: 1500}, function () {
-
                                   location.href = "/";
                               });
                           } else {

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DocumentaryController extends Controller
+class DocumentaryController extends CommonController
 {
     //跟单展示
 	public function documentary_list(){
@@ -28,6 +28,7 @@ class DocumentaryController extends Controller
 		$user=json_decode(DB::table("csm_user")->get(),true);
         //提前时间
 		$time=json_decode(DB::table("dym_rtime")->get(),true);
+
 		return view("document/document_add",["type"=>$type,"pgs"=>$pgs,'user'=>$user,'time'=>$time]);
 	}
 
@@ -41,6 +42,17 @@ class DocumentaryController extends Controller
 		$data['ctime']=$time;
 		$data['utime']=$time;
 		$res=DB::table("crm_dym")->insert($data);
+
+		$ope=[
+			"ope_content"=>1,
+			"ope_table"=>"跟单表",
+			"ope_bec"=>"增加客户跟单",
+			"a_id"=>$admin['admin_name'],
+			"time"=>$time
+		];
+
+		ope_add($ope);
+
 		if($res){
 			return 1;
 		}
@@ -50,6 +62,18 @@ class DocumentaryController extends Controller
 	public function documentary_del(){
 		$data=$_GET;
 		$res=DB::table("crm_dym")->where(["dym_id"=>$data['id']])->delete();
+		$admin=session("account");
+
+		$ope=[
+			"ope_content"=>2,
+			"ope_table"=>"跟单表",
+			"ope_bec"=>"删除客户跟单",
+			"a_id"=>$admin['admin_name'],
+			"time"=>time()
+		];
+
+		ope_add($ope);
+
 		if(!$res){
 			  return ['msg'=>"删除失败",'code'=> 2];
 			//return $arr['code']=1;

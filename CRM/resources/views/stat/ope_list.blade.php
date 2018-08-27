@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="/index/css/font.css">
     <link rel="stylesheet" href="/index/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/index/lib/layui/layui.js" charset="utf-8"></script>
+	 <script src="/index/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/index/js/xadmin.js"></script>
+    
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -32,44 +33,9 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
     <div class="x-body">
-      <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
-          <div class="layui-input-inline">
-            <select name="contrller">
-              <option>支付状态</option>
-              <option>已支付</option>
-              <option>未支付</option>
-            </select>
-          </div>
-          <div class="layui-input-inline">
-            <select name="contrller">
-              <option>支付方式</option>
-              <option>支付宝</option>
-              <option>微信</option>
-              <option>货到付款</option>
-            </select>
-          </div>
-          <div class="layui-input-inline">
-            <select name="contrller">
-              <option value="">订单状态</option>
-              <option value="0">待确认</option>
-              <option value="1">已确认</option>
-              <option value="2">已收货</option>
-              <option value="3">已取消</option>
-              <option value="4">已完成</option>
-              <option value="5">已作废</option>
-            </select>
-          </div>
-          <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
-          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-        </form>
-      </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加订单','/create_order')"><i class="layui-icon"></i>添加订单</button>
-        <span class="x-right" style="line-height:40px">{{$count}}</span>
+        <span class="x-right" style="line-height:40px"></span>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -77,17 +43,12 @@
             <th>
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
-            <th>订单编号</th>
-            <th>收货人</th>
-            <th>客户省</th>
-            <th>客户地区</th>
-            <th>订单金额</th>
-            <th>实收金额</th>
-            <th>发货状态</th>
+            <th>编号</th>
+            <th>行为</th>
+            <th>数据表</th>
+            <th>原因</th>
             <th>业务员</th>
-            <th>配送方式</th>
-            <th>下单时间</th>
-            <th >操作</th>
+            <th>时间</th>
             </tr>
         </thead>
         <tbody>
@@ -96,24 +57,12 @@
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td><a title="查看详情" href="/order_view?id={{$v->order}}">{{$v->order}}</a></td>
-            <td>{{$v->user_name}}</td>
-            <td>{{$v->sheng}}</td>
-            <td>{{$v->shi}}</td>
-            <td>{{$v->o_money}}</td>
-            <td>{{$v->t_money}}</td>
-            <td>{{$status[$v->sta]}}</td>
+            <td>{{$v->ope_id}}</td>
+            <td>{{$status[$v->ope_content]}}</td>
+            <td>{{$v->ope_table}}</td>
+            <td>{{$v->ope_bec}}</td>
             <td>{{$v->admin_name}}</td>
-            <td>{{$v->o_meth}}</td>
-            <td>{{date("Y-m-d H : i : s", + "$v->mtime")}}</td>
-            <td class="td-manage">
-              <a title="查看"  onclick="x_admin_show('编辑','order-view.html')" href="javascript:;">
-                <i class="layui-icon">&#xe63c;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'{{$v->o_id}}')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
+            <td>{{$v->time}}</td>
           </tr>
 		  @endforeach
         </tbody>
@@ -167,13 +116,12 @@
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-
-			   $.ajax({
+              
+			    $.ajax({
                       type: 'get',
                       dataType: "json",
                       data:{id:id},
-                      url: "/order_delete",
+                      url: "/documentary_del",
                       success: function (datas) {
 //                          console.log(data);
                           if (datas.code == 1) {
@@ -188,6 +136,8 @@
                       }
 
                   })
+
+             
           });
       }
 
@@ -213,3 +163,4 @@
   </body>
 
 </html>
+
