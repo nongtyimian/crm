@@ -99,4 +99,62 @@ class UserController extends Controller
         $users=DB::table('area')->where(['parent_id'=>$id])->get();
         echo $users;
     }
+
+    public function customer_type(){
+    $array=DB::table('user_type')->get();
+    return view("Share/customer_type",['data'=>$array]);
+}
+    public function customer_add(){
+        return view("Share/customer_add");
+    }
+    public function customer_add_do(){
+       $name = $_POST['lass_phone'];
+        $data = [
+            't_name'=>$name
+        ];
+        $res = DB::table('user_type')->insert($data);
+        if($data){
+            return (['font'=>'添加成功','code'=>1]);
+        }else{
+            return(['font'=>'添加失败','code'=>2]);
+        }
+    }
+    public function customer_level(){
+        $array=DB::table('user_lv')->get();
+        return view("Share/customer_level",['data'=>$array]);
+    }
+    public function customer_level_add(){
+        return view("Share/customer_level_add");
+    }
+    public function customer_level_do(){
+        $name = $_POST['lass_phone'];
+        $data = [
+            'l_name'=>$name
+        ];
+        $res = DB::table('user_lv')->insert($data);
+        if($data){
+            return (['font'=>'添加成功','code'=>1]);
+        }else{
+            return(['font'=>'添加失败','code'=>2]);
+        }
+    }
+    public function customer_source(){
+        $array=DB::table('user_souce')->get();
+        return view("Share/customer_source",['data'=>$array]);
+    }
+    public function customer_source_add(){
+        return view("Share/customer_source_add");
+    }
+    public function customer_source_do(){
+        $name = $_POST['lass_phone'];
+        $data = [
+            's_name'=>$name
+        ];
+        $res = DB::table('user_souce')->insert($data);
+        if($data){
+            return (['font'=>'添加成功','code'=>1]);
+        }else{
+            return(['font'=>'添加失败','code'=>2]);
+        }
+    }
 }
