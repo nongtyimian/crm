@@ -14,7 +14,9 @@ class DepartmentController extends Controller
     {
         //查询所有数据
 //        $crm_dep_get = $res = DB::table('crm_dep') -> get();
-        $crm_dep_get = $res = DB::table('crm_dep') -> paginate(10);
+        $crm_dep_get = $res = DB::table('crm_dep')
+            -> join('crm_admin', 'crm_admin.admin_id', '=', 'crm_dep.admin_id')
+            -> paginate(10);
 //        print_r($crm_dep_get);exit;
         foreach( $crm_dep_get as $k => $v){
             $crm_dep_get[$k]->ctime = date( 'Y-m-d H:i:s' , $v->ctime);

@@ -57,6 +57,7 @@
             <th>编号</th>
             <th>名称</th>
             <th>添加时间</th>
+            <th>添加人</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
@@ -72,6 +73,7 @@
                     <td>{{$v->d_id}}</td>
                     <td>{{$v->d_name}}</td>
                     <td>{{$v->ctime}}</td>
+                    <td>{{$v->admin_name}}</td>
                     <td class="td-status">
 
                         {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
