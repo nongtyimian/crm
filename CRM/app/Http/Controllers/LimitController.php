@@ -20,10 +20,10 @@ class LimitController extends CommonController
 //        var_dump($crm_role_get);exit;
         foreach( $crm_lim_get as $k => $v){
 //            print_r($v);exit;
-            $crm_lim_get[$k]->ctime = date( 'Y-m-d H:i:s' , $v->ctime);
+            $crm_lim_get[$k]->lim_ctime = date( 'Y-m-d H:i:s' , $v->lim_ctime );
         }
 //        exit;
-//        print_r($crm_role_get->currentPage());exit;
+//        print_r($crm_lim_get);exit;
         //页数
         $page = $crm_lim_get->currentPage();
 
@@ -39,7 +39,7 @@ class LimitController extends CommonController
 
 
         $account = $request->session()->get('account');
-        $crm_admin_first = $res = DB::table('crm_lim') -> where( 'admin_id' , '=' , $account['admin_name'] ) -> first();
+        $crm_admin_first = $res = DB::table('crm_admin') -> where( 'admin_id' , '=' , $account['admin_name'] ) -> first();
         $admin_name = $crm_admin_first->admin_name;
 
         return view("limit/limit_add" , [ 'admin_name' => $admin_name ]);
@@ -47,41 +47,51 @@ class LimitController extends CommonController
 
 
     //权限添加
-    public function role_add_do( Request $request ){
+    public function limit_add_do( Request $request ){
 
         $data = $request -> post();
+//        print_r($data);exit;
 //        echo 212121212;exit;
         $admin_session = admin_aession();
         if( empty( $data['username'] ) ){
-            return[ 'msg'=> '角色名称不能为空' , 'code' => '2' ];
+            return[ 'msg'=> '权限名称不能为空' , 'code' => '2' ];
         }
-        $crm_dep_first = $res = DB::table('crm_role') -> where( 'role_name' , '=' , $data['username'] ) -> first();
+        if( empty( $data['web'] ) ){
+            return[ 'msg'=> 'web路径不能为空' , 'code' => '2' ];
+        }
+        $where =[
+            'lim_con' => $data['username'],
+            'lim_web' => $data['web'],
+        ];
+        $crm_lim_first = $res = DB::table('crm_lim') -> where( $where ) -> first();
+//        print_r($crm_lim_first);exit;
 
-        if( !empty( $crm_dep_first ) ){
-            return[ 'msg'=> '角色名称不能为空' , 'code' => '2' ];
+        if( !empty( $crm_lim_first ) ){
+            return[ 'msg'=> '权限已存在，请添加别的权限' , 'code' => '2' ];
         }
 
         $insert = [
-            'role_name' => $data['username'],
-            'time' => time(),
-            'utime' => time(),
-            'role_status' => 0,
+            'lim_con' => $data['username'],
+            'lim_web' => $data['web'],
+            'lim_ctime' => time(),
+            'lim_utime' => time(),
+            'lim_status' => 0,
             'admin_id' => $admin_session->admin_id,
         ];
-        $crm_dep_insert = DB::table('crm_role') -> insert( $insert );
+        $crm_lim_insert = DB::table('crm_lim') -> insert( $insert );
 //        print_r($crm_dep_first);exit;
-        if( !$crm_dep_insert ){
-            return[ 'msg'=> '角色添加失败' , 'code' => '2' ];
+        if( !$crm_lim_insert ){
+            return[ 'msg'=> '权限添加失败' , 'code' => '2' ];
         }
 
 
-        return[ 'msg'=> '角色添加成功' , 'code' => '1' ];
+        return[ 'msg'=> '权限添加成功' , 'code' => '1' ];
 
     }
 
 
     //权限启用
-    public function role_is( Request $request ){
+    public function limit_is( Request $request ){
         $status = $request -> get('status');
         $ids = $request -> get('ids');
         $page = $request -> get('page');
@@ -99,12 +109,12 @@ class LimitController extends CommonController
         }
 
         $update = [
-            'role_status' => $is,
+            'lim_status' => $is,
         ];
         $where = [
-            'role_id' => $ids,
+            'lim_id' => $ids,
         ];
-        $upde = DB::table('crm_role')
+        $upde = DB::table('crm_lim')
             ->where( $where )
             ->update( $update );
 //        dd($upde);exit;
@@ -132,17 +142,18 @@ class LimitController extends CommonController
         //偏移量
         $limt = ( $page -1)*10;
 //        print_r($page);exit;
-        $crm_role_get =DB::table('crm_role') -> join('crm_admin', 'crm_admin.admin_id', '=', 'crm_role.admin_id') -> offset($limt)->limit(10)->get();
+        $crm_role_get =DB::table('crm_lim') -> join('crm_admin', 'crm_admin.admin_id', '=', 'crm_lim.admin_id')
+            -> offset($limt)->limit(10)->get();
 //        dd($crm_role_get);exit;
         $arr = '';
         $arrs = '';
         foreach( $crm_role_get as $k => $v ){
-            if( $v->role_status == 1){
-                $arrs = '<span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is" onclick="student_is( '.$v->role_id.' , '.$v->role_status.' , '. $page .' )" >已启用</span>';
+            if( $v->lim_status == 1){
+                $arrs = '<span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is" onclick="student_is( '.$v->lim_id.' , '.$v->lim_status.' , '. $page .' )" >已启用</span>';
 //            return[ 'msg'=> '已启用' , 'code' => '1' , 'data' => $data , 'ids' => $ids];
             }
-            if( $v->role_status == 0){
-                $arrs = '<span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is" onclick="student_is( '.$v->role_id.' , '.$v->role_status.' , '. $page .' )" >未启用</span>';
+            if( $v->lim_status == 0){
+                $arrs = '<span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is" onclick="student_is( '.$v->lim_id.' , '.$v->lim_status.' , '. $page .' )" >未启用</span>';
 //            return[ 'msg'=> '已禁用' , 'code' => '1' , 'data' => $data  , 'ids' => $ids ];
             }
             $arr .= '<tr>
@@ -150,9 +161,10 @@ class LimitController extends CommonController
                             <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id=\'2\'>
                             <i class="layui-icon">&#xe605;</i></div>
                         </td>
-                        <td>'. $v->role_id .'</td>
-                        <td>'. $v->role_name .'</td>
-                        <td>'. date( 'Y-m-d H:i:s' , $v->time) .'</td>
+                        <td>'. $v->lim_id .'</td>
+                        <td>'. $v->lim_con .'</td>
+                        <td>'. $v->lim_web .'</td>
+                        <td>'. date( 'Y-m-d H:i:s' , $v->lim_ctime) .'</td>
                         <td>'. $v->admin_name .'</td>
                         <td class="td-status"> '.$arrs.' </td>
                         <td class="td-manage">

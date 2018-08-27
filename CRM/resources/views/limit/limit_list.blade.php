@@ -75,22 +75,22 @@
                                 class="layui-icon">&#xe605;</i></div>
                 </td>
                 <td>{{$v->lim_id}}</td>
-                <td>{{$v->lim_name}}</td>
+                <td>{{$v->lim_con}}</td>
                 <td>{{$v->lim_web}}</td>
-                <td>{{$v->ctime}}</td>
+                <td>{{$v->lim_ctime}}</td>
                 <td>{{$v->admin_name}}</td>
                 <td class="td-status">
 
                     {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
                     {{--<input type="hidden" value="{{$v->d_id}}" name="ids">--}}
-                    @if( $v->role_status === 0 )
+                    @if( $v->lim_status === 0 )
                         <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is"
                               onclick="student_is( {{$v->lim_id}} , {{$v->lim_status}} , {{$page}} )">
                                 未启用
                             </span>
                     @endif
 
-                    @if( $v->role_status === 1 )
+                    @if( $v->lim_status === 1 )
                         <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is"
                               onclick="student_is( {{$v->lim_id}} , {{$v->lim_status}} , {{$page}}  )">
                                 已启用
@@ -165,7 +165,7 @@
             type: 'get',
             dataType: "json",
             data:{status:status,ids:ids,page:page},
-            url: "/role_is",
+            url: "/limit_is",
             success: function (datas) {
                 //                          console.log(data);
                 if (datas.code == 1) {

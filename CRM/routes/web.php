@@ -83,6 +83,8 @@ Route::any('/limit_modify',"LimitController@limit_modify");
 Route::any('/limit_modify_do',"LimitController@limit_modify_do");
 //删除权限
 Route::any('/limit_delete',"LimitController@limit_delete");
+//是否启用
+Route::any('/limit_is',"LimitController@limit_is");
 
 //登录—页面
 Route::any('/login',"AdminController@login");
