@@ -110,14 +110,20 @@
 
     <div class="page">
         <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">{{$crm_dep_count}}</a>
-            <a class="next" href="">&gt;&gt;</a>
+
+            {{$crm_dep_get}}
         </div>
     </div>
+    {{--<div class="page">--}}
+        {{--<div>--}}
+            {{--<a class="prev" href="">&lt;&lt;</a>--}}
+            {{--<a class="num" href="">1</a>--}}
+            {{--<span class="current">2</span>--}}
+            {{--<a class="num" href="">3</a>--}}
+            {{--<a class="num" href="">{{$crm_dep_count}}</a>--}}
+            {{--<a class="next" href="">&gt;&gt;</a>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 </div>
 <script>
