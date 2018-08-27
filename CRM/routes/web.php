@@ -19,6 +19,8 @@ Route::get('/test',"IndexController@test");
 
 
 
+//设置权限
+Route::any('/limit_delete',"RoleController@limit_delete");
 
 //角色列表
 Route::any('/role_list',"RoleController@role_list");
@@ -36,9 +38,6 @@ Route::any('/role_delete',"RoleController@role_delete");
 Route::any('/role_is',"RoleController@role_is");
 
 
-
-//设置权限
-Route::any('/limit_delete',"RoleController@limit_delete");
 
 
 //departmentController   温静
