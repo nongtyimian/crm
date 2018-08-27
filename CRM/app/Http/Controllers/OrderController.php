@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
-class OrderController extends Controller
+class OrderController extends CommonController
 {
     public function order_list(){
 
-		$res = DB::table('crm_order')->orderBy('crm_order.ctime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_order.user")
+		$res = DB::table('crm_order')->orderBy('crm_order.mtime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_order.user")
 								   ->leftjoin("crm_admin","crm_admin.admin_id","=","crm_order.admin")
 								   ->paginate(6);
 		$count=DB::table("crm_order")->count();
@@ -85,7 +86,7 @@ class OrderController extends Controller
 		$new['order']=$time.$rand.$admin['admin_name'];
 		$new['admin']=$admin['admin_name'];
 		$new['sta']=1;
-		$new['ctime']=$time;
+		$new['mtime']=$time;
 		for($i=0;$i<count($data['c_name']);$i++){
 			$arr[$i]["c_card"]=$new['order'];
 			$arr[$i]['c_name']=$data['c_name'][$i];
@@ -95,7 +96,7 @@ class OrderController extends Controller
 			$arr[$i]['discount']=$data['discount'][$i];
 			$arr[$i]['money']=$data['money'][$i];
 			$arr[$i]['status']=1;
-			$arr[$i]['ctime']=time();
+			$arr[$i]['ctime']=$time;
 		}
 
 		
@@ -110,8 +111,23 @@ class OrderController extends Controller
 
 		
 	}
-
+	//订单详情
 	public function order_view(){
-		return 123;
+		$id=input::get("id");
+		
+		$res=DB::table("order_content")->where(['c_card'=>$id])->paginate(3);
+
+		return view("order/order_view",["res"=>$res]);
+	}
+
+	//删除订单
+	public function order_delete(){
+		$id=input::get("id");
+		$res=DB::table("crm_order")->where(["o_id"=>$id])->delete();
+		if(!$res){
+			return ["code"=>2,"msg"=>"操作有误"];
+		}
+
+		return ["code"=>1,"msg"=>"删除成功"];
 	}
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AccountController extends Controller
+class AccountController extends CommonController
 {
     //员工展示   温静
     public function account_list( Request $request )

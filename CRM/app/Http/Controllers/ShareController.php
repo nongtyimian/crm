@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-class ShareController extends Controller
+class ShareController extends CommonController
 {
     //客户共享
     public function share_user(){
