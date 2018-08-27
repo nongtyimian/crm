@@ -21,4 +21,4 @@ class StatisticsController extends CommonController
 
 		return view("stat/ope_list",["res"=>$res,"status"=>$status]);
 	}
-
+}
