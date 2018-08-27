@@ -166,8 +166,11 @@ Route::any('/share_user',"ShareController@share_user");
 Route::any('/share_user_do',"ShareController@share_user_do");
 Route::any('/share_add_doadd',"ShareController@share_add_doadd");
 
-//查询用户
+//查询用户	swz
 Route::any("/sele_user","OrderController@sele_user");
 
-//查询shangpin
+//查询shangpin swz
 Route::any("/sele_goods","OrderController@sele_goods");
+
+//操作记录
+Route::any('/ope_list',"StatisticsController@ope_list");
