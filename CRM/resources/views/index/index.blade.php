@@ -194,7 +194,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="cate.html">
+                        <a _href="/offic">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>内部公文</cite>
                         </a>
@@ -239,7 +239,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="city.html">
+                        <a _href="/prob_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>产品管理</cite>
                         </a>
