@@ -157,4 +157,8 @@ class UserController extends Controller
             return(['font'=>'添加失败','code'=>2]);
         }
     }
+    public function Logon_log(){
+        $array=DB::table('log')->paginate(1);
+        return view("Login/Logon_log",['data'=>$array]);
+    }
 }

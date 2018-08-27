@@ -19,7 +19,6 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
 <div class="x-body">
     <form class="layui-form">

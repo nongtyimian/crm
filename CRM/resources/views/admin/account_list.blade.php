@@ -42,8 +42,8 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('部门添加','/department')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：{{$crm_dep_count}} 条</span>
+        <button class="layui-btn" onclick="x_admin_show('员工添加','/department')"><i class="layui-icon"></i>添加</button>
+        <span class="x-right" style="line-height:40px">共有数据：{{$crm_admin_count}} 条</span>
     </xblock>
     <table class="layui-table">
         @csrf
@@ -55,58 +55,58 @@
                 {{--<div class="layui-unselect header layui-form-checkbox layui-form-checked" lay-skin="primary">选中的<i class="layui-icon"></i></div>--}}
             </th>
             <th>编号</th>
-            <th>名称</th>
+            <th>员工姓名</th>
             <th>添加时间</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
         <tbody id="table">
 
-            @foreach( $crm_dep_get as $v)
+        @foreach( $crm_admin_get as $v)
 
-                <tr>
-                    <td>
-                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i
-                                    class="layui-icon">&#xe605;</i></div>
-                    </td>
-                    <td>{{$v->d_id}}</td>
-                    <td>{{$v->d_name}}</td>
-                    <td>{{$v->ctime}}</td>
-                    <td class="td-status">
+            <tr>
+                <td>
+                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i
+                                class="layui-icon">&#xe605;</i></div>
+                </td>
+                <td>{{$v->admin_id}}</td>
+                <td>{{$v->admin_name}}</td>
+                <td>{{$v->time}}</td>
+                <td class="td-status">
 
-                        {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
-                        {{--<input type="hidden" value="{{$v->d_id}}" name="ids">--}}
-                        @if( $v->status === 0 )
-                            <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is"
-                                  onclick="student_is( {{$v->d_id}} , {{$v->status}} )">
-                                未启用
+                    {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
+                    {{--<input type="hidden" value="{{$v->d_id}}" name="ids">--}}
+                    @if( $v->status === 0 )
+                        <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is"
+                              onclick="student_is( {{$v->admin_id}} , {{$v->status}} )">
+                                未通过审核
                             </span>
-                        @endif
-                        @if( $v->status === 1 )
-                            <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is"
-                                  onclick="student_is( {{$v->d_id}} , {{$v->status}} )">
-                                已启用
+                    @endif
+                    @if( $v->status === 1 )
+                        <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is"
+                              onclick="student_is( {{$v->admin_id}} , {{$v->status}} )">
+                                已通过审核
                             </span>
-                        @endif
-                    </td>
-                    <td class="td-manage">
-                        <a onclick="member_stop(this,'10001')" href="javascript:;" title="下载">
-                            <i class="layui-icon">&#xe601;</i>
-                        </a>
-                        <a title="编辑" onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
-                            <i class="layui-icon">&#xe642;</i>
-                        </a>
-                        <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                            <i class="layui-icon">&#xe640;</i>
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
+                    @endif
+                </td>
+                <td class="td-manage">
+                    <a onclick="member_stop(this,'10001')" href="javascript:;" title="下载">
+                        <i class="layui-icon">&#xe601;</i>
+                    </a>
+                    <a title="编辑" onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
+                        <i class="layui-icon">&#xe642;</i>
+                    </a>
+                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
+            </tr>
+        @endforeach
 
 
         </tbody>
     </table>
-{{--    {{ $users->links(page) }}--}}
+    {{--    {{ $users->links(page) }}--}}
 
     <div class="page">
         <div>
@@ -114,7 +114,7 @@
             <a class="num" href="">1</a>
             <span class="current">2</span>
             <a class="num" href="">3</a>
-            <a class="num" href="">{{$crm_dep_count}}</a>
+            <a class="num" href="">{{$crm_admin_count}}</a>
             <a class="next" href="">&gt;&gt;</a>
         </div>
     </div>
@@ -144,23 +144,24 @@
 
 
     function student_is( ids , status ){
+        // alert( 45545 );
         var _token = $('input[name=_token]').val();
 
         $.ajax({
             type: 'post',
             dataType: "json",
             data:{status:status,_token:_token,ids:ids},
-            url: "/epartment_is",
+            url: "/account_is",
             success: function (datas) {
                 //                          console.log(data);
                 if (datas.code == 1) {
                     if( datas.is == 1 ){
-                        layer.msg("已启用", {icon: datas.code, time: 1500}, function () {
-                                $('#table').html(datas.data);
+                        layer.msg("已通过审核", {icon: datas.code, time: 1500}, function () {
+                            $('#table').html(datas.data);
                         });
                     }
                     if( datas.is == 0 ){
-                        layer.msg("已禁用", {icon: datas.code, time: 1500}, function () {
+                        layer.msg("未通过审核", {icon: datas.code, time: 1500}, function () {
                             $('#table').html(datas.data);
                         });
                     }

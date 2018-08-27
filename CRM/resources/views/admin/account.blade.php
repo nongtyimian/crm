@@ -57,7 +57,7 @@
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
         var form = layui.form
-                , layer = layui.layer;
+            , layer = layui.layer;
 
         //自定义验证规则
 //        form.verify({

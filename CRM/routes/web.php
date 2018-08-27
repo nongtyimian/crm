@@ -174,5 +174,9 @@ Route::any('/customer_level_do',"UserController@customer_level_do");
 Route::any('/customer_source_add',"UserController@customer_source_add");
 Route::any('/customer_source_do',"UserController@customer_source_do");
 
+//登录日志
+Route::any('/Logon_log',"UserController@Logon_log");
+
+
 
 
