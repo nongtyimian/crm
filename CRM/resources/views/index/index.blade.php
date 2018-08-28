@@ -67,20 +67,6 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="member-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>内部公文</cite>
-                            
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="member-del.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>个人日历</cite>
-                            
-                        </a>
-                    </li>
-					<li>
                         <a _href="member-del.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>开单</cite>
@@ -91,44 +77,6 @@
                         <a _href="member-del.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>个人中心</cite>
-                            
-                        </a>
-                    </li>
-                   <!--  <li>
-                        <a href="javascript:;">
-                            <i class="iconfont">&#xe70b;</i>
-                            <cite>会员管理</cite>
-                            <i class="iconfont nav_right">&#xe697;</i>
-                        </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a _href="xxx.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员列表</cite>
-                                    
-                                </a>
-                            </li >
-                            <li>
-                                <a _href="xx.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员删除</cite>
-                                    
-                                </a>
-                            </li>
-                            <li>
-                                <a _href="xx.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>等级管理</cite>
-                                    
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </li> -->
-					<li>
-                        <a _href="member-del.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>概要统计</cite>
                             
                         </a>
                     </li>
@@ -194,7 +142,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="cate.html">
+                        <a _href="/offic">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>内部公文</cite>
                         </a>
@@ -239,7 +187,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="city.html">
+                        <a _href="/prob_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>产品管理</cite>
                         </a>

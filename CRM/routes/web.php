@@ -139,6 +139,7 @@ Route::any('/contract_list',"ContractController@contract_list");
 Route::any('/contract_add',"ContractController@contract_add");
 //执行创建合同操作
 Route::any('/contract_add_do',"ContractController@contract_add_do");
+Route::any('/contract_del',"ContractController@contract_del");
 
 //订单记录
 Route::any('/order_list',"OrderController@order_list");
@@ -168,6 +169,35 @@ Route::any('/share_add_doadd',"ShareController@share_add_doadd");
 //查询用户	swz
 Route::any("/sele_user","OrderController@sele_user");
 
+
+//查询shangpin
+Route::any("/sele_goods","OrderController@sele_goods");
+
+//展示内部公文
+Route::any("/offic","FunctionController@zhanshi");
+//添加内部公文
+Route::any("/offadd","FunctionController@add");
+Route::any("/offadddo","FunctionController@adddo");
+//删除公文
+Route::any("/offdel","FunctionController@del");
+//修改公文
+Route::any("/offup","FunctionController@up");
+Route::any("/offupdo","FunctionController@updo");
+
+
+
+//展示产品
+Route::any("/prob_list","ProbController@zhanshi");
+
+//添加产品
+Route::any("/probadd","ProbController@add");
+Route::any("/probadddo","ProbController@adddo");
+//删除产品
+Route::any("/probdel","ProbController@del");
+//修改产品
+Route::any("/probup","ProbController@up");
+Route::any("/probupdo","ProbController@updo");
+
 //查询shangpin swz
 Route::any("/sele_goods","OrderController@sele_goods");
 
@@ -180,11 +210,20 @@ Route::any('/customer_level',"UserController@customer_level");
 Route::any('/customer_source',"UserController@customer_source");
 Route::any('/customer_add',"UserController@customer_add");
 Route::any('/customer_add_do',"UserController@customer_add_do");
+#删除
+Route::any('/user_del',"UserController@user_del");
+
 #等级
 Route::any('/customer_level_add',"UserController@customer_level_add");
 Route::any('/customer_level_do',"UserController@customer_level_do");
 Route::any('/customer_source_add',"UserController@customer_source_add");
 Route::any('/customer_source_do',"UserController@customer_source_do");
+Route::any('/customer_type_del',"UserController@customer_type_del");
+Route::any('/customer_del',"UserController@customer_del");
+Route::any('/customer_level_del',"UserController@customer_level_del");
+Route::any('/customer_source_del',"UserController@customer_source_del");
+
+
 
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");
@@ -194,6 +233,7 @@ Route::any('/dtype_update',"DocumentaryController@dtype_update");
 
 //修改执行
 Route::any('/documentary_update_do',"DocumentaryController@documentary_update_do");
+
 
 
 
