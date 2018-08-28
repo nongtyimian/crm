@@ -179,6 +179,7 @@ class RoleController extends CommonController
     public function limit_role(){
         //查询权限表的所有数据  启动的
         $admin =admin_aession();
+//        print_r($admin);exit;
 
         $crm_lim_get = $res = DB::table('crm_lim') -> where( 'lim_status' , '=' , '1' ) -> get( ['lim_con' , 'lim_id'] );
         //查询所有角色
