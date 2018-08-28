@@ -223,12 +223,16 @@ Route::any('/customer_del',"UserController@customer_del");
 Route::any('/customer_level_del',"UserController@customer_level_del");
 Route::any('/customer_source_del',"UserController@customer_source_del");
 
+Route::any('/logistics',"UserController@logistics");
+Route::any('/logistics_do',"UserController@logistics_do");
+Route::any('/logistics_in',"UserController@logistics_in");
 
 
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");
 
-
+//绩效排名
+Route::any('/ranking',"UserController@ranking");
 
 
 

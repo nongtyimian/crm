@@ -247,4 +247,58 @@ class UserController extends CommonController
         }
         return ['msg'=>"删除成功",'code'=> 1];
     }
+    public function logistics(){
+        $users = DB::table('wulian')
+            ->join('crm_order', 'wulian.o_id', '=', 'crm_order.o_id')
+            ->join('csm_user','crm_order.user','=','csm_user.user_id')
+            ->join('wuliu', 'wulian.w_id', '=', 'wuliu.id')
+            ->get();
+        $area=json_decode(DB::table("area")->get(),true);
+        foreach($area as $k=>$v){
+            $area[$v['area_id']]=$v['area_name'];
+        }
+        $status=[
+            "1"=>"正提交",
+            "2"=>"处理中",
+            "3"=>"运输中",
+            "4"=>"已完成"
+
+        ];
+        return view("logistics/logistics",['data'=>$users,'area'=>$area,'status'=>$status]);
+    }
+    public function logistics_do(){
+        $data=DB::table('crm_order')->get();
+        $array=DB::table('wuliu')->get();
+        return view("logistics/logistics_do",['arr'=>$array,'data'=>$data]);
+    }
+    public function logistics_in(){
+        $data=$_POST;
+        $arr = [
+            'o_id'=>$data['o_id'],
+            'w_id'=>$data['w_id']
+        ];
+        $res=DB::table("wulian")->insert($arr);
+        $admin=session("account");
+        $ope=[
+            "ope_content"=>2,
+            "ope_table"=>"类型表",
+            "ope_bec"=>"删除类型",
+            "a_id"=>$admin['admin_name'],
+            "time"=>time()
+        ];
+        ope_add($ope);
+        if(!$res){
+            return (['font'=>'添加失败','code'=>2]);
+        }
+        return (['font'=>'添加成功','code'=>1]);
+    }
+
+    public function ranking(){
+        $users=json_decode(DB::table('crm_admin')->get(),true);
+        foreach($users as $k=>$v){
+            $data[] = json_decode(DB::table('crm_order')->where(['admin'=>$v['admin_id']])->get(),true);
+        }
+        print_r($data);exit;
+        return view("index/ranking");
+    }
 }
