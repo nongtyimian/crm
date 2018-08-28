@@ -86,6 +86,26 @@ Route::any('/limit_delete',"LimitController@limit_delete");
 //是否启用
 Route::any('/limit_is',"LimitController@limit_is");
 
+
+//内部公告    wenjing
+Route::any('/off_list',"OffController@off_list");
+//内部公告列表
+Route::any('/off_add',"OffController@off_add");
+//执行添加内部公告
+Route::any('/off_add_do',"OffController@off_add_do");
+//修改内部公告
+Route::any('/off_modify',"OffController@off_modify");
+//执行修改内部公告
+Route::any('/off_modify_do',"OffController@off_modify_do");
+//删除内部公告
+Route::any('/off_delete',"OffController@off_delete");
+//是否启用内部公告
+Route::any('/off_is',"OffController@off_is");
+
+
+
+
+
 //登录—页面
 Route::any('/login',"AdminController@login");
 //执行登录页面
