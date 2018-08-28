@@ -15,12 +15,14 @@ Route::get('/layout', function () {
     return view('index/layout');
 });
 Route::get('/',"IndexController@index");
-Route::get('/test',"IndexController@test");
+Route::get('/test',"IndexController@test");//
 
 
 
-//设置权限
-Route::any('/limit_delete',"RoleController@limit_delete");
+//设置权限   角色权限
+Route::any('/limit_role',"RoleController@limit_role");//
+//执行角色权限添加
+Route::any('/role_lim_do',"RoleController@role_lim_do");//
 
 //角色列表
 Route::any('/role_list',"RoleController@role_list");

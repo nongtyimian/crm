@@ -98,9 +98,9 @@
 //                                //关闭当前frame
 //                                parent.layer.close(index);
 
-                            // window.parent.location.reload();
-                            // var index = parent.layer.getFrameIndex(window.name);
-                            // parent.layer.close(index);
+                            window.parent.location.reload();
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
                         });
                     } else {
                         layer.msg(datas.msg, {icon: datas.code});

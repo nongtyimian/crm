@@ -186,4 +186,10 @@ class LimitController extends CommonController
         return[ 'code' => '1' , 'data' => $arr , 'is' => $is ];
 
     }
+
+
+    //
+    public function limit_role(){
+
+    }
 }

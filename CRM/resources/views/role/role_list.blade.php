@@ -42,7 +42,8 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('角色添加','/role_add')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加角色','/role_add')"><i class="layui-icon"></i>添加角色</button>
+        <button class="layui-btn" onclick="x_admin_show('添加角色权限','/limit_role')"><i class="layui-icon"></i>添加角色权限</button>
         <span class="x-right" style="line-height:40px">共有数据：{{$crm_role_count}} 条</span>
     </xblock>
     <table class="layui-table">

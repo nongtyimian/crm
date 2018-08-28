@@ -173,4 +173,83 @@ class RoleController extends CommonController
         return[ 'code' => '1' , 'data' => $arr , 'is' => $is ];
 
     }
+
+
+    //添加角色权限
+    public function limit_role(){
+        //查询权限表的所有数据  启动的
+        $admin =admin_aession();
+
+        $crm_lim_get = $res = DB::table('crm_lim') -> where( 'lim_status' , '=' , '1' ) -> get( ['lim_con' , 'lim_id'] );
+        //查询所有角色
+        $crm_role_get = $res = DB::table('crm_role') -> where( 'role_status' , '=' , '1' ) -> get( ['role_name' , 'role_id'] );
+//        print_r($crm_role_get);exit;
+        return view("role/limit_role" , [ 'admin_name' => $admin->admin_name , 'crm_lim_get' => $crm_lim_get , 'crm_role_get' => $crm_role_get ]);
+
+    }
+    //执行权限添加
+    public function role_lim_do( Request $request ){
+
+        //用户
+
+        $admin_session =admin_aession();
+
+
+        $data = $request -> post();
+        if( empty( $data['role_id'] ) ){
+            return[ 'msg'=> '角色不能为空' , 'code' => '2' ];
+        }
+        if( empty( $data['check_rule'] ) ){
+            return[ 'msg'=> '权限不能为空' , 'code' => '2' ];
+        }
+        $data['check_rule'] = trim( $data['check_rule'], '');
+        $data['check_rule'] = trim( $data['check_rule'], ',');
+        $check_rule = explode( ',' , $data['check_rule'] );//in
+//        print_r($check_rule);exit;
+
+        $where = [
+            'role_id' => $data['role_id'],
+        ];
+        //原来库里有的权限
+        $role_lim_gets = $res = DB::table('role_lim') -> where($where) -> get()->toArray();
+//        print_r($role_lim_gets);exit;
+        if( !empty( $role_lim_gets ) ){
+            $role_lim_delete = $res = DB::table('role_lim') -> where($where) -> delete();
+            if( !$role_lim_delete ){
+
+                return[ 'msg'=> '系统错误1' , 'code' => '2' ];
+            }
+
+
+
+        }
+
+//        echo 12121212;exit;
+
+        foreach( $check_rule as $k => $v ){
+//            echo 121212;exit;
+            $insert = [
+                'role_id' => $data['role_id'],
+                'lim_id' => $v,
+                'role_lim_ctime' => time(),
+                'rolr_lim_utime' => time(),
+                'admin_id' => $admin_session->admin_id,
+                'role_lim_status' => 1,
+            ];
+//            print_r($insert);
+            $crm_dep_insert = DB::table('role_lim') -> insert( $insert );
+            if( !$crm_dep_insert ){
+
+                return[ 'msg'=> '系统错误2' , 'code' => '2' ];
+            }
+        }
+        return[ 'msg'=> '保存成功' , 'code' => '1' ];
+    }
+
+    function role_deete(){
+
+    }
+
+
+
 }
