@@ -19,7 +19,7 @@ class RoleController extends CommonController
 //        var_dump($crm_role_get);exit;
         foreach( $crm_role_get as $k => $v){
 //            print_r($v);exit;
-            $crm_role_get[$k]->time = date( 'Y-m-d H:i:s' , $v->time);
+            $crm_role_get[$k]->role_time = date( 'Y-m-d H:i:s' , $v->role_time);
         }
 //        exit;
 //        print_r($crm_role_get->currentPage());exit;
@@ -62,8 +62,8 @@ class RoleController extends CommonController
 
         $insert = [
             'role_name' => $data['username'],
-            'time' => time(),
-            'utime' => time(),
+            'role_time' => time(),
+            'role_utime' => time(),
             'role_status' => 0,
             'admin_id' => $admin_session->admin_id,
         ];
@@ -151,7 +151,7 @@ class RoleController extends CommonController
                         </td>
                         <td>'. $v->role_id .'</td>
                         <td>'. $v->role_name .'</td>
-                        <td>'. date( 'Y-m-d H:i:s' , $v->time) .'</td>
+                        <td>'. date( 'Y-m-d H:i:s' , $v->role_time) .'</td>
                         <td>'. $v->admin_name .'</td>
                         <td class="td-status"> '.$arrs.' </td>
                         <td class="td-manage">
@@ -187,6 +187,10 @@ class RoleController extends CommonController
         return view("role/limit_role" , [ 'admin_name' => $admin->admin_name , 'crm_lim_get' => $crm_lim_get , 'crm_role_get' => $crm_role_get ]);
 
     }
+
+
+
+
     //执行权限添加
     public function role_lim_do( Request $request ){
 

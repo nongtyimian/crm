@@ -76,7 +76,7 @@
                 </td>
                 <td>{{$v->role_id}}</td>
                 <td>{{$v->role_name}}</td>
-                <td>{{$v->time}}</td>
+                <td>{{$v->role_time}}</td>
                 <td>{{$v->admin_name}}</td>
                 <td class="td-status">
 
