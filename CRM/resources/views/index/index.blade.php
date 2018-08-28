@@ -218,7 +218,7 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="cate.html">
+                        <a _href="/statistics_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>数据统计</cite>
                         </a>
@@ -308,6 +308,12 @@
                         <a _href="/customer_source">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>客户来源</cite>
+                        </a>
+                    </li >
+					<li>
+                        <a _href="/customer_source">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>物流管理</cite>
                         </a>
                     </li >
                 </ul>
