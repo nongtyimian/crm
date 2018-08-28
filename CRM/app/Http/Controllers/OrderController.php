@@ -12,8 +12,16 @@ class OrderController extends CommonController
 
 		$res = DB::table('crm_order')->orderBy('crm_order.mtime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_order.user")
 								   ->leftjoin("crm_admin","crm_admin.admin_id","=","crm_order.admin")
+	
 								   ->paginate(6);
 		$count=DB::table("crm_order")->count();
+
+		$area=json_decode(DB::table("area")->get(),true);
+
+		foreach($area as $k=>$v){
+			$area[$v['area_id']]=$v['area_name'];
+		}
+
 		$status=[
 			"1"=>"正提交",
 			"2"=>"处理中",
@@ -23,7 +31,7 @@ class OrderController extends CommonController
 		];
 		
 		
-		return view("order/order_list",["res"=>$res,"status"=>$status,"count"=>$count]);
+		return view("order/order_list",["res"=>$res,"status"=>$status,"count"=>$count,"area"=>$area]);
 	}
 
 	public function create_order(){
