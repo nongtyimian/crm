@@ -155,12 +155,14 @@
 		var content=$("#desc").val();
 		$.get("/documentary_update_do",{u_id:u_id,type:type,pgs:pgs,rtime:time,ntime:ntime,content:content,dym_id:dym_id},function(data){
 			layui.use(['layer'], function(){
-				if(data==1){
+				if(data.code==1){
 					layer.msg("修改成功",{icon:1});
 					window.parent.location.reload();
 					var index = parent.layer.getFrameIndex(window.name);
 					parent.layer.close(index);
 					
+				}else{
+					layer.msg(data.msg,{icon:1});
 				}	
 			});
 		});
