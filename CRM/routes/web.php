@@ -15,10 +15,14 @@ Route::get('/layout', function () {
     return view('index/layout');
 });
 Route::get('/',"IndexController@index");
-Route::get('/test',"IndexController@test");
+Route::get('/test',"IndexController@test");//
 
 
 
+//设置权限   角色权限
+Route::any('/limit_role',"RoleController@limit_role");//
+//执行角色权限添加
+Route::any('/role_lim_do',"RoleController@role_lim_do");//
 
 //角色列表
 Route::any('/role_list',"RoleController@role_list");
@@ -36,9 +40,6 @@ Route::any('/role_delete',"RoleController@role_delete");
 Route::any('/role_is',"RoleController@role_is");
 
 
-
-//设置权限
-Route::any('/limit_delete',"RoleController@limit_delete");
 
 
 //departmentController   温静
@@ -84,6 +85,8 @@ Route::any('/limit_modify',"LimitController@limit_modify");
 Route::any('/limit_modify_do',"LimitController@limit_modify_do");
 //删除权限
 Route::any('/limit_delete',"LimitController@limit_delete");
+//是否启用
+Route::any('/limit_is',"LimitController@limit_is");
 
 //登录—页面
 Route::any('/login',"AdminController@login");

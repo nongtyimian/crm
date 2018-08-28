@@ -11,8 +11,9 @@ class AccountController extends CommonController
     public function account_list( Request $request )
     {
         //查询所有数据
-        $crm_admin_get = $res = DB::table('crm_admin') -> get();
-//        $crm_dep_get = $res = DB::table('crm_dep') -> paginate(5);
+        $crm_admin_get = $res = DB::table('crm_admin')
+            -> join('crm_role', 'crm_admin.role', '=', 'crm_role.role_id')
+            -> get();
 //        print_r($crm_admin_get);exit;
         foreach( $crm_admin_get as $k => $v){
             $crm_admin_get[$k]->time = date( 'Y-m-d H:i:s' , $v->time);

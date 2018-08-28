@@ -42,9 +42,8 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加角色','/role_add')"><i class="layui-icon"></i>添加角色</button>
-        <button class="layui-btn" onclick="x_admin_show('添加角色权限','/limit_role')"><i class="layui-icon"></i>添加角色权限</button>
-        <span class="x-right" style="line-height:40px">共有数据：{{$crm_role_count}} 条</span>
+        <button class="layui-btn" onclick="x_admin_show('添加权限','/limit_add')"><i class="layui-icon"></i>添加权限</button>
+        <span class="x-right" style="line-height:40px">共有数据：{{$crm_lim_count}} 条</span>
     </xblock>
     <table class="layui-table">
         @csrf
@@ -56,7 +55,8 @@
                 {{--<div class="layui-unselect header layui-form-checkbox layui-form-checked" lay-skin="primary">选中的<i class="layui-icon"></i></div>--}}
             </th>
             <th>编号</th>
-            <th>角色名称</th>
+            <th>权限名称</th>
+            <th>权限路由</th>
             <th>添加时间</th>
             <th>添加人</th>
             <th>状态</th>
@@ -64,34 +64,35 @@
         </thead>
         <tbody id="table">
         {{--@if( $crm_role_get->data == null )--}}
-            {{--<h2>暂无数据</h2>--}}
+        {{--<h2>暂无数据</h2>--}}
         {{--@endif--}}
 
-        @foreach( $crm_role_get as $v)
+        @foreach( $crm_lim_get as $v)
 
             <tr>
                 <td>
                     <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i
                                 class="layui-icon">&#xe605;</i></div>
                 </td>
-                <td>{{$v->role_id}}</td>
-                <td>{{$v->role_name}}</td>
-                <td>{{$v->role_time}}</td>
+                <td>{{$v->lim_id}}</td>
+                <td>{{$v->lim_con}}</td>
+                <td>{{$v->lim_web}}</td>
+                <td>{{$v->lim_ctime}}</td>
                 <td>{{$v->admin_name}}</td>
                 <td class="td-status">
 
                     {{--<input type="hidden" value="{{$v->status}}" name="status">--}}
                     {{--<input type="hidden" value="{{$v->d_id}}" name="ids">--}}
-                    @if( $v->role_status === 0 )
+                    @if( $v->lim_status === 0 )
                         <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-primary is"
-                              onclick="student_is( {{$v->role_id}} , {{$v->role_status}} , {{$page}} )">
+                              onclick="student_is( {{$v->lim_id}} , {{$v->lim_status}} , {{$page}} )">
                                 未启用
                             </span>
                     @endif
 
-                    @if( $v->role_status === 1 )
+                    @if( $v->lim_status === 1 )
                         <span class="layui-btn layui-btn-sm layui-btn-radius layui-btn-normal is"
-                              onclick="student_is( {{$v->role_id}} , {{$v->role_status}} , {{$page}}  )">
+                              onclick="student_is( {{$v->lim_id}} , {{$v->lim_status}} , {{$page}}  )">
                                 已启用
                             </span>
                     @endif
@@ -118,8 +119,8 @@
     <div class="page">
         <div>
 
-            {{$crm_role_get}}
-{{--                        {{$crm_role_get->links('/role_list?page=$page)}}--}}
+            {{$crm_lim_get}}
+            {{--                        {{$crm_role_get->links('/role_list?page=$page)}}--}}
         </div>
     </div>
     {{--<div class="page">--}}
@@ -164,7 +165,7 @@
             type: 'get',
             dataType: "json",
             data:{status:status,ids:ids,page:page},
-            url: "/role_is",
+            url: "/limit_is",
             success: function (datas) {
                 //                          console.log(data);
                 if (datas.code == 1) {
