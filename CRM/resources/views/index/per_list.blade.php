@@ -121,7 +121,7 @@ layui.use(['layer', 'form','jquery','laydate'], function() {
 		  //获取弹出层val
 		  var chose_moban_val = $('#text_book').val();
 		  var date=$('#date').val();
-		  alert(date);
+		  
 		  $.ajax({
                       type: 'get',
                       dataType: "json",
