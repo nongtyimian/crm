@@ -218,6 +218,12 @@ Route::any('/customer_level_add',"UserController@customer_level_add");
 Route::any('/customer_level_do',"UserController@customer_level_do");
 Route::any('/customer_source_add',"UserController@customer_source_add");
 Route::any('/customer_source_do',"UserController@customer_source_do");
+Route::any('/customer_type_del',"UserController@customer_type_del");
+Route::any('/customer_del',"UserController@customer_del");
+Route::any('/customer_level_del',"UserController@customer_level_del");
+Route::any('/customer_source_del',"UserController@customer_source_del");
+
+
 
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");

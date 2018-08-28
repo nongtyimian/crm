@@ -50,4 +50,25 @@ class ContractController extends Controller
             return(['font'=>'添加失败','code'=>2]);
         }
     }
+    public function contract_del(){
+        $data=$_GET;
+        $res=DB::table("crm_ctt")->where(["ctt_id"=>$data['id']])->delete();
+        $admin=session("account");
+
+        $ope=[
+            "ope_content"=>2,
+            "ope_table"=>"合同记录",
+            "ope_bec"=>"删除合同记录",
+            "a_id"=>$admin['admin_name'],
+            "time"=>time()
+        ];
+
+        ope_add($ope);
+
+        if(!$res){
+            return ['msg'=>"删除失败",'code'=> 2];
+        }
+        return ['msg'=>"删除成功",'code'=> 1];
+
+    }
 }
