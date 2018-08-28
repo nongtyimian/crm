@@ -33,62 +33,46 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
     <div class="x-body">
-     
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加跟单记录','/documentary_add')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：{{$count}} 条</span>
+        <span class="x-right" style="line-height:40px"></span>
       </xblock>
       <table class="layui-table">
         <thead>
+		<tr>
+			<td colspan="5" align="center">
+			   基本情况
+			</td >
+			<td colspan="2" align="center">
+				活跃状态
+			</td>
+		</tr>
           <tr>
-            <th>
-              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </th>
-            <th>编号</th>
-            <th>客户姓名</th>
-            <th>省份</th>
-            <th>地区</th>
-            <th>跟单类型</th>
-            <th>联系进度</th>
-            <th>下次联系</th>
-            <th>详细内容</th>
-            <th>业务员</th>
-            <th>录入时间</th>
-            <th >管理</th>
+            <th>管理员</th>
+            <th>客户</th>
+            <th>跟单</th>
+            <th>订单</th>
+            <th>销量</th>
+            <th>修改</th>
+			<th>删除</th>
             </tr>
         </thead>
         <tbody>
-		@foreach($res as $v)
+		@foreach($admin as $k=>$v)
           <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>{{$v->dym_id}}</td>
-            <td>{{$v->user_name}}</td>
-            <td>{{$v->part}}</td>
-            <td>{{$v->area}}</td>
-            <td>{{$v->type}}</td>
-            <td>{{$v->pgs}}</td>
-            <td>{{$v->ntime}}</td>
-            <td>{{$v->content}}</td>
-            <td>{{$v->admin_name}}</td>
-            <td>{{$v->ctime}}</td>
-            <td class="td-manage">
-              <a title="查看"  onclick="x_admin_show('编辑','/dtype_update?id={{$v->dym_id}}')" href="javascript:;">
-                <i class="layui-icon">&#xe63c;</i>
-              </a>
-              <a title="删除" onclick="member_del(this,'{{$v->dym_id}}')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
+           	<td>{{$v['admin_name']}}</td>
+           	<td>{{$v['user_count']}}</td>
+			<td>{{$v['dym_count']}}</td>
+			<td>{{$v['order_count']}}</td>
+			<td>{{$v['success_count']}}</td>
+			<td>{{$v['update_count']}}</td>
+			<td>{{$v['del_count']}}</td>
           </tr>
-		  @endforeach
+		 @endforeach
         </tbody>
       </table>
       <div class="page">
         <div>
-		{{$res}}
         </div>
       </div>
 

@@ -161,4 +161,90 @@ class UserController extends CommonController
         $array=DB::table('log')->paginate(1);
         return view("Login/Logon_log",['data'=>$array]);
     }
+    public function user_delete(){
+        $data=$_GET;
+        $res=DB::table("csm_user")->where(["user_id"=>$data['id']])->delete();
+        $admin=session("account");
+        $ope=[
+            "ope_content"=>2,
+            "ope_table"=>"客户表",
+            "ope_bec"=>"删除客户",
+            "a_id"=>$admin['admin_name'],
+            "time"=>time()
+        ];
+        ope_add($ope);
+        if(!$res){
+            return ['msg'=>"删除失败",'code'=> 2];
+        }
+        return ['msg'=>"删除成功",'code'=> 1];
+    }
+    public function customer_type_del(){
+        $data=$_GET;
+        $res=DB::table("csm_user")->where(["user_id"=>$data['id']])->delete();
+        $admin=session("account");
+        $ope=[
+            "ope_content"=>2,
+            "ope_table"=>"客户表",
+            "ope_bec"=>"删除客户",
+            "a_id"=>$admin['admin_name'],
+            "time"=>time()
+        ];
+        ope_add($ope);
+        if(!$res){
+            return ['msg'=>"删除失败",'code'=> 2];
+        }
+        return ['msg'=>"删除成功",'code'=> 1];
+    }
+    public function customer_del(){
+        $data=$_GET;
+        $res=DB::table("user_type")->where(["t_id"=>$data['id']])->delete();
+        $admin=session("account");
+        $ope=[
+            "ope_content"=>2,
+            "ope_table"=>"类型表",
+            "ope_bec"=>"删除类型",
+            "a_id"=>$admin['admin_name'],
+            "time"=>time()
+        ];
+        ope_add($ope);
+        if(!$res){
+            return ['msg'=>"删除失败",'code'=> 2];
+        }
+        return ['msg'=>"删除成功",'code'=> 1];
+    }
+    public function customer_level_del(){
+        $data=$_GET;
+        $res=DB::table("user_lv")->where(["l_id"=>$data['id']])->delete();
+        $admin=session("account");
+        $ope=[
+            "ope_content"=>2,
+            "ope_table"=>"类型表",
+            "ope_bec"=>"删除类型",
+            "a_id"=>$admin['admin_name'],
+            "time"=>time()
+        ];
+        ope_add($ope);
+        if(!$res){
+            return ['msg'=>"删除失败",'code'=> 2];
+        }
+        return ['msg'=>"删除成功",'code'=> 1];
+    }
+
+    public function customer_source_del(){
+        $data=$_GET;
+        $res=DB::table("user_souce")->where(["s_id"=>$data['id']])->delete();
+        $admin=session("account");
+        $ope=[
+            "ope_content"=>2,
+            "ope_table"=>"类型表",
+            "ope_bec"=>"删除类型",
+            "a_id"=>$admin['admin_name'],
+            "time"=>time()
+        ];
+        ope_add($ope);
+        if(!$res){
+            return ['msg'=>"删除失败",'code'=> 2];
+        }
+        return ['msg'=>"删除成功",'code'=> 1];
+    }
 }

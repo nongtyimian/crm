@@ -139,6 +139,7 @@ Route::any('/contract_list',"ContractController@contract_list");
 Route::any('/contract_add',"ContractController@contract_add");
 //执行创建合同操作
 Route::any('/contract_add_do',"ContractController@contract_add_do");
+Route::any('/contract_del',"ContractController@contract_del");
 
 //订单记录
 Route::any('/order_list',"OrderController@order_list");
@@ -209,20 +210,38 @@ Route::any('/customer_level',"UserController@customer_level");
 Route::any('/customer_source',"UserController@customer_source");
 Route::any('/customer_add',"UserController@customer_add");
 Route::any('/customer_add_do',"UserController@customer_add_do");
+#删除
+Route::any('/user_del',"UserController@user_del");
+
 #等级
 Route::any('/customer_level_add',"UserController@customer_level_add");
 Route::any('/customer_level_do',"UserController@customer_level_do");
 Route::any('/customer_source_add',"UserController@customer_source_add");
 Route::any('/customer_source_do',"UserController@customer_source_do");
+Route::any('/customer_type_del',"UserController@customer_type_del");
+Route::any('/customer_del',"UserController@customer_del");
+Route::any('/customer_level_del',"UserController@customer_level_del");
+Route::any('/customer_source_del',"UserController@customer_source_del");
+
+
 
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");
+
 
 //个人日历
 Route::any('/pers',"IndexController@pers");
 Route::any('/per_list',"IndexController@per_list");
 //个人日历添加日期
 Route::any('/dateadd',"IndexController@per_add");
+
+//修改跟单记录
+Route::any('/dtype_update',"DocumentaryController@dtype_update");
+
+//修改执行
+Route::any('/documentary_update_do',"DocumentaryController@documentary_update_do");
+
+
 
 
 
