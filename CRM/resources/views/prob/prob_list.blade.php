@@ -44,7 +44,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <a href="/probadd" class="layui-btn"><i class="layui-icon"></i>添加</a>
+        <button class="layui-btn" onclick="x_admin_show('添加用户','/probadd')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据:{{$count}}条</span>
       </xblock>
       <table class="layui-table">
@@ -77,9 +77,7 @@
               <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                 <i class="layui-icon">&#xe601;</i>
               </a>
-              <a title="修改"  onclick="x_admin_show(this,'{{$v->p_id}}')" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
+              <button class="layui-btn" onclick="x_admin_show('修改用户','/probup?id={{$v->p_id}}')"><i class="layui-icon"></i>修改</button>
               <a title="删除" onclick="member_del(this,'{{$v->p_id}}')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
@@ -162,7 +160,7 @@
           });
       }
 	  /*用户-修改*/
-      function x_admin_show(obj,id){
+      function x_admin_show2(obj,id){
           layer.confirm('确认要修改吗？',function(index){
               
 			     location.href="/probup?id="+id;

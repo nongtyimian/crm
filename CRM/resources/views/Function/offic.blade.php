@@ -44,7 +44,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <a href="/offadd" class="layui-btn"><i class="layui-icon"></i>添加</a>
+         <button class="layui-btn" onclick="x_admin_show('添加用户','/offadd')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据:{{$count}}条</span>
       </xblock>
       <table class="layui-table">
@@ -77,9 +77,10 @@
               <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                 <i class="layui-icon">&#xe601;</i>
               </a>
-              <a title="修改"  onclick="x_admin_show(this,'{{$v->o_id}}')" href="javascript:;">
+			   <button class="layui-btn" onclick="x_admin_show('修改用户','/offup?id={{$v->o_id}}')"><i class="layui-icon"></i>修改</button>
+             <!--  <a title="修改"  onclick="x_admin_show2(this,'{{$v->o_id}}')" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
-              </a>
+              </a> -->
               <a title="删除" onclick="member_del(this,'{{$v->o_id}}')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
@@ -162,7 +163,7 @@
           });
       }
 	  /*用户-修改*/
-      function x_admin_show(obj,id){
+      function x_admin_show2(obj,id){
           layer.confirm('确认要修改吗？',function(index){
               
 			     location.href="/offup?id="+id;

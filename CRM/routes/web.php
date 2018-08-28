@@ -218,6 +218,11 @@ Route::any('/customer_source_do',"UserController@customer_source_do");
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");
 
+//个人日历
+Route::any('/pers',"IndexController@pers");
+Route::any('/per_list',"IndexController@per_list");
+//个人日历添加日期
+Route::any('/dateadd',"IndexController@per_add");
 
 
 

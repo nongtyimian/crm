@@ -74,7 +74,7 @@
                         </a>
                     </li >
                     <li>
-                        <a _href="member-del.html">
+                        <a _href="/pers">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>个人日历</cite>
                             

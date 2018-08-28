@@ -24,7 +24,8 @@ class FunctionController extends Controller
 			'o_name'=>$arr['o_name'],
 			'o_ctime'=>time(),
 			'o_sale'=>$arr['o_sale'],
-			'o_app'=>$arr['o_app']
+			'o_app'=>$arr['o_app'],
+			'o_status'=>0
 		];
 		$res=DB::table('offic')->insert($where);
 		if($res){
