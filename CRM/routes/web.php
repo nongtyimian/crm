@@ -238,8 +238,11 @@ Route::any('/dateadd',"IndexController@per_add");
 //修改跟单记录
 Route::any('/dtype_update',"DocumentaryController@dtype_update");
 
-//修改执行
+//修改跟单执行
 Route::any('/documentary_update_do',"DocumentaryController@documentary_update_do");
+
+//跟单提醒
+Route::any('/remind',"DocumentaryController@remind");
 
 
 
