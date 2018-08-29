@@ -67,7 +67,7 @@
                             
                         </a>
                     </li >
-					{{--<li>--}}
+					<li>
 
 					<li>
 
@@ -78,14 +78,14 @@
 
                         </a>
                     </li >
-                    {{--<li>--}}
-                        {{--<a _href="/pers">--}}
-                            {{--<i class="iconfont">&#xe6a7;</i>--}}
-                            {{--<cite>个人日历</cite>--}}
-                            {{----}}
-                        {{--</a>--}}
-                    {{--</li>--}}
-					{{--<li>--}}
+                    <li>
+                        <a _href="/pers">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>个人日历</cite>
+
+                        </a>
+                    </li>
+					<li>
 
                         <a _href="/create_order">
                             <i class="iconfont">&#xe6a7;</i>
@@ -93,13 +93,13 @@
                             
                         </a>
                     </li>
-					<li>
-                        <a _href="/my">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>个人中心</cite>
-                            
-                        </a>
-                    </li>
+					{{--<li>--}}
+                        {{--<a _href="/my">--}}
+                            {{--<i class="iconfont">&#xe6a7;</i>--}}
+                            {{--<cite>个人中心</cite>--}}
+                            {{----}}
+                        {{--</a>--}}
+                    {{--</li>--}}
 					<li>
                         <a _href="/ranking">
                             <i class="iconfont">&#xe6a7;</i>
