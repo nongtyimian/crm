@@ -27,13 +27,43 @@
         @csrf
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>部门名称
+                <span class="x-red">*</span>员工名称
             </label>
 
             <div class="layui-input-inline">
                 <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off"
                        class="layui-input">
             </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>员工密码
+            </label>
+
+            <div class="layui-input-inline">
+                <input type="password" id="pwd" name="pwd" required="" lay-verify="required" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>角色名称
+            </label>
+
+            <div class="layui-input-inline">
+                <select id="type" name="role_id" class="valid">
+                    <option value="">------请选择------</option>
+                    @foreach($crm_role_get as $k=>$v)
+                        @if( $v->role_id == 1 )
+                            <option value="{{$v->role_id}}" disabled>{{$v->role_name}}</option>
+                        @else
+                            <option value="{{$v->role_id}}">{{$v->role_name}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+
         </div>
         <div class="layui-form-item">
             <label for="phone" class="layui-form-label">
@@ -78,7 +108,7 @@
                 type: 'post',
                 dataType: "json",
                 data: data.field,
-                url: "/department_add",
+                url: "/account_add",
                 success: function (datas) {
                     console.log(data);
 //                        if (datas.code == 1) {

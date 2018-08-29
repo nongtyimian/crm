@@ -42,7 +42,7 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('员工添加','/department')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('员工添加','/account')"><i class="layui-icon"></i>员工添加</button>
         <span class="x-right" style="line-height:40px">共有数据：{{$crm_admin_count}} 条</span>
     </xblock>
     <table class="layui-table">
@@ -92,15 +92,15 @@
                     @endif
                 </td>
                 <td class="td-manage">
-                    <a onclick="member_stop(this,'10001')" href="javascript:;" title="下载">
+                    {{--<a onclick="member_stop(this,'10001')" href="javascript:;" title="下载">--}}
                         <i class="layui-icon">&#xe601;</i>
-                    </a>
-                    <a title="编辑" onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
+                    {{--</a>--}}
+                    {{--<a title="编辑" onclick="x_admin_show('编辑','#')" href="javascript:;">--}}
                         <i class="layui-icon">&#xe642;</i>
-                    </a>
-                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                    {{--</a>--}}
+                    {{--<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">--}}
                         <i class="layui-icon">&#xe640;</i>
-                    </a>
+                    {{--</a>--}}
                 </td>
             </tr>
         @endforeach
@@ -112,12 +112,7 @@
 
     <div class="page">
         <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">{{$crm_admin_count}}</a>
-            <a class="next" href="">&gt;&gt;</a>
+            {{$crm_admin_get}}
         </div>
     </div>
 
@@ -144,7 +139,7 @@
 //
     });
 
-
+/*
     function student_is( ids , status ){
         // alert( 45545 );
         var _token = $('input[name=_token]').val();
@@ -177,7 +172,7 @@
         })
         return false;;
     }
-
+*/
     /*用户-停用*/
     function member_stop(obj,id){
         layer.confirm('确认要停用吗？',function(index){

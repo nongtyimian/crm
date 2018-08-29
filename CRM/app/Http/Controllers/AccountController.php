@@ -13,7 +13,7 @@ class AccountController extends CommonController
         //查询所有数据
         $crm_admin_get = $res = DB::table('crm_admin')
             -> join('crm_role', 'crm_admin.role', '=', 'crm_role.role_id')
-            -> get();
+            -> paginate(10);
 //        print_r($crm_admin_get);exit;
         foreach( $crm_admin_get as $k => $v){
             $crm_admin_get[$k]->time = date( 'Y-m-d H:i:s' , $v->time);
@@ -28,6 +28,130 @@ class AccountController extends CommonController
 
         return view( "admin/account_list" , [ 'crm_admin_get' => $crm_admin_get , 'crm_admin_count' => $crm_admin_count ] );
     }
+
+    //添加数据
+    public function account( Request $request )
+    {
+
+
+
+        $account = $request->session()->get('account');
+        $crm_admin_first = $res = DB::table('crm_admin') -> where( 'admin_id' , '=' , $account['admin_name'] ) -> first();
+        $admin_name = $crm_admin_first->admin_name;
+
+
+        $crm_role_get = $res = DB::table('crm_role') -> where( 'role_status' , '=' , '1' ) -> get( ['role_name' , 'role_id'] );
+
+        return view("admin/account" , [ 'admin_name' => $admin_name  , 'crm_role_get' => $crm_role_get ]);
+    }
+
+
+    //执行添加添加
+    public function account_add( Request $request ){
+
+        //用户
+
+        $admin_session =admin_aession();
+
+
+        $data = $request -> post();
+//        print_r($data);exit;
+        if( empty( $data['username'] ) ){
+            return[ 'msg'=> '员工名称不能为空' , 'code' => '2' ];
+        }
+        if( empty( $data['pwd'] ) ){
+            return[ 'msg'=> '密码不能为空' , 'code' => '2' ];
+        }
+        if( empty( $data['role_id'] ) ){
+            return[ 'msg'=> '角色不能为空' , 'code' => '2' ];
+        }
+
+
+        $where = [
+            'admin_name' => $data['username'],
+        ];
+        //原来库里有的权限
+        $crm_admin = $res = DB::table('crm_admin') -> where($where) -> first();
+
+        if( !empty( $crm_admin ) ){
+                return[ 'msg'=> '已有员工名称' , 'code' => '2' ];
+        }
+        $salt = rand( 111111 , 999999);
+//            echo 121212;exit;
+        $new_pwd = md5( md5( $data['pwd'] ).md5( $salt ) );
+            $insert = [
+                'admin_name' => $data['username'],
+                'pwd' => $new_pwd,
+                'time' => time(),
+                'role' => $data['role_id'],
+                'salt' => $salt,
+                'status' => 1,
+            ];
+//            print_r($insert);
+            $crm_admin_insert = DB::table('crm_admin') -> insert( $insert );
+            if( !$crm_admin_insert ){
+
+                return[ 'msg'=> '系统错误' , 'code' => '2' ];
+            }
+
+        return[ 'msg'=> '保存成功' , 'code' => '1' ];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //部门添加   温静
 //    public function department( Request $request )
 //    {
