@@ -29,10 +29,10 @@
 		@csrf
           <div class="layui-form-item">
               <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>公司名称
+                  <span class="x-red">*</span>用户
               </label>
               <div class="layui-input-inline">
-                  <input type="text" name="o_name" required="" lay-verify="o_name"
+                  <input type="text" name="u_id" required="" lay-verify="u_id"
                   autocomplete="off" class="layui-input">
               </div>
           </div>
@@ -41,19 +41,27 @@
                   <span class="x-red">*</span>业务员
               </label>
               <div class="layui-input-inline">
-                  	<select name="o_app">
-					@foreach($data as $k=>$v)
-						<option value="{{$v['admin_name']}}">{{$v['admin_name']}}</option>
-					@endforeach
-					</select>
+                  <input type="text" readonly name="admin" value="{{$id}}">
               </div>
           </div>
           <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">
-                  <span class="x-red">*</span>申请人
+                  <span class="x-red">*</span>主题
               </label>
               <div class="layui-input-inline">
-                  <input type="text" name="o_app" required="" lay-verify="o_app"
+                  <input type="text" name="theme" required="" lay-verify="o_app"
+                  autocomplete="off" class="layui-input">
+              </div>
+              <div class="layui-form-mid layui-word-aux">
+                  <span class="x-red">*</span>
+              </div>
+          </div>
+		  <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">
+                  <span class="x-red">*</span>意见
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" name="idea" required="" lay-verify="o_app"
                   autocomplete="off" class="layui-input">
               </div>
               <div class="layui-form-mid layui-word-aux">
@@ -85,17 +93,14 @@
 //        });
         //监听提交
         form.on('submit(add)', function(data){
-            var o_name = $('[name=o_name]').val();
-            var o_sale = $('[name=o_sale]').val();
-			var o_app = $('[name=o_app]').val();
             $.ajax({
                 method:"post",
-                url:"/offadddo",
+                url:"/compadddo",
                 data:data.field,
                 success:function(result){
                     if(result.code == 1){
                         layer.msg(result.font,{icon:result.code});
-                        parent.location="/offic";
+                        parent.location="/comp";
                     }else{
                         layer.msg(result.font,{icon:result.code});
                     }
