@@ -121,7 +121,6 @@ layui.use(['layer', 'form','jquery','laydate'], function() {
 		  //获取弹出层val
 		  var chose_moban_val = $('#text_book').val();
 		  var date=$('#date').val();
-		  
 		  $.ajax({
                       type: 'get',
                       dataType: "json",
@@ -130,10 +129,10 @@ layui.use(['layer', 'form','jquery','laydate'], function() {
                       success: function (datas) {
                           if (datas.code == 1) {
                                    $(obj).parents("tr").remove();
-								   layer.msg(datas.msg,{icon:1,time:1000});
+								   layer.msg(datas.font,{icon:1,time:1000});
                              
                           } else {
-                              layer.msg(datas.msg, {icon: datas.code});
+                              layer.msg(datas.font, {icon: datas.code});
                           }
                       }
 

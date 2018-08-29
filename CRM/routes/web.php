@@ -86,6 +86,28 @@ Route::any('/limit_delete',"LimitController@limit_delete");
 //是否启用
 Route::any('/limit_is',"LimitController@limit_is");
 
+
+//内部公告    wenjing
+Route::any('/off_list',"OffController@off_list");
+//内部公告列表
+Route::any('/off_add',"OffController@off_add");
+//执行添加内部公告
+Route::any('/off_add_do',"OffController@off_add_do");
+//修改内部公告
+Route::any('/off_modify',"OffController@off_modify");
+//执行修改内部公告
+Route::any('/off_modify_do',"OffController@off_modify_do");
+//删除内部公告
+Route::any('/off_delete',"OffController@off_delete");
+//是否启用内部公告
+Route::any('/off_is',"OffController@off_is");
+//图片。。。
+Route::any('/off_url',"OffController@off_url");
+
+
+
+
+
 //登录—页面
 Route::any('/login',"AdminController@login");
 //执行登录页面
@@ -226,10 +248,17 @@ Route::any('/customer_del',"UserController@customer_del");
 Route::any('/customer_level_del',"UserController@customer_level_del");
 Route::any('/customer_source_del',"UserController@customer_source_del");
 
+Route::any('/logistics',"UserController@logistics");
+Route::any('/logistics_do',"UserController@logistics_do");
+Route::any('/logistics_in',"UserController@logistics_in");
 
 
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");
+
+
+//绩效排名
+Route::any('/ranking',"UserController@ranking");
 
 
 //个人日历
@@ -274,7 +303,6 @@ Route::any('/order_on',"DocumentaryController@order_on");
 Route::get('/no', function () {
 	return view("index/no");
 });
-
 
 
 
