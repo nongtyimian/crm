@@ -296,9 +296,16 @@ class UserController extends CommonController
     public function ranking(){
         $users=json_decode(DB::table('crm_admin')->get(),true);
         foreach($users as $k=>$v){
-            $data[] = json_decode(DB::table('crm_order')->where(['admin'=>$v['admin_id']])->get(),true);
+//            $res=DB::table("achievements")->update('');
+            $data[$v['admin_id']] = json_decode(DB::table('crm_order')->where(['admin'=>$v['admin_id']])->count(),true);
         }
-        print_r($data);exit;
-        return view("index/ranking");
+        arsort($data);
+//        print_r($data);exit;
+        $res = json_decode(DB::table('crm_admin')->get(),true);
+        foreach($res as $v){
+            $arr[$v['admin_id']]=$v['admin_name'];
+        }
+//        print_r($arr);exit;
+        return view("index/ranking",['data'=>$data,'res'=>$res,'arr'=>$arr]);
     }
 }
