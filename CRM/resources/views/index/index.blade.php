@@ -174,13 +174,6 @@
                             <cite>数据统计</cite>
                         </a>
                     </li >
-
-					<li>
-                        <a _href="cate.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>开单爆屏</cite>
-                        </a>
-                    </li >
                     <li>
                         <a _href="/logistics">
                             <i class="iconfont">&#xe6a7;</i>
@@ -319,7 +312,7 @@ function open_order(){
 
 layui.use(['layer'], function(){
 
-	 setInterval("open_order()",1000);
+	 //setInterval("open_order()",1000);
 
 	  });
 		 

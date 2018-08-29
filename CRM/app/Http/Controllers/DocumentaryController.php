@@ -9,7 +9,10 @@ class DocumentaryController extends CommonController
 {
     //跟单展示
 	public function documentary_list(){
-		$res = DB::table('crm_dym')->orderBy('crm_dym.ctime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_dym.u_id")
+
+		$admin=admin_session();
+
+		$res = DB::table('crm_dym')->where(["a_id"=>$admin->admin_id])->orderBy('crm_dym.ctime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_dym.u_id")
 								   ->leftjoin("crm_admin","crm_admin.admin_id","=","crm_dym.a_id")
 								   ->paginate(6);
 		$count=DB::table("crm_dym")->count();
@@ -177,5 +180,30 @@ class DocumentaryController extends CommonController
 	
 	public function order_on(){
 		return view("document/order_on");
-	}	
+	}
+	
+	public function notice(){
+		//$admin=admin_session();
+		
+		$res = json_decode(DB::table('crm_off')
+				->orderBy('off_ctime',"desc")
+				->limit(3)
+				->get(),true);
+		$info=json_decode(DB::table("crm_admin")->get(),true);
+		
+		foreach($info as $k=>$v){
+			$new[$v['admin_id']]=$v['admin_name'];
+		}
+		
+
+		return view("document/notice",["res"=>$res,"new"=>$new]);
+	}
+
+	public function info(){
+		$id=input::get("id");
+		$arr=(array)DB::table("crm_off")->where(["off_id"=>$id])->first();
+
+		
+		return view("document/info",["arr"=>$arr]);
+	}
 }

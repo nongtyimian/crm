@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Input;
 class OrderController extends CommonController
 {
     public function order_list(){
-
-		$res = DB::table('crm_order')->orderBy('crm_order.mtime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_order.user")
+		$admin=admin_session();
+		$res = DB::table('crm_order')->where(["admin"=>$admin->admin_id])->orderBy('crm_order.mtime',"desc")->leftjoin("csm_user","csm_user.user_id","=","crm_order.user")
 								   ->leftjoin("crm_admin","crm_admin.admin_id","=","crm_order.admin")
 	
 								   ->paginate(6);

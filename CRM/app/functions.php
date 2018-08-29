@@ -25,7 +25,7 @@ function showMsg($status,$message = '',$data = array()){
 }
 
 //根据session内容查询管理员信息
-function admin_aession(){
+function admin_session(){
     $account = session( 'account' );
 //    print_r($account);exit;
     $crm_admin_first = DB::table('crm_admin')->where('admin_id', '=', $account['admin_name'])->first();

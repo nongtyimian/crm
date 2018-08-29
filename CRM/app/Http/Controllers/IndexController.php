@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends CommonController
 {
 	public function index(){
-		$admin_info=admin_aession();
+		$admin_info=admin_session();
 		return view("index/index",["info"=>$admin_info->admin_name]);
 	}
 
@@ -41,7 +41,7 @@ class IndexController extends CommonController
 		$admin=session("account");
 		$id=$admin['admin_name'];
 
-		$admin_info=admin_aession();
+		$admin_info=admin_session();
 		
 
 

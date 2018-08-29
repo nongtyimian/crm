@@ -293,11 +293,17 @@ Route::any('/comptg',"compController@tg");
 //跟单提醒
 Route::any('/remind',"DocumentaryController@remind");
 
+//公告
+Route::any('/notice',"DocumentaryController@notice");
+
 //开单爆屏
 Route::any('/open_order',"DocumentaryController@open_order");
 
 //开单爆屏功能
 Route::any('/order_on',"DocumentaryController@order_on");
+
+//公告详情
+Route::any('/info',"DocumentaryController@info");
 
 //未开发
 Route::get('/no', function () {

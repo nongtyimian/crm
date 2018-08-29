@@ -88,31 +88,8 @@
                 <div class="widget-head">
                     <h3><a href="../OA/Notice.asp">内部公文</a></h3>
                 </div>
-                <div class="widget-content">
-					<ul>
-						
-						<li ><span class="r">08/18</span>[公告] <a onclick='Notice_InfoView5()' style="cursor:pointer" >明天放假</a></li>
-						<script>function Notice_InfoView5() {$.dialog.open('../OA/GetUpdate.asp?action=Notice&sType=View&Id=5', {title: '查看', width: 800,height: 480, fixed: true}); };</script>
-						
-						<li ><span class="r">08/11</span>[公告] <a onclick='Notice_InfoView4()' style="cursor:pointer" >踩踩踩从</a></li>
-						<script>function Notice_InfoView4() {$.dialog.open('../OA/GetUpdate.asp?action=Notice&sType=View&Id=4', {title: '查看', width: 800,height: 480, fixed: true}); };</script>
-						
-						<li class='none'><span class="r">06/26</span>[公告] <a onclick='Notice_InfoView3()' style="cursor:pointer" >通知：下午四点全体业务员会议室开会！！</a></li>
-						<script>function Notice_InfoView3() {$.dialog.open('../OA/GetUpdate.asp?action=Notice&sType=View&Id=3', {title: '查看', width: 800,height: 480, fixed: true}); };</script>
-						
-					</ul> 
-                </div>
-            </li>
-            <li class="widget color-2">  
-                <div class="widget-head">
-                    <h3>站内信通知</h3>
-                </div>
-                <div class="widget-content">
-					<ul>
-						
-						<li class='none'>Sorry，没有找到符合条件的信息！</li>
-						
-					</ul>
+                <div class="widget-content" id="notice">
+					
                 </div>
             </li>
             <li class="widget color-3">  
@@ -276,7 +253,16 @@
 			
 	  })
 		}
+
+	  
 		remind();
+
+		$.get("/notice",{},function(data){
+				
+				$("#notice").html(data);
+				
+			
+	  })
 	
 	
 </script>
