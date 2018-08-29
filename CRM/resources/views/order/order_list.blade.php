@@ -98,8 +98,8 @@
             </td>
             <td><a title="查看详情" href="/order_view?id={{$v->order}}">{{$v->order}}</a></td>
             <td>{{$v->user_name}}</td>
-            <td>{{$v->sheng}}</td>
-            <td>{{$v->shi}}</td>
+            <td>{{$area[$v->sheng]}}</td>
+            <td>{{$area[$v->shi]}}</td>
             <td>{{$v->o_money}}</td>
             <td>{{$v->t_money}}</td>
             <td>{{$status[$v->sta]}}</td>

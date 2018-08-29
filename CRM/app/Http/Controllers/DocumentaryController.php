@@ -120,8 +120,30 @@ class DocumentaryController extends CommonController
 	}
 
 	public function documentary_update_do(){
+		$admin=session("account");
 		$data=input::all();
-		print_r($data);
+		$data['utime']=time();
+		$data['ntime']=strtotime($data['ntime']);
+		$data['a_id']=$admin['admin_name'];
+
+		$res=DB::table("crm_dym")->where(["dym_id"=>$data['dym_id']])->update($data);
+
+		$ope=[
+			"ope_content"=>3,
+			"ope_table"=>"跟单表",
+			"ope_bec"=>"修改客户跟单",
+			"a_id"=>$admin['admin_name'],
+			"time"=>time()
+		];
+		if(!$res){
+			return ["code"=>2,"msg"=>"数据异常"];
+		}
+		ope_add($ope);
+		return ["code"=>1,"msg"=>"修改成功"];
+	}
+
+	public function remind(){
+		return view("document/remind");
 	}
 
 	

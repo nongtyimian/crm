@@ -257,7 +257,8 @@
                   })
 				  layer.alert("增加成功", {icon: 6},function () {
 				window.parent.location.reload();
-					var index = parent.layer.getFrameIndex(window.name);
+				var index = parent.layer.getFrameIndex(window.name);
+					
 					parent.layer.close(index);
             });
 

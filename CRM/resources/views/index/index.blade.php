@@ -39,7 +39,7 @@
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
               <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-              <dd><a href="/index/login.html">退出</a></dd>
+              <dd><a href="/logout">退出</a></dd>
             </dl>
           </li>
           <!-- <li class="layui-nav-item to-index"><a href="/">前台首页</a></li> -->
@@ -83,7 +83,7 @@
                     </li>
 					<li>
 
-                        <a _href="member-del.html">
+                        <a _href="/create_order">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>开单</cite>
                             
