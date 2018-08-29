@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProbController extends Controller
+class ProbController extends CommonController
 {
 	public function zhanshi(){
 		$res=DB::table('crm_prodect')->orderBy('crm_prodect.ctime','desc')->where(['status'=>0])->paginate(6);

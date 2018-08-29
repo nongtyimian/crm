@@ -59,19 +59,30 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
+
+                    <li>
+                        <a _href="member-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>跟单提醒</cite>
+                            
+                        </a>
+                    </li >
 					<li>
+
+					<li>
+
 
                         <a _href="/off_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>内部公文</cite>
-                            
+
                         </a>
                     </li >
                     <li>
                         <a _href="/pers">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>个人日历</cite>
-                            
+
                         </a>
                     </li>
 					<li>
@@ -82,13 +93,13 @@
                             
                         </a>
                     </li>
-					<li>
-                        <a _href="/my">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>个人中心</cite>
-                            
-                        </a>
-                    </li>
+					{{--<li>--}}
+                        {{--<a _href="/my">--}}
+                            {{--<i class="iconfont">&#xe6a7;</i>--}}
+                            {{--<cite>个人中心</cite>--}}
+                            {{----}}
+                        {{--</a>--}}
+                    {{--</li>--}}
 					<li>
                         <a _href="/ranking">
                             <i class="iconfont">&#xe6a7;</i>
@@ -312,7 +323,11 @@ function open_order(){
 
 layui.use(['layer'], function(){
 
+
 	 //setInterval("open_order()",1000);
+
+	 // setInterval("open_order()",1000);
+
 
 	  });
 		 
