@@ -42,7 +42,7 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加权限','/limit_add')"><i class="layui-icon"></i>添加权限</button>
+        <button class="layui-btn" onclick="x_admin_show('添加公文','/off_add')"><i class="layui-icon"></i>添加公文</button>
         <span class="x-right" style="line-height:40px">共有数据：{{$crm_off_count}} 条</span>
     </xblock>
     <table class="layui-table">
@@ -165,7 +165,7 @@
             type: 'get',
             dataType: "json",
             data:{status:status,ids:ids,page:page},
-            url: "/limit_is",
+            url: "/off_is",
             success: function (datas) {
                 //                          console.log(data);
                 if (datas.code == 1) {
