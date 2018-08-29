@@ -234,10 +234,10 @@ Route::any('/logistics_in',"UserController@logistics_in");
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");
 
-<<<<<<< HEAD
+
 //绩效排名
 Route::any('/ranking',"UserController@ranking");
-=======
+
 
 //个人日历
 Route::any('/pers',"IndexController@pers");
@@ -273,8 +273,6 @@ Route::any('/remind',"DocumentaryController@remind");
 
 
 
-
->>>>>>> c107d07a5abc178e48bc84ea4402f3d438432360
 
 
 
