@@ -9,14 +9,15 @@ class ContractController extends CommonController
 
 {
     public function contract_list(){
+//        echo 12121;exit;
         $users=DB::table('crm_ctt')->paginate(3);
 
-        return view("contract/contract_list",['data'=>$users]);
+        return view("Contract/contract_list",['data'=>$users]);
     }
     public function contract_add(){
         $array=DB::table('csm_user')->get();
         $arr=DB::table('hetong')->get();
-        return view("contract/contract_add",['arr'=>$arr,'array'=>$array]);
+        return view("Contract/contract_add",['arr'=>$arr,'array'=>$array]);
     }
     public function contract_add_do(){
         $admin = session('account');
