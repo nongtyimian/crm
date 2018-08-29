@@ -187,6 +187,7 @@ class DocumentaryController extends CommonController
 		
 		$res = json_decode(DB::table('crm_off')
 				->orderBy('off_ctime',"desc")
+				->where(["off_status"=>1])
 				->limit(3)
 				->get(),true);
 		$info=json_decode(DB::table("crm_admin")->get(),true);
@@ -201,7 +202,7 @@ class DocumentaryController extends CommonController
 
 	public function info(){
 		$id=input::get("id");
-		$arr=(array)DB::table("crm_off")->where(["off_id"=>$id,"off_status"=>1])->first();
+		$arr=(array)DB::table("crm_off")->where(["off_id"=>$id])->first();
 
 		
 		return view("document/info",["arr"=>$arr]);
