@@ -201,7 +201,7 @@ class DocumentaryController extends CommonController
 
 	public function info(){
 		$id=input::get("id");
-		$arr=(array)DB::table("crm_off")->where(["off_id"=>$id])->first();
+		$arr=(array)DB::table("crm_off")->where(["off_id"=>$id,"off_status"=>1])->first();
 
 		
 		return view("document/info",["arr"=>$arr]);
