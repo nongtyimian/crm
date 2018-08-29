@@ -330,7 +330,7 @@ function open_order(){
 
 layui.use(['layer'], function(){
 
-	 setInterval("open_order()",1000);
+	 // setInterval("open_order()",1000);
 
 	  });
 		 

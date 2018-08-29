@@ -68,9 +68,15 @@ class CommonController extends Controller
                             'lim_web' => $url,
                         ];
                         $limss = Db::table('crm_lim') -> where( $where) -> first();
+                        if( empty( $limss ) ){
+
+                            exit('没有执行权限');
+                        }else{
+
+                            exit('没有'.$limss->lim_con.'的权限');
+                        }
 
 //                        print_r($limss);exit;
-                        exit('没有'.$limss->lim_con.'的权限');
                     }
                 }
 
