@@ -101,6 +101,8 @@ Route::any('/off_modify_do',"OffController@off_modify_do");
 Route::any('/off_delete',"OffController@off_delete");
 //是否启用内部公告
 Route::any('/off_is',"OffController@off_is");
+//图片。。。
+Route::any('/off_url',"OffController@off_url");
 
 
 
