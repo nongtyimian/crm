@@ -56,13 +56,14 @@
             <th>操作</th>
         </thead>
         <tbody>
-        {{--@foreach($data as $v)--}}
+        <?php $i=1;?>
+        @foreach($data as $k=>$v)
             <tr>
                 <td>
                     <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                 </td>
-                <td></td>
-                <td></td>
+                <td><?php echo $i;$i++;?></td>
+                <td>{{$arr[$k]}}</td>
                 <td class="td-manage">
                     <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                         <i class="layui-icon">&#xe601;</i>
@@ -72,7 +73,7 @@
                     </a>
                 </td>
             </tr>
-        {{--@endforeach--}}
+        @endforeach
         </tbody>
     </table>
     <div class="page">
