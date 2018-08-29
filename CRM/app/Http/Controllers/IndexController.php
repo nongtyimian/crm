@@ -25,9 +25,11 @@ class IndexController extends CommonController
 	}
 
 	public function per_add(){
+		$admin=session("account");
+		$id=$admin['admin_name'];
 		$val=$_GET['val'];
 		$date=$_GET['date'];
-		$res=DB::table('pers')->insert(['p_name'=>$val,'p_date'=>$date]);
+		$res=DB::table('pers')->insert(['p_name'=>$val,'p_date'=>$date,'a_id'=>$id]);
 		if($res){
             return (['font'=>'添加成功','code'=>1]);
         }else{
