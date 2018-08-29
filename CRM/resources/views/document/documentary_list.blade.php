@@ -54,7 +54,7 @@
             <th>下次联系</th>
             <th>详细内容</th>
             <th>业务员</th>
-            <th>录入时间</th>
+           
             <th >管理</th>
             </tr>
         </thead>
@@ -70,10 +70,10 @@
             <td>{{$v->area}}</td>
             <td>{{$v->type}}</td>
             <td>{{$v->pgs}}</td>
-            <td>{{$v->ntime}}</td>
+            <td>{{date("Y-m-d H : i : s", + "$v->ntime")}}</td>
             <td>{{$v->content}}</td>
             <td>{{$v->admin_name}}</td>
-            <td>{{$v->ctime}}</td>
+            
             <td class="td-manage">
               <a title="查看"  onclick="x_admin_show('编辑','/dtype_update?id={{$v->dym_id}}')" href="javascript:;">
                 <i class="layui-icon">&#xe63c;</i>

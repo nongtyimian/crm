@@ -28,7 +28,7 @@ function showMsg($status,$message = '',$data = array()){
 function admin_aession(){
     $account = session( 'account' );
 //    print_r($account);exit;
-    $crm_admin_first = $res = DB::table('crm_admin')->where('admin_id', '=', $account['admin_name'])->first();
+    $crm_admin_first = DB::table('crm_admin')->where('admin_id', '=', $account['admin_name'])->first();
 //    print_r($crm_admin_first);exit;
     return $crm_admin_first;
 }

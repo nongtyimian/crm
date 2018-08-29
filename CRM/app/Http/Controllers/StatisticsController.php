@@ -24,8 +24,10 @@ class StatisticsController extends CommonController
 
 	//数据统计
 	public function statistics_list(){
-			$admin=admin_aession();
-		
+			$admin=session("account");
+
+			$admin=(array)DB::table("crm_admin")->where(["admin_id"=>$admin['admin_name']])->first();
+			
 			//print_r($admin);exit;
 		if($admin['role']!=1){
 			

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends CommonController
 {
 	public function index(){
-		
-		return view("index/index");
+		$admin_info=admin_aession();
+		return view("index/index",["info"=>$admin_info->admin_name]);
 	}
 
 	public function test(){
@@ -38,11 +38,18 @@ class IndexController extends CommonController
 	public function layout(){
 		$admin=session("account");
 		$id=$admin['admin_name'];
+
+		$admin_info=admin_aession();
+		
+
+
 		$time=date('Y-m-d H:i:s', time()); 
 		//echo $time;exit;
 		$time2=date('Y-m-d', time()); 
 		$res=json_decode(DB::table('pers')->where(['p_date'=>$time2,'a_id'=>$id])->get(),true);
-		return view("index/layout",["time"=>$time,"res"=>$res]);
+
+
+		return view("index/layout",["time"=>$time,"res"=>$res,"info"=>$admin_info->admin_name]);
 	}
 
 	//个人中心

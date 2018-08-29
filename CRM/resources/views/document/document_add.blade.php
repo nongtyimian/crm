@@ -65,9 +65,10 @@
               <div class="layui-input-inline">
                   <select id="time" name="time" class="valid">
                       @foreach($time as $k=>$v)
-                      <option value="{{$v['r_name']}}">{{$v['r_name']}}</option>
+                      <option value="{{$v['r_name']}}">{{$v['r_name']}}天</option>
                       @endforeach
                   </select>
+				  
               </div>
           </div>
           <div class="layui-form-item">

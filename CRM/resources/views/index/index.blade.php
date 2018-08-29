@@ -35,10 +35,10 @@
         </ul>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">{{$info}}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+             
               <dd><a href="/logout">退出</a></dd>
             </dl>
           </li>
@@ -59,13 +59,6 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-                    <li>
-                        <a _href="member-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>跟单提醒</cite>
-                            
-                        </a>
-                    </li >
 					<li>
 
                         <a _href="member-list.html">
@@ -160,23 +153,17 @@
                     <li>
                         <a _href="/offic">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>内部公文</cite>
+                            <cite>内部公海</cite>
                         </a>
                     </li >
 					<li>
-                        <a _href="cate.html">
+                        <a _href="/no">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>任务发布</cite>
                         </a>
                     </li >
 					<li>
-                        <a _href="cate.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>个人日历</cite>
-                        </a>
-                    </li >
-					<li>
-                        <a _href="cate.html">
+                        <a _href="/no">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>工作报告</cite>
                         </a>
@@ -187,12 +174,7 @@
                             <cite>数据统计</cite>
                         </a>
                     </li >
-					<li>
-                        <a _href="cate.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>开单爆屏</cite>
-                        </a>
-                    </li >
+	
                 </ul>
             </li>
             <li>
@@ -311,3 +293,20 @@
     
 </body>
 </html>
+<script type="text/javascript"> 
+function open_order(){
+		$.get("/open_order",{},function(data){
+				if(data!="die"){
+					alert(data.admin_name+"有新订单了");
+				}	
+			
+	  })
+		}
+
+layui.use(['layer'], function(){
+
+	 setInterval("open_order()",1000);
+
+	  });
+		 
+</script>
