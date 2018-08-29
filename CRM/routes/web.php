@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/layout', function () {
-    return view('index/layout');
-});
+Route::get('/layout',"IndexController@layout");
 Route::get('/',"IndexController@index");
-Route::get('/test',"IndexController@test");
+Route::get('/test',"IndexController@test");//
 
 
 
+//设置权限   角色权限
+Route::any('/limit_role',"RoleController@limit_role");//
+//执行角色权限添加
+Route::any('/role_lim_do',"RoleController@role_lim_do");//
 
 //角色列表
 Route::any('/role_list',"RoleController@role_list");
@@ -36,9 +38,6 @@ Route::any('/role_delete',"RoleController@role_delete");
 Route::any('/role_is',"RoleController@role_is");
 
 
-
-//设置权限
-Route::any('/limit_delete',"RoleController@limit_delete");
 
 
 //departmentController   温静
@@ -84,6 +83,8 @@ Route::any('/limit_modify',"LimitController@limit_modify");
 Route::any('/limit_modify_do',"LimitController@limit_modify_do");
 //删除权限
 Route::any('/limit_delete',"LimitController@limit_delete");
+//是否启用
+Route::any('/limit_is',"LimitController@limit_is");
 
 //登录—页面
 Route::any('/login',"AdminController@login");
@@ -183,6 +184,8 @@ Route::any("/offdel","FunctionController@del");
 //修改公文
 Route::any("/offup","FunctionController@up");
 Route::any("/offupdo","FunctionController@updo");
+//放入公文
+Route::any("/gh","FunctionController@gh");
 
 
 
@@ -231,8 +234,47 @@ Route::any('/logistics_in',"UserController@logistics_in");
 //登录日志
 Route::any('/Logon_log',"UserController@Logon_log");
 
+<<<<<<< HEAD
 //绩效排名
 Route::any('/ranking',"UserController@ranking");
+=======
+
+//个人日历
+Route::any('/pers',"IndexController@pers");
+Route::any('/per_list',"IndexController@per_list");
+//个人日历添加日期
+Route::any('/dateadd',"IndexController@per_add");
+//个人中心
+Route::any('/my',"IndexController@my");
+//个人中心修改
+Route::any('/myup',"IndexController@myup");
+Route::any('/myupdo',"IndexController@myupdo");
+//日历查询事件
+Route::any('/per_sel',"IndexController@per_sel");
+//修改跟单记录
+Route::any('/dtype_update',"DocumentaryController@dtype_update");
+
+//修改跟单执行
+Route::any('/documentary_update_do',"DocumentaryController@documentary_update_do");
+
+
+//投诉
+Route::any('/comp',"compController@c_list");
+Route::any('/compadd',"compController@add");
+Route::any('/compadddo',"compController@adddo");
+Route::any('/compdel',"compController@del");
+Route::any('/compup',"compController@up");
+Route::any('/compupdo',"compController@updo");
+Route::any('/comptg',"compController@tg");
+
+
+//跟单提醒
+Route::any('/remind',"DocumentaryController@remind");
+
+
+
+
+>>>>>>> c107d07a5abc178e48bc84ea4402f3d438432360
 
 
 

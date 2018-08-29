@@ -27,47 +27,38 @@
 <div class="x-body">
         <form class="layui-form"  method="post">
 		@csrf
-          <div class="layui-form-item">
-              <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>公司名称
-              </label>
-              <div class="layui-input-inline">
-                  <input type="text" name="o_name" required="" lay-verify="o_name"
-                  autocomplete="off" class="layui-input">
-              </div>
-          </div>
-          <div class="layui-form-item">
-              <label for="phone" class="layui-form-label">
-                  <span class="x-red">*</span>业务员
-              </label>
-              <div class="layui-input-inline">
-                  	<select name="o_app">
-					@foreach($data as $k=>$v)
-						<option value="{{$v['admin_name']}}">{{$v['admin_name']}}</option>
-					@endforeach
-					</select>
-              </div>
-          </div>
-          <div class="layui-form-item">
-              <label for="L_email" class="layui-form-label">
-                  <span class="x-red">*</span>申请人
-              </label>
-              <div class="layui-input-inline">
-                  <input type="text" name="o_app" required="" lay-verify="o_app"
-                  autocomplete="off" class="layui-input">
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  <span class="x-red">*</span>
-              </div>
-          </div>
-          <div class="layui-form-item">
+		<table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th>ID</th>
+            <th>用户</th>
+            <th>主题</th>
+            <th>意见</th>
+			<th>操作</th>
+        </thead>
+        <tbody> 
+          <tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+			<td><input type="text" value="{{$res['m_id']}}" name="m_id" readonly></td>
+            <td><input type="text" value="{{$res['u_id']}}" name="u_id"></td>
+            <td><input type="text" value="{{$res['theme']}}" name="theme"></td>
+            <td><input type="text" value="{{$res['idea']}}" name="idea"></td>
+			<td><div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
              <div  class="layui-btn" lay-filter="add" lay-submit="">
-                添加
+                保存
             </div>
-
+			</td>
           </div>
+          </tr>
+        </tbody>
+      </table>
       </form>
     </div>
 <script>
@@ -83,19 +74,16 @@
 //                }
 //            }
 //        });
-        //监听提交
-        form.on('submit(add)', function(data){
-            var o_name = $('[name=o_name]').val();
-            var o_sale = $('[name=o_sale]').val();
-			var o_app = $('[name=o_app]').val();
+        //监听提交 
+       form.on('submit(add)', function(data){
             $.ajax({
                 method:"post",
-                url:"/offadddo",
+                url:"/compupdo",
                 data:data.field,
                 success:function(result){
                     if(result.code == 1){
                         layer.msg(result.font,{icon:result.code});
-                        parent.location="/offic";
+                        parent.location="/comp";
                     }else{
                         layer.msg(result.font,{icon:result.code});
                     }

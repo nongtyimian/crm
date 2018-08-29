@@ -56,6 +56,7 @@
             </th>
             <th>编号</th>
             <th>员工姓名</th>
+            <th>员工角色</th>
             <th>添加时间</th>
             <th>状态</th>
             <th>操作</th>
@@ -71,6 +72,7 @@
                 </td>
                 <td>{{$v->admin_id}}</td>
                 <td>{{$v->admin_name}}</td>
+                <td>{{$v->role_name}}</td>
                 <td>{{$v->time}}</td>
                 <td class="td-status">
 

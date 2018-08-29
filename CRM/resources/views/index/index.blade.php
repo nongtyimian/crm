@@ -39,7 +39,7 @@
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
               <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-              <dd><a href="/index/login.html">退出</a></dd>
+              <dd><a href="/logout">退出</a></dd>
             </dl>
           </li>
           <!-- <li class="layui-nav-item to-index"><a href="/">前台首页</a></li> -->
@@ -67,14 +67,30 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="member-del.html">
+
+                        <a _href="member-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>内部公文</cite>
+                            
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="/pers">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>个人日历</cite>
+                            
+                        </a>
+                    </li>
+					<li>
+
+                        <a _href="/create_order">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>开单</cite>
                             
                         </a>
                     </li>
 					<li>
-                        <a _href="member-del.html">
+                        <a _href="/my">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>个人中心</cite>
                             
@@ -121,7 +137,7 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="order-list.html">
+                        <a _href="/comp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>附加记录</cite>
                         </a>
@@ -166,7 +182,7 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="cate.html">
+                        <a _href="/statistics_list">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>数据统计</cite>
                         </a>
@@ -263,6 +279,12 @@
                         <a _href="/customer_source">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>客户来源</cite>
+                        </a>
+                    </li >
+					<li>
+                        <a _href="/customer_source">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>物流管理</cite>
                         </a>
                     </li >
                 </ul>

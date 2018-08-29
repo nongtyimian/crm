@@ -32,18 +32,8 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-            <input class="layui-input" placeholder="开始日" name="start" id="start">
-            <input class="layui-input" placeholder="截止日" name="end" id="end">
-            <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
-            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-        </form>
-    </div>
     <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','/user_add_do')"><i class="layui-icon"></i>添加</button>
-        {{--<span class="x-right" style="line-height:40px">共有数据：88 条</span>--}}
+        {{--<span class="x-right" style="line-height:40px">共有数据：1 条</span>--}}
     </xblock>
     <table class="layui-table">
         <thead>
@@ -53,63 +43,31 @@
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>客户姓名</th>
+            <th>管理员姓名</th>
             <th>联系电话</th>
-            <th>省</th>
-            <th>市</th>
-            <th>县</th>
-            <th>详细地址</th>
-            <th>备用电话</th>
-            <th>网络</th>
-            <th>客户类型</th>
-            <th>客户等级</th>
-            <th>客户来源</th>
-            <th>其他联系</th>
-            <th>主营项目</th>
-            <th>备注</th>
-            <th>状态</th>
+			<th>联系邮箱</th>
+			<th>性别</th>
             <th>操作</th>
         </thead>
         <tbody>
-
-        @foreach($data as $v)
         <tr>
             <td>
                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>{{$v->user_id}}</td>
-            <td>{{$v->user_name}}</td>
-            <td>{{$v->tel}}</td>
-            <td>{{$v->area}}</td>
-            <td>{{$v->part}}</td>
-            <td>{{$v->xian}}</td>
-            <td>{{$v->addr}}</td>
-            <td>{{$v->back_tel}}</td>
-            <td>{{$v->ip}}</td>
-            <td>{{$v->type}}</td>
-            <td>{{$v->lv}}</td>
-            <td>{{$v->source}}</td>
-            <td>{{$v->o_tel}}</td>
-            <td>{{$v->project}}</td>
-            <td>{{$v->remark}}</td>
-            <td class="td-status">
-                <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
+            <td>{{$res['a_id']}}</td>
+            <td>{{$res['a_name']}}</td>
+            <td>{{$res['a_tel']}}</td>
+            <td>{{$res['a_ema']}}</td>
+            <td>{{$res['a_sex']}}</td>
             <td class="td-manage">
                 <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                     <i class="layui-icon">&#xe601;</i>
                 </a>
-                <a title="编辑"  onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
+                <a title="修改"  onclick="x_admin_show('修改','/myup?id={{$res['a_id']}}')" href="javascript:;">
                     <i class="layui-icon">&#xe642;</i>
-                </a>
-				 <a title="公海"  onclick="x_admin_show2('公海','{{$v->user_id}}')" href="javascript:;">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a title="删除" onclick="member_del(this,'{{$v->user_id}}')" href="javascript:;">
-                    <i class="layui-icon">&#xe640;</i>
                 </a>
             </td>
         </tr>
-@endforeach
         </tbody>
     </table>
     <div class="page">
@@ -120,7 +78,6 @@
             {{--<a class="num" href="">3</a>--}}
             {{--<a class="num" href="">489</a>--}}
             {{--<a class="next" href="">&gt;&gt;</a>--}}
-            {{$data}}
         </div>
     </div>
 </div>
@@ -137,7 +94,7 @@
         laydate.render({
             elem: '#end' //指定元素
         });
-    });
+    })
 
     /*用户-停用*/
     function member_stop(obj,id){
@@ -164,35 +121,7 @@
     }
 
     /*用户-删除*/
-    function x_admin_show2(obj,id){
-        layer.confirm('确认要放入公海吗？',function(index){
-
-            $.ajax({
-                type: 'get',
-                dataType: "json",
-                data:{id:id},
-                url: "/gh",
-                success: function (datas) {
-//                          console.log(data);
-                    if (datas.code == 1) {
-
-
-                        $(obj).parents("tr").remove();
-                        layer.msg(datas.font,{icon:1,time:1000});
-					window.location.reload();
-					var index = parent.layer.getFrameIndex(window.name);
-					parent.layer.close(index);
-                    } else {
-                        layer.msg(datas.font, {icon: datas.code});
-                    }
-                }
-
-            })
-
-
-        });
-    }
-	function member_del(obj,id){
+    function member_del(obj,id){
         layer.confirm('确认要删除吗？',function(index){
 
             $.ajax({

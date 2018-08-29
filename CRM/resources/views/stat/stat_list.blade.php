@@ -11,15 +11,14 @@
     <link rel="stylesheet" href="/index/css/font.css">
     <link rel="stylesheet" href="/index/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/index/lib/layui/layui.js" charset="utf-8"></script>
+	 <script src="/index/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/index/js/xadmin.js"></script>
+    
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
   </head>
   
   <body>
@@ -34,61 +33,46 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
     <div class="x-body">
-      <div class="layui-row">
-        <!-- <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
-          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-        </form> -->
-      </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加产品','/probadd')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据:{{$count}}条</span>
+        <span class="x-right" style="line-height:40px"></span>
       </xblock>
       <table class="layui-table">
         <thead>
+		<tr>
+			<td colspan="5" align="center">
+			   基本情况
+			</td >
+			<td colspan="2" align="center">
+				活跃状态
+			</td>
+		</tr>
           <tr>
-            <th>
-              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </th>
-            <th>ID</th>
-            <th>产品名称</th>
-            <th>产品价格</th>
-            <th>添加时间</th>
-            <th>修改时间</th>
-			<th>操作</th>
+            <th>管理员</th>
+            <th>客户</th>
+            <th>跟单</th>
+            <th>订单</th>
+            <th>销量</th>
+            <th>修改</th>
+			<th>删除</th>
+            </tr>
         </thead>
         <tbody>
-		@foreach($res as $v)
+		@foreach($admin as $k=>$v)
           <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td >{{$v->p_id}}</td>
-            <td>{{$v->p_name}}</td>
-			<td>{{$v->p_price}}</td>
-            <td>{{$v->ctime}}</td>
-            <td>{{$v->utime}}</td>
-           <!--  <td class="td-status">
-              <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td> -->
-            <td class="td-manage">
-              <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                <i class="layui-icon">&#xe601;</i>
-              </a>
-              <button class="layui-btn" onclick="x_admin_show('修改用户','/probup?id={{$v->p_id}}')"><i class="layui-icon"></i>修改</button>
-              <a title="删除" onclick="member_del(this,'{{$v->p_id}}')" href="javascript:;">
-                <i class="layui-icon">&#xe640;</i>
-              </a>
-            </td>
+           	<td>{{$v['admin_name']}}</td>
+           	<td>{{$v['user_count']}}</td>
+			<td>{{$v['dym_count']}}</td>
+			<td>{{$v['order_count']}}</td>
+			<td>{{$v['success_count']}}</td>
+			<td>{{$v['update_count']}}</td>
+			<td>{{$v['del_count']}}</td>
           </tr>
-		   @endforeach
+		 @endforeach
         </tbody>
       </table>
-       <div class="page">
+      <div class="page">
         <div>
-		{{$res}}
         </div>
       </div>
 
@@ -140,30 +124,21 @@
                       type: 'get',
                       dataType: "json",
                       data:{id:id},
-                      url: "/probdel",
+                      url: "/documentary_del",
                       success: function (datas) {
 //                          console.log(data);
                           if (datas.code == 1) {
                               
 
                                    $(obj).parents("tr").remove();
-								   layer.msg(datas.font,{icon:1,time:1000});
+								   layer.msg(datas.msg,{icon:1,time:1000});
                              
                           } else {
-                              layer.msg(datas.font, {icon: datas.code});
+                              layer.msg(datas.msg, {icon: datas.code});
                           }
                       }
 
                   })
-
-             
-          });
-      }
-	  /*用户-修改*/
-      function x_admin_show2(obj,id){
-          layer.confirm('确认要修改吗？',function(index){
-              
-			     location.href="/probup?id="+id;
 
              
           });
@@ -191,3 +166,4 @@
   </body>
 
 </html>
+

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Input;
 class DocumentaryController extends CommonController
 {
     //跟单展示
@@ -79,6 +79,71 @@ class DocumentaryController extends CommonController
 			//return $arr['code']=1;
 		}
 		return ['msg'=>"删除成功",'code'=> 1];
+	}
+
+	public function dtype_update(){
+
+		$id=input::get("id");
+		$dym=(array)DB::table("crm_dym")->where(["dym_id"=>$id])->first();
+
+		//用户
+		$user=$this->select("csm_user","user_id","u_id",$dym);
+
+		//跟单类型
+
+		$type=$this->select("dym_type","t_name","type",$dym);
+		//跟单数据
+		
+
+		$pgs=$this->select("dym_pgs","p_name","pgs",$dym);
+		
+        //提前时间
+		
+		$time=$this->select("dym_rtime","r_name","rtime",$dym);
+
+
+		return view("document/update",["dym"=>$dym,"user"=>$user,"type"=>$type,"pgs"=>$pgs,"time"=>$time]);
+	}
+	//公共方法
+	public function select($table,$id,$oneid,$dym){
+		$user=json_decode(DB::table($table)->get(),true);
+
+		foreach($user as $k=>$v){
+			if($v[$id]==$dym[$oneid]){
+				$user[$k]['cs']="selected";	
+			}else{
+			   $user[$k]['cs']="";	
+			}
+		}
+		
+		return $user;
+	}
+
+	public function documentary_update_do(){
+		$admin=session("account");
+		$data=input::all();
+		$data['utime']=time();
+		$data['ntime']=strtotime($data['ntime']);
+		$data['a_id']=$admin['admin_name'];
+
+		$res=DB::table("crm_dym")->where(["dym_id"=>$data['dym_id']])->update($data);
+
+		$ope=[
+			"ope_content"=>3,
+			"ope_table"=>"跟单表",
+			"ope_bec"=>"修改客户跟单",
+			"a_id"=>$admin['admin_name'],
+			"time"=>time()
+		];
+		if(!$res){
+			return ["code"=>2,"msg"=>"数据异常"];
+		}
+		ope_add($ope);
+		return ["code"=>1,"msg"=>"修改成功"];
+	}
+
+	public function remind(){
+		return view("document/remind");
 	}
 
 	
