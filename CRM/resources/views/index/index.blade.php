@@ -97,7 +97,7 @@
                         </a>
                     </li>
 					<li>
-                        <a _href="member-del.html">
+                        <a _href="/ranking">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>绩效排名</cite>
                             
@@ -193,6 +193,12 @@
                             <cite>开单爆屏</cite>
                         </a>
                     </li >
+                    <li>
+                        <a _href="/logistics">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>物流管理</cite>
+                        </a>
+                    </li >
                 </ul>
             </li>
             <li>
@@ -220,6 +226,7 @@
                             <cite>员工管理</cite>
                         </a>
                     </li >
+
 					<li>
                         <a _href="/department_list">
                             <i class="iconfont">&#xe6a7;</i>
