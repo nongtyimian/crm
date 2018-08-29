@@ -7,37 +7,27 @@ use App\Http\Controllers\Controller;
 
 class FunctionController extends Controller
 {
+	public function gh(){
+		$id=$_GET['id'];
+		$res=DB::table('csm_user')->where(['user_id'=>$id])->update(['status'=>3]);
+		if($res){
+            return (['font'=>'放入成功','code'=>1]);
+        }else{
+            return(['font'=>'放入失败','code'=>2]);
+        }
+	}
 	public function zhanshi(){
-		$res=DB::table('offic')->orderBy('offic.o_ctime','desc')->where(['o_status'=>0])->paginate(6);
-		$count=DB::table("offic")->count();
+		$res=DB::table('csm_user')->orderBy('csm_user.ctime','desc')->where(['status'=>3])->paginate(6);
+		$count=DB::table("csm_user")->count();
 		foreach($res as $k=>$v){
-			$v->o_ctime=date('Y-m-d H:i:s', $v->o_ctime);
+			$v->ctime=date('Y-m-d H:i:s', $v->ctime);
 		}
 		return view("Function/offic",["res"=>$res,"count"=>$count]);
-	}
-	public function add(){
-		return view("Function/offadd");
-	}	
-	public function adddo(){
-		$arr=$_POST;
-		$where=[
-			'o_name'=>$arr['o_name'],
-			'o_ctime'=>time(),
-			'o_sale'=>$arr['o_sale'],
-			'o_app'=>$arr['o_app'],
-			'o_status'=>0
-		];
-		$res=DB::table('offic')->insert($where);
-		if($res){
-            return (['font'=>'添加成功','code'=>1]);
-        }else{
-            return(['font'=>'添加失败','code'=>2]);
-        }
 	}
 
 	public function del(){
 		$data=$_GET;
-		$res=DB::table('offic')->where(['o_id'=>$data['id']])->update(['o_status'=>1]);
+		$res=DB::table('csm_user')->where(['user_id'=>$data['id']])->update(['status'=>2]);
 		if($res){
             return (['font'=>'删除成功','code'=>1]);
         }else{
@@ -47,19 +37,30 @@ class FunctionController extends Controller
 
 	public function up(){
 		$id=$_GET['id'];
-		$res=(array)DB::table('offic')->where(['o_id'=>$id])->get()->first();
-		$res['o_ctime']=date('Y-m-d H:i:s', $res['o_ctime']);
+		$res=(array)DB::table('csm_user')->where(['user_id'=>$id])->get()->first();
+		$res['ctime']=date('Y-m-d H:i:s', $res['ctime']);
 		return view("Function/offupdate",["res"=>$res]);
 	}
 	public function updo(){
 		$arr=$_POST;
 		$where=[
-			"o_name"=>$arr['o_name'],
-			"o_sale"=>$arr['o_sale'],
-			"o_app"=>$arr['o_app'],
-			"o_ctime"=>time()
+			"user_name"=>$arr['user_name'],
+			"tel"=>$arr['tel'],
+			"addr"=>$arr['addr'],
+			"type"=>$arr['type'],
+			"lv"=>$arr['lv'],
+			"source"=>$arr['source'],
+			"o_tel"=>$arr['o_tel'],
+			"project"=>$arr['project'],
+			"remark"=>$arr['remark'],
+			"ip"=>$arr['ip'],
+			"utime"=>time(),
+			"area"=>$arr['area'],
+			"part"=>$arr['part'],
+			"xian"=>$arr['xian'],
+			"back_tel"=>$arr['back_tel']
 		];
-		$res=DB::table('offic')->where(['o_id'=>$arr['o_id']])->update($where);
+		$res=DB::table('csm_user')->where(['user_id'=>$arr['user_id']])->update($where);
 		if($res){
             return (['font'=>'修改成功','code'=>1]);
         }else{

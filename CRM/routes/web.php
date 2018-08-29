@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/layout', function () {
-    return view('index/layout');
-});
+Route::get('/layout',"IndexController@layout");
 Route::get('/',"IndexController@index");
 Route::get('/test',"IndexController@test");
 
@@ -183,6 +181,8 @@ Route::any("/offdel","FunctionController@del");
 //修改公文
 Route::any("/offup","FunctionController@up");
 Route::any("/offupdo","FunctionController@updo");
+//放入公文
+Route::any("/gh","FunctionController@gh");
 
 
 
@@ -234,12 +234,28 @@ Route::any('/pers',"IndexController@pers");
 Route::any('/per_list',"IndexController@per_list");
 //个人日历添加日期
 Route::any('/dateadd',"IndexController@per_add");
-
+//个人中心
+Route::any('/my',"IndexController@my");
+//个人中心修改
+Route::any('/myup',"IndexController@myup");
+Route::any('/myupdo',"IndexController@myupdo");
+//日历查询事件
+Route::any('/per_sel',"IndexController@per_sel");
 //修改跟单记录
 Route::any('/dtype_update',"DocumentaryController@dtype_update");
 
 //修改执行
 Route::any('/documentary_update_do',"DocumentaryController@documentary_update_do");
+
+//投诉
+Route::any('/comp',"compController@c_list");
+Route::any('/compadd',"compController@add");
+Route::any('/compadddo',"compController@adddo");
+Route::any('/compdel',"compController@del");
+Route::any('/compup',"compController@up");
+Route::any('/compupdo',"compController@updo");
+Route::any('/comptg',"compController@tg");
+
 
 
 

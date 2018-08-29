@@ -90,7 +90,7 @@
                         </a>
                     </li>
 					<li>
-                        <a _href="member-del.html">
+                        <a _href="/my">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>个人中心</cite>
                             
@@ -137,7 +137,7 @@
                         </a>
                     </li >
 					<li>
-                        <a _href="order-list.html">
+                        <a _href="/comp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>附加记录</cite>
                         </a>

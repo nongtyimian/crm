@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class UserController extends CommonController
 {
     public function user_add(){
-        $users=DB::table('csm_user')->paginate(3);
+        $users=DB::table('csm_user')->where(['status'=>1])->paginate(3);
         return view("index/user_add",['data'=>$users]);
     }
     public function user_add_do(){

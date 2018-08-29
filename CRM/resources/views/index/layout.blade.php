@@ -17,7 +17,7 @@
     
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">欢迎管理员：
-            <span class="x-red">test</span>！当前时间:2018-04-25 20:50:53</blockquote>
+            <span class="x-red">test</span>！当前时间:{{$time}}</blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">
@@ -119,9 +119,9 @@
                 </div>
                 <div class="widget-content">
 					<ul>
-					
-						<li class='none'>Sorry，没有找到符合条件的信息！</li>
-					
+					@foreach($res as $k=>$v)
+						<li class='none'>今日活动:{{$v['p_name']}}</li>
+					@endforeach
 					</ul>
                 </div>
             </li>

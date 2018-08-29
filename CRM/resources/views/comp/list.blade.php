@@ -43,8 +43,7 @@
         </form> -->
       </div>
       <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加产品','/probadd')"><i class="layui-icon"></i>添加</button>
+         <button class="layui-btn" onclick="x_admin_show('添加记录','/compadd')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据:{{$count}}条</span>
       </xblock>
       <table class="layui-table">
@@ -54,10 +53,13 @@
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>产品名称</th>
-            <th>产品价格</th>
-            <th>添加时间</th>
-            <th>修改时间</th>
+            <th>用户</th>
+            <th>主题</th>
+            <th>业务员</th>
+            <th>意见</th>
+			<th>提交时间</th>
+			<th>解决时间</th>
+			<th>状态</th>
 			<th>操作</th>
         </thead>
         <tbody>
@@ -66,19 +68,20 @@
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td >{{$v->p_id}}</td>
-            <td>{{$v->p_name}}</td>
-			<td>{{$v->p_price}}</td>
+            <td >{{$v->m_id}}</td>
+			<td >{{$v->u_id}}</td>
+			<td >{{$v->theme}}</td>
+			<td >{{$v->admin}}</td>
+            <td>{{$v->idea}}</td>
             <td>{{$v->ctime}}</td>
             <td>{{$v->utime}}</td>
+            <td>{{$v->status}}</td>
            <!--  <td class="td-status">
               <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td> -->
             <td class="td-manage">
-              <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                <i class="layui-icon">&#xe601;</i>
-              </a>
-              <button class="layui-btn" onclick="x_admin_show('修改用户','/probup?id={{$v->p_id}}')"><i class="layui-icon"></i>修改</button>
-              <a title="删除" onclick="member_del(this,'{{$v->p_id}}')" href="javascript:;">
+			   <button class="layui-btn" onclick="x_admin_show('修改用户','/compup?id={{$v->m_id}}')"><i class="layui-icon"></i>修改</button>
+			   <button class="layui-btn" onclick="x_admin('处理投诉','{{$v->m_id}}')"><i class="layui-icon"></i>处理</button>
+              <a title="删除" onclick="member_del(this,'{{$v->m_id}}')" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
@@ -140,7 +143,7 @@
                       type: 'get',
                       dataType: "json",
                       data:{id:id},
-                      url: "/probdel",
+                      url: "/compdel",
                       success: function (datas) {
 //                          console.log(data);
                           if (datas.code == 1) {
@@ -159,11 +162,39 @@
              
           });
       }
+	  function x_admin(obj,id){
+          layer.confirm('确认要通过吗？',function(index){
+              
+			    $.ajax({
+                      type: 'get',
+                      dataType: "json",
+                      data:{id:id},
+                      url: "/comptg",
+                      success: function (datas) {
+//                          console.log(data);
+                          if (datas.code == 1) {
+                              
+									
+                                   $(obj).parents("tr").remove();
+								   layer.msg(datas.font,{icon:1,time:1000});
+								   window.location.reload();
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
+                          } else {
+                              layer.msg(datas.font, {icon: datas.code});
+                          }
+                      }
+
+                  })
+
+             
+          });
+      }
 	  /*用户-修改*/
       function x_admin_show2(obj,id){
           layer.confirm('确认要修改吗？',function(index){
               
-			     location.href="/probup?id="+id;
+			     location.href="/compup?id="+id;
 
              
           });

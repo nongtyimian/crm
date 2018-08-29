@@ -83,7 +83,6 @@
                 url:"/probupdo",
                 data:data.field,
                 success:function(result){
-					alert(result);
                     if(result.code == 1){
                         layer.msg(result.font,{icon:result.code});
                         parent.location="/prob_list";
