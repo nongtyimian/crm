@@ -37,7 +37,7 @@
           <li class="layui-nav-item">
             <a href="javascript:;">{{$info}}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+              {{--<dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>--}}
              
               <dd><a href="/logout">退出</a></dd>
             </dl>
@@ -60,14 +60,13 @@
                 </a>
                 <ul class="sub-menu">
 
-                    <li>
-                        <a _href="member-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>跟单提醒</cite>
-                            
-                        </a>
-                    </li >
-					<li>
+                    {{--<li>--}}
+                        {{--<a _href="member-list.html">--}}
+                            {{--<i class="iconfont">&#xe6a7;</i>--}}
+                            {{--<cite>跟单提醒</cite>--}}
+                            {{----}}
+                        {{--</a>--}}
+                    {{--</li >--}}
 
 					<li>
 

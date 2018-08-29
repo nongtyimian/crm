@@ -18,7 +18,7 @@
 			<td valign="top" class="td_n pdl10 pdr10 pdt10"> 
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" CLASS="table_1">
 					<tr class="tr_t"> 
-						<td class="td_l_l"><B>公告</B>{{$arr['off_tittle']}}</td>
+						<td class="td_l_l"><B>公告标题：</B>{{$arr['off_tittle']}}</td>
 					</tr>
 					<tr>
 						<td class="td_r_l" style="padding:10px;line-height:2em;"> <p> <?php echo htmlspecialchars_decode($arr['off_content']); ?></p>
