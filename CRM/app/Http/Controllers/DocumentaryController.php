@@ -143,8 +143,39 @@ class DocumentaryController extends CommonController
 	}
 
 	public function remind(){
-		return view("document/remind");
+		$admin=session("account");
+		$admin_id=$admin["admin_name"];
+		$time=time();
+		$arr=json_decode(DB::table("crm_dym")->where(["a_id"=>$admin_id])->join("csm_user","user_id","=","u_id")->get(),true);
+		foreach($arr as $k=>$v){
+			if($time<$v['ntime']&&($v['ntime']-$time)<=$v['rtime']*24*60*60){
+				$ar[$k]=$v;
+			}
+		}
+		
+
+		return view("document/remind",["ar"=>$ar]);
 	}
 
+	public function open_order(){
+		
+		if(!empty(session("order"))){
+			$order=session("order");
+			$admin=session("account");
+			session(["order"=>null]);
+			$arr=(array)DB::table('crm_order')->where(["admin"=>$admin["admin_name"]])
+								   ->leftjoin("crm_admin","crm_admin.admin_id","=","crm_order.admin")
 	
+								   ->first();
+			return $arr; 
+			
+		}else{
+			return "die";
+		}
+		
+	}
+	
+	public function order_on(){
+		return view("document/order_on");
+	}	
 }

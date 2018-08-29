@@ -12,12 +12,14 @@
         <link rel="stylesheet" href="/index/css/xadmin.css">
 		<link href="/index/inet.css" rel="stylesheet" type="text/css" />
 		<link href="/index/co.css" rel="stylesheet" type="text/css" />
-
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/index/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/index/js/xadmin.js"></script>
 
     
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">欢迎管理员：
-            <span class="x-red">test</span>！当前时间:{{$time}}</blockquote>
+            <span class="x-red">{{$info}}</span>！当前时间:{{$time}}</blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">
@@ -29,42 +31,42 @@
                                     <ul class="layui-row layui-col-space10 layui-this">
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
+                                                <h3>客户</h3>
                                                 <p>
                                                     <cite>66</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>会员数</h3>
+                                                <h3>跟单</h3>
                                                 <p>
                                                     <cite>12</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>回复数</h3>
+                                                <h3>订单</h3>
                                                 <p>
                                                     <cite>99</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>商品数</h3>
+                                                <h3>销量</h3>
                                                 <p>
                                                     <cite>67</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
+                                                <h3>修改</h3>
                                                 <p>
                                                     <cite>67</cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
-                                                <h3>文章数</h3>
+                                                <h3>删除</h3>
                                                 <p>
                                                     <cite>6766</cite></p>
                                             </a>
@@ -133,14 +135,7 @@
                     <span style="float:right;padding-right:10px;padding-top:5px;"><span class="info_help help01" onmouseover="tip.start(this)" tips="三天内需跟单的记录">&nbsp;</span></span><h3><a href="Records.asp">跟单提醒</a></h3>
                 </div>
                 <div class="widget-content">
-					<ul>
-						
-						<li ><span class="r" style="">08/26</span>[维护] <a onclick='Records_InfoView39()' style="cursor:pointer" > 南通敦宏实验有限公司</a></li>
-						<script>function Records_InfoView39() {$.dialog.open('GetUpdate.asp?action=Client&sType=InfoView&oType=Records&cId=242', {title: '查看', width: 900,height: 480, fixed: true}); };</script>
-						
-						<li class='none'><span class="r" style="">08/25</span>[跟单] <a onclick='Records_InfoView27()' style="cursor:pointer" > 思楼传媒</a></li>
-						<script>function Records_InfoView27() {$.dialog.open('GetUpdate.asp?action=Client&sType=InfoView&oType=Records&cId=219', {title: '查看', width: 900,height: 480, fixed: true}); };</script>
-						
+					<ul id="dym">	
 					</ul>
                 </div>
             </li>
@@ -273,3 +268,15 @@
         </script>
     </body>
 </html>
+<script type="text/javascript">
+ 
+	  function remind(){
+		$.get("/remind",{},function(data){
+				$("#dym").html(data);	
+			
+	  })
+		}
+		remind();
+	
+	
+</script>

@@ -114,6 +114,8 @@ class OrderController extends CommonController
 			 foreach($arr as $v){
 				DB::table("order_content")->insert($v);	
 			 }
+
+			 session(["order"=>$new['order']]);
 		//});
 
 
