@@ -9,7 +9,11 @@ class IndexController extends CommonController
 {
 	public function index(){
 		$admin_info=admin_session();
-		return view("index/index",["info"=>$admin_info->admin_name]);
+
+		if(!empty($admin_info)){
+			 return view("index/index",["info"=>$admin_info->admin_name]);
+		}
+		
 	}
 
 	public function test(){
