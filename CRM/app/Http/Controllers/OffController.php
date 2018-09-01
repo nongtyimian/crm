@@ -35,7 +35,7 @@ class OffController extends CommonController
 
     //公文添加
     public function off_add( Request $request ){
-        $admin_session = admin_aession();
+        $admin_session = admin_session();
         return view( "off/off_add" , [ 'admin_session' => $admin_session->admin_name] );
 
     }

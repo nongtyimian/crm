@@ -13,6 +13,9 @@ class CommonController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
+
+
+			
             //获取路由
             $r_url = $_SERVER['REQUEST_URI'];
 

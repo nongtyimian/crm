@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends CommonController
 {
 	public function index(){
+
+		if(empty(session("account"))){
+				return redirect('/login');	
+			}
 		$admin_info=admin_session();
 
 		if(!empty($admin_info)){
